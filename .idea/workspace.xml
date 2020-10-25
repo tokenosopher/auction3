@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6b1ceee0-0102-4196-970c-0f29a4e2e356" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ProjectId" id="1in4IPNRmFbEitOzKKK4XAeXmzf" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6b1ceee0-0102-4196-970c-0f29a4e2e356" name="Default Changelist" comment="" />
+      <created>1602529942064</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1602529942064</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="698" y="344" key="#Notifications" timestamp="1603623702723">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="698" y="344" key="#Notifications/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603623702723" />
+    <state x="758" y="265" key="FileChooserDialogImpl" timestamp="1603624579197">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="758" y="265" key="FileChooserDialogImpl/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603624579197" />
+    <state x="838" y="418" key="Github.ShareDialog" timestamp="1603624521010">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="838" y="418" key="Github.ShareDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603624521010" />
+    <state x="479" y="155" key="SettingsEditor" timestamp="1603624617255">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="479" y="155" key="SettingsEditor/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603624617255" />
+  </component>
+</project>
