@@ -1,25 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
+    <expand />
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b1ceee0-0102-4196-970c-0f29a4e2e356" name="Default Changelist" comment="" />
+    <list default="true" id="6b1ceee0-0102-4196-970c-0f29a4e2e356" name="Default Changelist" comment="new change">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1c7f3f2d-44fc-41b9-9e57-322557eb1100.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1c7f3f2d-44fc-41b9-9e57-322557eb1100.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1c7f3f2d-44fc-41b9-9e57-322557eb1100/storage_v2/_src_/database/databaseucl.Q_yqMA/schema/dbo.sYMBAA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1c7f3f2d-44fc-41b9-9e57-322557eb1100/storage_v2/_src_/database/databaseucl.Q_yqMA/schema/dbo.sYMBAA.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/375414e9-3cc4-4414-9a2c-ee956c3c9daa.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/process_registration.php" beforeDir="false" afterPath="$PROJECT_DIR$/process_registration.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/register.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_update_users.php" beforeDir="false" afterPath="$PROJECT_DIR$/testing_folder/test_update_users.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testing_folder/Test_2.php" beforeDir="false" afterPath="$PROJECT_DIR$/testing_folder/Test_2.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,10 +42,13 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="database.data.extractors.current.export.id" value="SQL Inserts" />
     <property name="database.data.extractors.current.id" value="SQL Inserts" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/testing_folder" />
+    <property name="settings.editor.selected.configurable" value="web.server" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\auction\testing_folder" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\wamp64\www\auction\testing_folder" />
     </key>
@@ -83,7 +82,10 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1602529942064</updated>
-      <workItem from="1603628457147" duration="13395000" />
+      <workItem from="1603628457147" duration="13477000" />
+      <workItem from="1603644140481" duration="2828000" />
+      <workItem from="1603706504840" duration="2815000" />
+      <workItem from="1603792811103" duration="11815000" />
     </task>
     <task id="LOCAL-00001" summary="First changed to GitHub">
       <created>1603643184282</created>
@@ -99,7 +101,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603643825734</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="new change">
+      <created>1603644053557</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1603644053557</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -108,6 +117,11 @@
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
+        <entry key="1">
+          <value>
+            <State />
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State>
@@ -121,10 +135,17 @@
         </entry>
       </map>
     </option>
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="1" value="TOOL_WINDOW" />
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First changed to GitHub" />
-    <option name="LAST_COMMIT_MESSAGE" value="First changed to GitHub" />
+    <MESSAGE value="new change" />
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
   <component name="WindowStateProjectService">
     <state x="698" y="344" key="#Notifications" timestamp="1603623702723">
@@ -135,10 +156,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="667" y="163" key="#PHP/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603628552829" />
-    <state x="349" y="361" key="#SQL_Dialects" timestamp="1603639588076">
+    <state x="349" y="361" key="#SQL_Dialects" timestamp="1603800984958">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="349" y="361" key="#SQL_Dialects/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603639588076" />
+    <state x="349" y="361" key="#SQL_Dialects/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603800984958" />
     <state x="408" y="162" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603631109777">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -163,22 +184,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="782" y="215" key="Github.UntrackedFilesDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603624781366" />
-    <state width="636" height="282" key="GridCell.Tab.0.bottom" timestamp="1603643344434">
+    <state width="938" height="282" key="GridCell.Tab.0.bottom" timestamp="1603800945787">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="636" height="282" key="GridCell.Tab.0.bottom/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603643344434" />
-    <state width="636" height="282" key="GridCell.Tab.0.center" timestamp="1603643344434">
+    <state width="938" height="282" key="GridCell.Tab.0.bottom/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603800945787" />
+    <state width="938" height="282" key="GridCell.Tab.0.center" timestamp="1603800945787">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="636" height="282" key="GridCell.Tab.0.center/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603643344434" />
-    <state width="636" height="282" key="GridCell.Tab.0.left" timestamp="1603643344434">
+    <state width="938" height="282" key="GridCell.Tab.0.center/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603800945787" />
+    <state width="938" height="282" key="GridCell.Tab.0.left" timestamp="1603800945787">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="636" height="282" key="GridCell.Tab.0.left/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603643344434" />
-    <state width="636" height="282" key="GridCell.Tab.0.right" timestamp="1603643344434">
+    <state width="938" height="282" key="GridCell.Tab.0.left/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603800945787" />
+    <state width="938" height="282" key="GridCell.Tab.0.right" timestamp="1603800945787">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="636" height="282" key="GridCell.Tab.0.right/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603643344434" />
+    <state width="938" height="282" key="GridCell.Tab.0.right/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603800945787" />
     <state width="271" height="457" key="HiddenNamespacesPopup" timestamp="1603632047651">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -187,10 +208,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="794" y="443" key="NewPhpFileDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603642926806" />
-    <state x="479" y="155" key="SettingsEditor" timestamp="1603636011221">
+    <state x="479" y="155" key="SettingsEditor" timestamp="1603806933821">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="479" y="155" key="SettingsEditor/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603636011221" />
+    <state x="479" y="155" key="SettingsEditor/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603806933821" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1603644319686">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603644319686" />
     <state x="859" y="397" width="255" height="272" key="com.intellij.database.actions.DdlActions$CreateObject$1" timestamp="1603632177731">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -207,9 +232,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="883" y="466" key="com.intellij.database.run.ParametersPanel.Standalone/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603632290900" />
-    <state x="842" y="288" width="845" height="594" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1603642338472">
+    <state x="842" y="288" width="845" height="594" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1603800705055">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="842" y="288" width="845" height="594" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603642338472" />
+    <state x="842" y="288" width="845" height="594" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603800705055" />
   </component>
 </project>

@@ -17,4 +17,5 @@ while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
     echo nl2br($row['FirstName'] . " " . $row['FamilyName'] . PHP_EOL);
 }
 sqlsrv_free_stmt($getResults);
+
 ?>
