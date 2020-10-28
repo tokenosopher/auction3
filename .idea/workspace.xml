@@ -6,15 +6,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6b1ceee0-0102-4196-970c-0f29a4e2e356" name="Default Changelist" comment="new change">
-      <change afterPath="$PROJECT_DIR$/testwhatever.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1c7f3f2d-44fc-41b9-9e57-322557eb1100.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1c7f3f2d-44fc-41b9-9e57-322557eb1100.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1c7f3f2d-44fc-41b9-9e57-322557eb1100/storage_v2/_src_/database/databaseucl.Q_yqMA/schema/dbo.sYMBAA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1c7f3f2d-44fc-41b9-9e57-322557eb1100/storage_v2/_src_/database/databaseucl.Q_yqMA/schema/dbo.sYMBAA.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1c7f3f2d-44fc-41b9-9e57-322557eb1100/storage_v2/_src_/database/master.YiqNvw/schema/dbo.sYMBAA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1c7f3f2d-44fc-41b9-9e57-322557eb1100/storage_v2/_src_/database/master.YiqNvw/schema/dbo.sYMBAA.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webServers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testing_folder/Test_2_Table.php" beforeDir="false" afterPath="$PROJECT_DIR$/testing_folder/Test_2_Table.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +70,7 @@
       <workItem from="1603792811103" duration="11815000" />
       <workItem from="1603814474370" duration="142000" />
       <workItem from="1603897662801" duration="3458000" />
-      <workItem from="1603901265008" duration="533000" />
+      <workItem from="1603901265008" duration="1544000" />
     </task>
     <task id="LOCAL-00001" summary="First changed to GitHub">
       <created>1603643184282</created>
@@ -100,7 +93,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603644053557</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Chenuka did this">
+      <created>1603901940242</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1603901940242</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -137,7 +137,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First changed to GitHub" />
     <MESSAGE value="new change" />
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="Chenuka did this" />
+    <option name="LAST_COMMIT_MESSAGE" value="Chenuka did this" />
   </component>
   <component name="WindowStateProjectService">
     <state x="698" y="344" key="#Notifications" timestamp="1603623702723">
@@ -211,10 +212,11 @@
     </state>
     <state x="479" y="155" key="SettingsEditor/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603806933821" />
     <state x="374" y="145" key="SettingsEditor/0.0.1500.970@0.0.1500.970" timestamp="1603814528206" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1603644319686">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="431" y="236" key="Vcs.Push.Dialog.v2" timestamp="1603901946864">
+      <screen x="0" y="0" width="1500" height="970" />
     </state>
     <state x="552" y="253" key="Vcs.Push.Dialog.v2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603644319686" />
+    <state x="431" y="236" key="Vcs.Push.Dialog.v2/0.0.1500.970@0.0.1500.970" timestamp="1603901946864" />
     <state x="859" y="397" width="255" height="272" key="com.intellij.database.actions.DdlActions$CreateObject$1" timestamp="1603632177731">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
