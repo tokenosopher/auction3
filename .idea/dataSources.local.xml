@@ -43,7 +43,7 @@
         </introspection-scope>
       </schema-mapping>
     </data-source>
-    <data-source name="@databaseucl.database.windows.net" uuid="1c7f3f2d-44fc-41b9-9e57-322557eb1100">
+    <data-source name="databaseucl@databaseucl.database.windows.net" uuid="1c7f3f2d-44fc-41b9-9e57-322557eb1100">
       <database-info product="Microsoft SQL Server" version="12.00.2000" jdbc-version="4.2" driver-name="Microsoft JDBC Driver 8.2 for SQL Server" driver-version="8.2.2.0" dbms="AZURE" exact-version="12.0.2000" exact-driver-version="8.2">
         <extra-name-characters>$#@</extra-name-characters>
         <identifier-quote-string>&quot;</identifier-quote-string>
