@@ -19,18 +19,20 @@
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:Narcis_Branch" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/master" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a2a2964c-7130-415b-8902-95da3e037c97" name="Default Changelist" comment="Work in progress on login">
+    <list default="true" id="6b1ceee0-0102-4196-970c-0f29a4e2e356" name="Default Changelist" comment="new change">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/1c7f3f2d-44fc-41b9-9e57-322557eb1100.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1c7f3f2d-44fc-41b9-9e57-322557eb1100.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/1c7f3f2d-44fc-41b9-9e57-322557eb1100/storage_v2/_src_/database/databaseucl.Q_yqMA/schema/dbo.sYMBAA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1c7f3f2d-44fc-41b9-9e57-322557eb1100/storage_v2/_src_/database/databaseucl.Q_yqMA/schema/dbo.sYMBAA.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webServers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testing_folder/Test_2_Table.php" beforeDir="false" afterPath="$PROJECT_DIR$/testing_folder/Test_2_Table.php" afterDir="false" />
     </list>
-    <list id="827ee4a7-5b12-4b25-9eb7-c18796bcdfb3" name="Revert &quot;Commit before IntelliJ Setup&quot;" comment="Revert &quot;Commit before IntelliJ Setup&quot;&#10;&#10;This reverts commit a67df552" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,13 +42,7 @@
     <execution />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="master" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
   <component name="ProjectId" id="1in4IPNRmFbEitOzKKK4XAeXmzf" />
@@ -64,7 +60,6 @@
     <property name="database.data.extractors.current.export.id" value="SQL Inserts" />
     <property name="database.data.extractors.current.id" value="SQL Inserts" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/testing_folder" />
-    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="web.server" />
   </component>
   <component name="RecentsManager">
@@ -93,14 +88,13 @@
     <recent_temporary>
       <list>
         <item itemvalue="PHP Script.Test_2.php" />
-        <item itemvalue="PHP Script.Test_2.php" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="a2a2964c-7130-415b-8902-95da3e037c97" name="Default Changelist" comment="After hashing passwords" />
+      <changelist id="6b1ceee0-0102-4196-970c-0f29a4e2e356" name="Default Changelist" comment="" />
       <created>1602529942064</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -109,7 +103,6 @@
       <workItem from="1603644140481" duration="2828000" />
       <workItem from="1603706504840" duration="2815000" />
       <workItem from="1603792811103" duration="11815000" />
-      <workItem from="1604518767771" duration="24850000" />
     </task>
     <task id="LOCAL-00001" summary="First changed to GitHub">
       <created>1603643184282</created>
@@ -132,42 +125,7 @@
       <option name="project" value="LOCAL" />
       <updated>1603644053557</updated>
     </task>
-    <task id="LOCAL-00004" summary="After input email address filter (if(!filter_var...)) tested and works">
-      <created>1604265868188</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1604265868188</updated>
-    </task>
-    <task id="LOCAL-00005" summary="after confirming that passwords match">
-      <created>1604270926516</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1604270926516</updated>
-    </task>
-    <task id="LOCAL-00006" summary="after confirming that passwords match">
-      <created>1604270961618</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1604270961618</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Registration now done on Users2&#10;When registration is performed, user is added to either buyers or sellers&#10;playing with creating sessions&#10;Removed dummy session login from header.php">
-      <created>1604537380702</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1604537380703</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Work in progress on login">
-      <created>1604675776538</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1604675776538</updated>
-    </task>
-    <option name="localTasksCounter" value="9" />
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -189,27 +147,18 @@
                   <entry key="Show.Git.Branches" value="true" />
                 </map>
               </option>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
             </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="OPEN_GENERIC_TABS">
-      <map>
-        <entry key="1" value="TOOL_WINDOW" />
-      </map>
-    </option>
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="Branch">
-          <value>
-            <list>
-              <RecentGroup>
-                <option name="FILTER_VALUES">
-                  <option value="master" />
-                </option>
-              </RecentGroup>
-            </list>
           </value>
         </entry>
       </map>
@@ -219,12 +168,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First changed to GitHub" />
     <MESSAGE value="new change" />
-    <MESSAGE value="After input email address filter (if(!filter_var...)) tested and works" />
-    <MESSAGE value="after confirming that passwords match" />
-    <MESSAGE value="After hashing passwords" />
-    <MESSAGE value="Registration now done on Users2&#10;When registration is performed, user is added to either buyers or sellers&#10;playing with creating sessions&#10;Removed dummy session login from header.php" />
-    <MESSAGE value="Work in progress on login" />
-    <option name="LAST_COMMIT_MESSAGE" value="Work in progress on login" />
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
   <component name="WindowStateProjectService">
     <state x="698" y="344" key="#Notifications" timestamp="1603623702723">
@@ -247,10 +191,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="715" y="322" key="#com.intellij.fileTypes.FileTypeChooser/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603643334161" />
-    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1604446673988">
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1603636035781">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1604446673988" />
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603636035781" />
     <state x="758" y="265" key="FileChooserDialogImpl" timestamp="1603629778407">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -283,19 +227,18 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="271" height="457" key="HiddenNamespacesPopup/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603632047651" />
-    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1604669121656">
+    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1603642926806">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="794" y="443" key="NewPhpFileDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1604669121656" />
-    <state x="479" y="155" key="SettingsEditor" timestamp="1604518947646">
+    <state x="794" y="443" key="NewPhpFileDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603642926806" />
+    <state x="479" y="155" key="SettingsEditor" timestamp="1603806933821">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="479" y="155" key="SettingsEditor/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1604518947646" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1604675780223">
+    <state x="479" y="155" key="SettingsEditor/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603806933821" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1603644319686">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1604675780223" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1604476174538" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603644319686" />
     <state x="859" y="397" width="255" height="272" key="com.intellij.database.actions.DdlActions$CreateObject$1" timestamp="1603632177731">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -312,21 +255,13 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="883" y="466" key="com.intellij.database.run.ParametersPanel.Standalone/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603632290900" />
-    <state x="842" y="288" width="845" height="594" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1604532963608">
+    <state x="842" y="288" width="845" height="594" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1603800705055">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="842" y="288" width="845" height="594" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1604532963608" />
-    <state x="777" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1604667068438">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="842" y="288" width="845" height="594" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603800705055" />
+    <state x="100" y="100" width="1240" height="700" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1604080294385">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="777" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1604667068438" />
-    <state x="616" y="240" key="run.anything.popup" timestamp="1604668344700">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="616" y="240" key="run.anything.popup/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1604668344700" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1604668610344">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1604668610344" />
+    <state x="100" y="100" width="1240" height="700" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1440.900/-1920.-498.1920.1080@0.0.1440.900" timestamp="1604080294385" />
   </component>
 </project>
