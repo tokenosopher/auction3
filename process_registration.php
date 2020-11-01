@@ -38,9 +38,10 @@ if (sqlsrv_has_rows($select)) {
 if ($user["Password"] != $user["passwordConfirmation"]) {
     exit("Password and Password confirmation did not match");
 }
+$user['hashed_pass'] = password_hash($user['Password'], PASSWORD_DEFAULT);
 
 $query = "INSERT INTO Users (EmailAddress, Password)".
-    "VALUES ('${user['EmailAddress']}', '${user['Password']}')";
+    "VALUES ('${user['EmailAddress']}', '${user['hashed_pass']}')";
 
 $result = sqlsrv_query($conn, $query)
 or die('Error making saveToDatabase query');

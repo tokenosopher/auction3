@@ -5,10 +5,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a2a2964c-7130-415b-8902-95da3e037c97" name="Default Changelist" comment="After input email address filter (if(!filter_var...)) tested and works">
+    <list default="true" id="a2a2964c-7130-415b-8902-95da3e037c97" name="Default Changelist" comment="after confirming that passwords match">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1c7f3f2d-44fc-41b9-9e57-322557eb1100.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1c7f3f2d-44fc-41b9-9e57-322557eb1100.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1c7f3f2d-44fc-41b9-9e57-322557eb1100/storage_v2/_src_/database/databaseucl.Q_yqMA/schema/dbo.sYMBAA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1c7f3f2d-44fc-41b9-9e57-322557eb1100/storage_v2/_src_/database/databaseucl.Q_yqMA/schema/dbo.sYMBAA.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/process_registration.php" beforeDir="false" afterPath="$PROJECT_DIR$/process_registration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/register.php" afterDir="false" />
     </list>
     <list id="827ee4a7-5b12-4b25-9eb7-c18796bcdfb3" name="Revert &quot;Commit before IntelliJ Setup&quot;" comment="Revert &quot;Commit before IntelliJ Setup&quot;&#10;&#10;This reverts commit a67df552" />
     <option name="SHOW_DIALOG" value="false" />
@@ -101,7 +102,21 @@
       <option name="project" value="LOCAL" />
       <updated>1604265868188</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="after confirming that passwords match">
+      <created>1604270926516</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1604270926516</updated>
+    </task>
+    <task id="LOCAL-00006" summary="after confirming that passwords match">
+      <created>1604270961618</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1604270961618</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -139,7 +154,8 @@
     <MESSAGE value="First changed to GitHub" />
     <MESSAGE value="new change" />
     <MESSAGE value="After input email address filter (if(!filter_var...)) tested and works" />
-    <option name="LAST_COMMIT_MESSAGE" value="After input email address filter (if(!filter_var...)) tested and works" />
+    <MESSAGE value="after confirming that passwords match" />
+    <option name="LAST_COMMIT_MESSAGE" value="after confirming that passwords match" />
   </component>
   <component name="WindowStateProjectService">
     <state x="698" y="344" key="#Notifications" timestamp="1603623702723">
@@ -226,10 +242,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="883" y="466" key="com.intellij.database.run.ParametersPanel.Standalone/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603632290900" />
-    <state x="842" y="288" width="845" height="594" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1603800705055">
+    <state x="842" y="288" width="845" height="594" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1604272113418">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="842" y="288" width="845" height="594" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603800705055" />
+    <state x="842" y="288" width="845" height="594" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1604272113418" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1604266426269">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
