@@ -17,6 +17,10 @@ $connectionOptions = array(
 $conn = sqlsrv_connect($serverName, $connectionOptions)
 or die('Error connecting to the server.' . sqlsrv_errors()['message']);
 
+if(!filter_var($user["EmailAddress"], FILTER_VALIDATE_EMAIL)) {
+    exit('Invalid email address');
+}
+
 $query = "INSERT INTO Users (EmailAddress, Password)".
     "VALUES ('${user['EmailAddress']}', '${user['Password']}')";
 
