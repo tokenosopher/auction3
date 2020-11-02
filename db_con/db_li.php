@@ -23,6 +23,7 @@ echo("Connection to Azure DB successful!");
     sqlsrv_query($conn, $query);
 
     Where $query is the query statement you had written in SQL.
+
 */
 
 
