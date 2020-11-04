@@ -5,17 +5,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b1ceee0-0102-4196-970c-0f29a4e2e356" name="Default Changelist" comment="new change">
+    <list default="true" id="a2a2964c-7130-415b-8902-95da3e037c97" name="Default Changelist" comment="after confirming that passwords match">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/1c7f3f2d-44fc-41b9-9e57-322557eb1100.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1c7f3f2d-44fc-41b9-9e57-322557eb1100.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/1c7f3f2d-44fc-41b9-9e57-322557eb1100/storage_v2/_src_/database/databaseucl.Q_yqMA/schema/dbo.sYMBAA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1c7f3f2d-44fc-41b9-9e57-322557eb1100/storage_v2/_src_/database/databaseucl.Q_yqMA/schema/dbo.sYMBAA.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/375414e9-3cc4-4414-9a2c-ee956c3c9daa.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/process_registration.php" beforeDir="false" afterPath="$PROJECT_DIR$/process_registration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/register.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_update_users.php" beforeDir="false" afterPath="$PROJECT_DIR$/testing_folder/test_update_users.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testing_folder/Test_2.php" beforeDir="false" afterPath="$PROJECT_DIR$/testing_folder/Test_2.php" afterDir="false" />
     </list>
+    <list id="827ee4a7-5b12-4b25-9eb7-c18796bcdfb3" name="Revert &quot;Commit before IntelliJ Setup&quot;" comment="Revert &quot;Commit before IntelliJ Setup&quot;&#10;&#10;This reverts commit a67df552" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,6 +22,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
   <component name="ProjectId" id="1in4IPNRmFbEitOzKKK4XAeXmzf" />
@@ -43,6 +40,7 @@
     <property name="database.data.extractors.current.export.id" value="SQL Inserts" />
     <property name="database.data.extractors.current.id" value="SQL Inserts" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/testing_folder" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="web.server" />
   </component>
   <component name="RecentsManager">
@@ -54,17 +52,6 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Test_2.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/testing_folder/Test_2.php">
       <method v="2" />
     </configuration>
@@ -108,7 +95,28 @@
       <option name="project" value="LOCAL" />
       <updated>1603644053557</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="After input email address filter (if(!filter_var...)) tested and works">
+      <created>1604265868188</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1604265868188</updated>
+    </task>
+    <task id="LOCAL-00005" summary="after confirming that passwords match">
+      <created>1604270926516</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1604270926516</updated>
+    </task>
+    <task id="LOCAL-00006" summary="after confirming that passwords match">
+      <created>1604270961618</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1604270961618</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -145,7 +153,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First changed to GitHub" />
     <MESSAGE value="new change" />
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="After input email address filter (if(!filter_var...)) tested and works" />
+    <MESSAGE value="after confirming that passwords match" />
+    <option name="LAST_COMMIT_MESSAGE" value="after confirming that passwords match" />
   </component>
   <component name="WindowStateProjectService">
     <state x="698" y="344" key="#Notifications" timestamp="1603623702723">
@@ -232,9 +242,13 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="883" y="466" key="com.intellij.database.run.ParametersPanel.Standalone/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603632290900" />
-    <state x="842" y="288" width="845" height="594" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1603800705055">
+    <state x="842" y="288" width="845" height="594" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1604272113418">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="842" y="288" width="845" height="594" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603800705055" />
+    <state x="842" y="288" width="845" height="594" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1604272113418" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1604266426269">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1604266426269" />
   </component>
 </project>
