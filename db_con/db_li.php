@@ -8,7 +8,7 @@ $connectionOptions = array(
 //Establishes the connection
 $conn = sqlsrv_connect($serverName, $connectionOptions)
     or die("Error connecting to the Azure DB" . sqlsrv_errors());
-echo("Connection to Azure DB successful!");
+//echo("Connection to Azure DB successful!");
 /*  How to use this:
     On top of the page paste this:
 
