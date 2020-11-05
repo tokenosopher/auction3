@@ -8,13 +8,29 @@
   $item_id = $_GET['item_id'];
 
   // TODO: Use item_id to make a query to the database.
+    $isauctionstring = "SELECT AI.itemID, AI.ItemTitle, CAST(AI.ItemDescription AS VARCHAR(1000)) Description,
+    AI.ItemEndDate, MAX(B.BidValue) MaxBid,COUNT(B.BidValue) NoOfBids
+    FROM AuctionItems AI
+    LEFT JOIN Bids B ON AI.itemID = B.itemID
+    WHERE AI.itemID = ".$item_id."
+    GROUP BY AI.itemID, AI.ItemTitle, CAST(AI.ItemDescription AS VARCHAR(1000)), AI.ItemEndDate;";
+    $listingResults= sqlsrv_query($conn, $isauctionstring);
+
+    WHILE ($row = sqlsrv_fetch_array($listingResults)) {
+        $title = $row['ItemTitle'];
+        $description = $row['Description'];
+        $current_price = $row['MaxBid'];
+        $num_bids = $row['NoOfBids'];
+        $end_time = $row['ItemEndDate'];
+        break;
+    }
 
   // DELETEME: For now, using placeholder data.
-  $title = "Placeholder title";
-  $description = "Description blah blah blah";
-  $current_price = 30.50;
-  $num_bids = 1;
-  $end_time = new DateTime('2021-12-02T00:00:00');
+  #$title = "Placeholder title";
+  #$description = "Description blah blah blah";
+  #$current_price = 30.50;
+  #$num_bids = 1;
+  #$end_time = new DateTime('2021-12-02T00:00:00');
 
   // TODO: Note: Auctions that have ended may pull a different set of data,
   //       like whether the auction ended in a sale or was cancelled due
@@ -31,8 +47,16 @@
   // TODO: If the user has a session, use it to make a query to the database
   //       to determine if the user is already watching this item.
   //       For now, this is hardcoded.
-  $has_session = true;
-  $watching = false;
+    $has_session = true;
+    $user_id = 5;
+    $isbuyerstring = "SELECT TOP 1 BuyerID FROM Buyers WHERE Buyers.UserID =".$user_id;
+    $isbuyerresults = sqlsrv_query($conn, $isbuyerstring);
+    $buyer_id = sqlsrv_fetch_array($isbuyerresults)['BuyerID'];
+    sqlsrv_free_stmt($isbuyerresults);
+    $iswatchingstring = "SELECT * FROM WatchList W WHERE W.BuyerID =".$buyer_id." and W.ItemID =".$item_id;
+    $iswatching = sqlsrv_query($conn, $iswatchingstring);
+    if($iswatching){$watching = true;}
+    else{$watching = false;}
 ?>
 
 
@@ -148,6 +172,7 @@ function removeFromWatchlist(button) {
       function (obj, textstatus) {
         // Callback function for when call is successful and returns obj
         console.log("Success");
+        console.log(obj);
         var objT = obj.trim();
  
         if (objT == "success") {

@@ -24,15 +24,12 @@
             $res = "failure";
         }
     }
-    else if ($_POST['functionname'] == "remove_from_watchlist") {
+    elseif ($_POST['functionname'] == "remove_from_watchlist") {
         if ($isbuyerresults){
-            $isitemwatchedstring = "SELECT * FROM WatchList WHERE ItemID =".$item_id." and BuyerID =".$buyer_id;
-            $isitemwatched = sqlsrv_query($conn, $isitemwatchedstring);
-            if($isitemwatched){
-                $deletestring = "DELETE FROM WatchList WHERE ItemID =".$item_id." and BuyerID =".$buyer_id;
-                sqlsrv_query($conn, $deletestringstring);
-                $res = "success";
-            }
+            $conditionstring = " WHERE ItemID = ".$item_id[0]." AND BuyerID = ".$buyer_id;
+            $deletestring = "DELETE FROM WatchList".$conditionstring;
+            sqlsrv_query($conn, $deletestring);
+            $res = "success";
         }
         else{
             $res = "failure";
