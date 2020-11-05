@@ -17,12 +17,12 @@
   // TODO: Check user's credentials (cookie/session).
   
   // TODO: Perform a query to pull up their auctions.
-$query = "SELECT AI.itemID, AI.ItemTitle, CAST(AI.ItemDescription AS VARCHAR(1000)) Description,
-AI.ItemEndDate, MAX(B.BidValue) MaxBid,COUNT(B.BidValue) NoOfBids
+$query = "SELECT AI.itemId, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(1000)) Description,
+AI.itemEndDate, MAX(B.bidValue) MaxBid,COUNT(B.bidValue) NoOfBids
 FROM AuctionItems AI
 LEFT JOIN Bids B ON AI.itemID = B.itemID
-WHERE AI.SellerID = 2
-GROUP BY AI.itemID, AI.ItemTitle, CAST(AI.ItemDescription AS VARCHAR(1000)), AI.ItemEndDate;";
+WHERE AI.sellerID = 2
+GROUP BY AI.itemID, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(1000)), AI.itemEndDate;";
 $getResults= sqlsrv_query($conn, $query);
 
   // TODO: Loop through results and print them out as list items.
@@ -30,14 +30,15 @@ $getResults= sqlsrv_query($conn, $query);
 WHILE ($row = sqlsrv_fetch_array($getResults)) {
 
     $item_id = $row['itemID'];
-    $title = $row['ItemTitle'];
+    $title = $row['itemTitle'];
     $desc = $row['Description'];
-    $end_time = $row['ItemEndDate'];
+    $end_time = $row['itemEndDate'];
     $price = $row['MaxBid'];
     $num_bids = $row['NoOfBids'];
 
     print_listing_li($item_id, $title, $desc, $price, $num_bids, $end_time);
 }
-
+sqlsrv_free_stmt($getResults);
+sqlsrv_close( $conn);
 ?>
 <?php include_once("footer.php")?>
