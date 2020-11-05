@@ -1,5 +1,7 @@
 <?php include_once("header.php")?>
 <?php require("utilities.php")?>
+<?php include_once('db_con/db_li.php')?>
+
 
 <?php
   // Get info from the URL:
@@ -12,7 +14,7 @@
   $description = "Description blah blah blah";
   $current_price = 30.50;
   $num_bids = 1;
-  $end_time = new DateTime('2020-11-02T00:00:00');
+  $end_time = new DateTime('2021-12-02T00:00:00');
 
   // TODO: Note: Auctions that have ended may pull a different set of data,
   //       like whether the auction ended in a sale or was cancelled due
@@ -108,7 +110,7 @@ function addToWatchlist(button) {
   // Sends item ID as an argument to that function.
   $.ajax('watchlist_funcs.php', {
     type: "POST",
-    data: {functionname: 'add_to_watchlist', arguments: [<?php echo($item_id);?>]},
+    data: {functionname: 'add_to_watchlist', arguments: <?php echo($item_id)?>},
 
     success: 
       function (obj, textstatus) {
