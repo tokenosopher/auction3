@@ -7,15 +7,18 @@
         $auction["ItemTitle"] = $_POST["auctionTitle"];
         $auction["ItemDescription"] = $_POST["auctionDetails"];
         //$auction["Category"] = $_POST["auctionCategory"];
-        $auction["ItemStartingPrice"] = $_POST["auctionStartPrice"];
-        $auction["ItemReservePrice"] = $_POST["auctionReservePrice"];
-        $auction["ItemEndDate"] = $_POST["auctionEndDate"];
+        $auction["ItemStartingPrice"] = floatval($_POST["auctionStartPrice"]);
+        $auction["ItemReservePrice"] = floatval($_POST["auctionReservePrice"]);
+        $myvar = $_POST["auctionEndDate"];
+        $auction["ItemEndDate"]=str_replace("T"," ",$myvar);
 
         echo ($auction["ItemTitle"]) ."<br>";
         echo ($auction["ItemDescription"]) . "<br>";
-        echo ($auction["ItemStartingPrice"]) . "<br>";
-        echo ($auction["ItemReservePrice"]) . "<br>";
-        echo ($auction["ItemEndDate"]) . "<br>";
+        echo (gettype($auction["ItemStartingPrice"])) . "<br>";
+        echo (gettype($auction["ItemReservePrice"])) . "<br>";
+        echo (($auction["ItemEndDate"])) . "<br>";
+
+
 
 
         // TODO: Extract $_POST variables, check they're OK, and attempt to create
@@ -32,10 +35,8 @@
         $conn = sqlsrv_connect($serverName, $connectionOptions)
         or die('Error connecting to the server.' . sqlsrv_errors()['message']);
 
-        $query = "INSERT INTO databaseucl.dbo.AuctionItems(ItemTitle, ItemDescription,ItemStartingPrice, ItemReservePrice, ItemEndDate
-) VALUES ( '${auction["ItemTitle"]}', '${auction["ItemDescription"]}', '${auction["ItemStartingPrice"]}','${auction["ItemReservePrice"]}','${auction["ItemEndDate"]}')";
-
-
+        $query = "INSERT INTO databaseucl.dbo.AuctionItems(ItemTitle, ItemDescription,ItemStartingPrice, ItemReservePrice,ItemEndDate)
+                    VALUES ( '${auction["ItemTitle"]}', '${auction["ItemDescription"]}', '${auction["ItemStartingPrice"]}','${auction["ItemReservePrice"]}', '${auction["ItemEndDate"]}' )";
 
         $result = sqlsrv_query($conn, $query)
         or die('Error making saveToDatabase query');
