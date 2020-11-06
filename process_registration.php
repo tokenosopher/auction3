@@ -35,7 +35,7 @@ $params = array($user["EmailAddress"]);
 $tsql = "SELECT EmailAddress FROM databaseucl.dbo.Users2
         WHERE EmailAddress = ?";
 $cursorType = array("Scrollable" => SQLSRV_CURSOR_KEYSET);
-//@var $conn is derived from db_li php that is included at the beginning of the file */
+// $conn is derived from db_li php that is included at the beginning of the file
 $select = sqlsrv_query($conn, $tsql, $params, $cursorType);
 
 if (sqlsrv_has_rows($select)) {
@@ -83,7 +83,6 @@ if ($result==true) {
     $_SESSION['userID'] = $user["userID"];
     echo("You have successfully registered");
     header("refresh:2;url=index.php");
-    echo True;
 }
 
 ?>
