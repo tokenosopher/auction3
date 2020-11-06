@@ -1,5 +1,6 @@
 <?php include_once("header.php")?>
 <?php require("utilities.php")?>
+<?php include_once 'db_con/db_li.php'?>
 
 <div class="container">
 
@@ -105,36 +106,39 @@
 <!-- TODO: Use a while loop to print a list item for each auction listing
      retrieved from the query -->
 
-<?php
-  // Demonstration of what listings will look like using dummy data.
-  $item_id = "87021";
-  $title = "Dummy title";
-  $description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eget rutrum ipsum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus feugiat, ipsum vel egestas elementum, sem mi vestibulum eros, et facilisis dui nisi eget metus. In non elit felis. Ut lacus sem, pulvinar ultricies pretium sed, viverra ac sapien. Vivamus condimentum aliquam rutrum. Phasellus iaculis faucibus pellentesque. Sed sem urna, maximus vitae cursus id, malesuada nec lectus. Vestibulum scelerisque vulputate elit ut laoreet. Praesent vitae orci sed metus varius posuere sagittis non mi.";
-  $current_price = 30;
-  $num_bids = 1;
-  $end_date = new DateTime('2020-09-16T11:00:00');
-  
-  // This uses a function defined in utilities.php
-  print_listing_li($item_id, $title, $description, $current_price, $num_bids, $end_date);
-  
-  $item_id = "516";
-  $title = "Different title";
-  $description = "Very short description.";
-  $current_price = 13.50;
-  $num_bids = 3;
-  $end_date = new DateTime('2020-11-02T00:00:00');
-  
-  print_listing_li($item_id, $title, $description, $current_price, $num_bids, $end_date);
-?>
+<!--This part is done, now I need to figure out how to break down the page count-->
+    <?php
+    $query = "SELECT AI.itemId, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(1000)) Description, AI.itemEndDate, MAX(B.bidValue) MaxBid,COUNT(B.bidValue) NoOfBids
+    FROM AuctionItems AI
+    LEFT JOIN Bids B ON AI.itemID = B.itemID
+    GROUP BY AI.itemId, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(1000)), AI.itemEndDate
+    ORDER BY AI.itemId;";
+    $getResults = sqlsrv_query($conn, $query);
+
+    WHILE ($row = sqlsrv_fetch_array($getResults)) {
+
+        $item_id = $row['itemId'];
+        $title = $row['itemTitle'];
+        $desc = $row['Description'];
+        $end_time = $row['itemEndDate'];
+        $price = $row['MaxBid'];
+        $num_bids = $row['NoOfBids'];
+
+        print_listing_li($item_id, $title, $desc, $price, $num_bids, $end_time);
+    }
+
+    sqlsrv_free_stmt($getResults);
+    sqlsrv_close( $conn);
+    ?>
+
 
 </ul>
-
+<!--Need to work out how to do pagination-->
 <!-- Pagination for results listings -->
 <nav aria-label="Search results pages" class="mt-5">
   <ul class="pagination justify-content-center">
   
 <?php
-
   // Copy any currently-set GET variables to the URL.
   $querystring = "";
   foreach ($_GET as $key => $value) {
