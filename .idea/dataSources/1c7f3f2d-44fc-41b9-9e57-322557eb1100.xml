@@ -99,16 +99,19 @@
     </schema>
     <table id="30" parent="14" name="AuctionItems">
       <ObjectId>194099732</ObjectId>
+      <Outdated>1</Outdated>
       <CreatedTimestamp>2020-10-30.16:33:03.767</CreatedTimestamp>
       <ModifiedTimestamp>2020-10-30.16:48:46.060</ModifiedTimestamp>
     </table>
     <table id="31" parent="14" name="Bids">
       <ObjectId>258099960</ObjectId>
+      <Outdated>1</Outdated>
       <CreatedTimestamp>2020-10-30.16:33:03.777</CreatedTimestamp>
       <ModifiedTimestamp>2020-10-30.16:33:03.777</ModifiedTimestamp>
     </table>
     <table id="32" parent="14" name="Buyers">
       <ObjectId>66099276</ObjectId>
+      <Outdated>1</Outdated>
       <CreatedTimestamp>2020-10-30.16:33:03.740</CreatedTimestamp>
       <ModifiedTimestamp>2020-10-30.16:33:03.790</ModifiedTimestamp>
     </table>
@@ -119,16 +122,19 @@
     </table>
     <table id="34" parent="14" name="Sellers">
       <ObjectId>114099447</ObjectId>
+      <Outdated>1</Outdated>
       <CreatedTimestamp>2020-10-30.16:33:03.750</CreatedTimestamp>
       <ModifiedTimestamp>2020-10-30.16:33:03.770</ModifiedTimestamp>
     </table>
     <table id="35" parent="14" name="Users">
       <ObjectId>1541580530</ObjectId>
+      <Outdated>1</Outdated>
       <CreatedTimestamp>2020-10-25.13:26:19.043</CreatedTimestamp>
       <ModifiedTimestamp>2020-10-27.12:11:44.327</ModifiedTimestamp>
     </table>
     <table id="36" parent="14" name="Users2">
       <ObjectId>18099105</ObjectId>
+      <Outdated>1</Outdated>
       <CreatedTimestamp>2020-10-30.16:33:03.550</CreatedTimestamp>
       <ModifiedTimestamp>2020-10-30.16:42:33.747</ModifiedTimestamp>
     </table>
