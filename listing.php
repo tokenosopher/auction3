@@ -24,6 +24,7 @@
         $end_time = $row['ItemEndDate'];
         break;
     }
+    sqlsrv_free_stmt($listingResults);
 
   // DELETEME: For now, using placeholder data.
   #$title = "Placeholder title";
@@ -55,8 +56,18 @@
     sqlsrv_free_stmt($isbuyerresults);
     $iswatchingstring = "SELECT * FROM WatchList W WHERE W.BuyerID =".$buyer_id." and W.ItemID =".$item_id;
     $iswatching = sqlsrv_query($conn, $iswatchingstring);
-    if($iswatching){$watching = true;}
-    else{$watching = false;}
+    $iswatchingresults = false;
+    WHILE ($row = sqlsrv_fetch_array($iswatching)) {
+        $iswatchingresults = $row['itemId'];
+        break;
+    }
+    if($iswatchingresults){
+        $watching = true;
+    }
+    else{
+        $watching = false;
+    }
+    sqlsrv_free_stmt($iswatching);
 ?>
 
 
