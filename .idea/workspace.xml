@@ -19,14 +19,22 @@
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:origin/master" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:Imran_branch_GIT" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a279c53-0514-41a7-855d-5b90c4ee8724" name="Default Changelist" comment="" />
+    <list default="true" id="a2a2964c-7130-415b-8902-95da3e037c97" name="Default Changelist" comment="Imran_Branch_test">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webServers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/create_auction.php" beforeDir="false" afterPath="$PROJECT_DIR$/create_auction.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/create_auction_result.php" beforeDir="false" afterPath="$PROJECT_DIR$/create_auction_result.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/register.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testing_folder/checking_sessions.php" beforeDir="false" afterPath="$PROJECT_DIR$/testing_folder/checking_sessions.php" afterDir="false" />
+    </list>
+    <list id="827ee4a7-5b12-4b25-9eb7-c18796bcdfb3" name="Revert &quot;Commit before IntelliJ Setup&quot;" comment="Revert &quot;Commit before IntelliJ Setup&quot;&#10;&#10;This reverts commit a67df552" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,7 +49,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Imran_branch1" />
+        <entry key="$PROJECT_DIR$" value="Imran_branch_GIT" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -80,6 +88,17 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Test_2.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/testing_folder/Test_2.php">
       <method v="2" />
     </configuration>
@@ -186,7 +205,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/master" />
+                        <option value="Imran_branch_GIT" />
                       </list>
                     </value>
                   </entry>
@@ -270,22 +289,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="271" height="457" key="HiddenNamespacesPopup/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603632047651" />
-    <state x="144" y="79" key="MergeDialog" timestamp="1604622715159">
+    <state x="144" y="79" key="MergeDialog" timestamp="1604759520506">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="144" y="79" key="MergeDialog/0.0.1440.900@0.0.1440.900" timestamp="1604622715159" />
-    <state x="358" y="218" key="MultipleFileMergeDialog" timestamp="1604680510144">
+    <state x="144" y="79" key="MergeDialog/0.0.1440.900@0.0.1440.900" timestamp="1604759520506" />
+    <state x="358" y="218" key="MultipleFileMergeDialog" timestamp="1604759525643">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="358" y="218" key="MultipleFileMergeDialog/0.0.1440.900@0.0.1440.900" timestamp="1604680510144" />
+    <state x="358" y="218" key="MultipleFileMergeDialog/0.0.1440.900@0.0.1440.900" timestamp="1604759525643" />
     <state x="794" y="443" key="NewPhpFileDialog" timestamp="1603642926806">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="794" y="443" key="NewPhpFileDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603642926806" />
-    <state x="479" y="155" key="SettingsEditor" timestamp="1604749295415">
+    <state x="479" y="155" key="SettingsEditor" timestamp="1603806933821">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="479" y="155" key="SettingsEditor/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1604749295415" />
+    <state x="479" y="155" key="SettingsEditor/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603806933821" />
     <state x="414" y="219" key="Vcs.Push.Dialog.v2" timestamp="1604627706992">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -311,18 +330,23 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="883" y="466" key="com.intellij.database.run.ParametersPanel.Standalone/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603632290900" />
-    <state x="842" y="288" width="845" height="594" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1604272113418">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="632" y="249" width="845" height="594" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1604772900263">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="842" y="288" width="845" height="594" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1604272113418" />
-    <state x="463" y="170" key="git4idea.branch.GitSmartOperationDialog" timestamp="1604622663745">
+    <state x="632" y="249" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1440.900/-1920.-498.1920.1080@0.0.1440.900" timestamp="1604772900263" />
+    <state x="463" y="170" key="git4idea.branch.GitSmartOperationDialog" timestamp="1604759296576">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="463" y="170" key="git4idea.branch.GitSmartOperationDialog/0.0.1440.900@0.0.1440.900" timestamp="1604622663745" />
-    <state x="537" y="369" key="git4idea.rebase.GitUnstructuredEditor" timestamp="1604680520473">
+    <state x="463" y="170" key="git4idea.branch.GitSmartOperationDialog/0.0.1440.900@0.0.1440.900" timestamp="1604759296576" />
+    <state x="537" y="369" key="git4idea.rebase.GitUnstructuredEditor" timestamp="1604759523022">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="537" y="369" key="git4idea.rebase.GitUnstructuredEditor/0.0.1440.900@0.0.1440.900" timestamp="1604680520472" />
+    <state x="537" y="369" key="git4idea.rebase.GitUnstructuredEditor/0.0.1440.900@0.0.1440.900" timestamp="1604759523022" />
+    <state x="625" y="255" key="run.anything.popup" timestamp="1604783997978">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="625" y="255" key="run.anything.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1604783997978" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1604266426269">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
