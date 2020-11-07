@@ -1,5 +1,5 @@
 <?php include_once("header.php")?>
-<?php include_once 'db_con/db_li.php'?>
+
 <?php
 /* (Uncomment this block to redirect people without selling privileges away from this page)
   // If user is not logged in or not a seller, they should not be able to
@@ -41,23 +41,35 @@
         </div>
         <div class="form-group row">
           <label for="auctionCategory" class="col-sm-2 col-form-label text-right">Category</label>
-            <?php
-            $category_search_query = "SELECT * FROM Category";
-            $getResultsCategories = sqlsrv_query($conn, $category_search_query);
-            ?>
-            <div class="col-sm-10">
+          <div class="col-sm-10">
             <select class="form-control" name="auctionCategory" id="auctionCategory">
-                <option selected value="all">All categories</option>
-                    <?php
-                    while ($rows = sqlsrv_fetch_array($getResultsCategories,SQLSRV_FETCH_ASSOC))
-                    {
-                        $category_id = $rows['categoryId'];
-                        $category_name = $rows['categoryName'];
-                        echo "<option value = '$category_id'>$category_name</option>";
-                    }
-                    ?>
-                    <!--This part of the code dynamically pulls Categories from DB into HTML Dropdown Menu-->
-                </select>
+              <option selected>Choose...</option>
+              <option value="1">Electronics</option>
+              <option value="2">Appliances</option>
+              <option value="3">Apps & Games</option>
+                <option value="4">Arts, Crafts, & Sewing</option>
+                <option value="5">Automotive Parts & Accessories</option>
+                <option value="6">Baby</option>
+                <option value="7">Beauty & Personal Care</option>
+                <option value="8">Books</option>
+                <option value="9">Cell Phones and Accessories</option>
+                <option value="10">Clothing, Shoes and Jewelry</option>
+                <option value="11">Collectibles & Fine Art</option>
+                <option value="12">Computers</option>
+                <option value="13">Garden & Outdoor</option>
+                <option value="14">Grocery & Gourmet Food</option>
+                <option value="15">Handmade</option>
+                <option value="16">Health, Household & Baby Care</option>
+                <option value="17">Home & Kitchen</option>
+                <option value="18">Industrial & Scientific</option>
+                <option value="19">Luggage & Travel Gear</option>
+                <option value="20">Movies & TV</option>
+                <option value="21">Musical Instruments</option>
+                <option value="22">Office Products</option>
+                <option value="23">Pet Supplies</option>
+                <option value="24">Sports & Outdoors</option>
+                <option value="25">Toys</option>
+                <option value="26">Videogames</option>
             </select>
             <small id="categoryHelp" class="form-text text-muted"><span class="text-danger">* Required.</span> Select a category for this item.</small>
           </div>
