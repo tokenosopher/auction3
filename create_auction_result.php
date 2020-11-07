@@ -22,9 +22,6 @@
         //echo (($auction["ItemEndDate"])) . "<br>";
         //echo ($auction["Category"]) . "<br>";
         //echo (gettype($auction["Category"])) . "<br>";
-        echo ($current_date);
-        $current_date<($auction["ItemEndDate"])
-           or die("Your auction end date is in the past!");
 
 
         session_start();
