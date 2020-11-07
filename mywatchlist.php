@@ -15,6 +15,7 @@
 
 
 // TODO: Check user's credentials (cookie/session).
+//testingwhether.ideafileproblem has stopped
 $user_id=5;
 $isbuyerstring = "SELECT TOP 1 BuyerID FROM Buyers WHERE Buyers.UserID =".$user_id;
 $isbuyerresults = sqlsrv_query($conn, $isbuyerstring);
