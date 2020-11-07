@@ -44,9 +44,32 @@
           <div class="col-sm-10">
             <select class="form-control" name="auctionCategory" id="auctionCategory">
               <option selected>Choose...</option>
-              <option value="fill">Fill me in</option>
-              <option value="with">with options</option>
-              <option value="populated">populated from a database?</option>
+              <option value="1">Electronics</option>
+              <option value="2">Appliances</option>
+              <option value="3">Apps & Games</option>
+                <option value="4">Arts, Crafts, & Sewing</option>
+                <option value="5">Automotive Parts & Accessories</option>
+                <option value="6">Baby</option>
+                <option value="7">Beauty & Personal Care</option>
+                <option value="8">Books</option>
+                <option value="9">Cell Phones and Accessories</option>
+                <option value="10">Clothing, Shoes and Jewelry</option>
+                <option value="11">Collectibles & Fine Art</option>
+                <option value="12">Computers</option>
+                <option value="13">Garden & Outdoor</option>
+                <option value="14">Grocery & Gourmet Food</option>
+                <option value="15">Handmade</option>
+                <option value="16">Health, Household & Baby Care</option>
+                <option value="17">Home & Kitchen</option>
+                <option value="18">Industrial & Scientific</option>
+                <option value="19">Luggage & Travel Gear</option>
+                <option value="20">Movies & TV</option>
+                <option value="21">Musical Instruments</option>
+                <option value="22">Office Products</option>
+                <option value="23">Pet Supplies</option>
+                <option value="24">Sports & Outdoors</option>
+                <option value="25">Toys</option>
+                <option value="26">Videogames</option>
             </select>
             <small id="categoryHelp" class="form-text text-muted"><span class="text-danger">* Required.</span> Select a category for this item.</small>
           </div>
@@ -58,7 +81,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">£</span>
               </div>
-              <input type="number" step="0.01" name="auctionStartPrice" class="form-control" id="auctionStartPrice" >
+              <input type="number" step="0.01" min = "0" name="auctionStartPrice" class="form-control" id="auctionStartPrice" >
             </div>
             <small id="startBidHelp" class="form-text text-muted"><span class="text-danger">* Required.</span> Initial bid amount.</small>
           </div>
@@ -70,7 +93,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">£</span>
               </div>
-              <input type="number" step="0.01" class="form-control" name="auctionReservePrice" id="auctionReservePrice">
+              <input type="number" step="0.01" min="0" class="form-control" name="auctionReservePrice" id="auctionReservePrice">
             </div>
             <small id="reservePriceHelp" class="form-text text-muted">Optional. Auctions that end below this price will not go through. This value is not displayed in the auction listing.</small>
           </div>
