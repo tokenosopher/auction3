@@ -29,7 +29,7 @@ $getResults= sqlsrv_query($conn, $query);
 
 WHILE ($row = sqlsrv_fetch_array($getResults)) {
 
-    $item_id = $row['itemID'];
+    $item_id = $row['itemId'];
     $title = $row['itemTitle'];
     $desc = $row['Description'];
     $end_time = $row['itemEndDate'];

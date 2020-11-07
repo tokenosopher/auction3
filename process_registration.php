@@ -76,11 +76,11 @@ else if ($user["accountType"] == "seller") {
 
 
 if ($result==true) {
-    session_start();
-    $_SESSION['EmailAddress'] = $user["EmailAddress"];
-    $_SESSION['Password'] = $user["Password"];
-    $_SESSION['accountType'] = $user["accountType"];
-    $_SESSION['userID'] = $user["userID"];
+//    session_start();
+    $_SESSION['email'] = $user["EmailAddress"];
+    $_SESSION['account_type'] = $user["accountType"];
+    $_SESSION['user_id'] = $user["userID"];
+    $_SESSION['logged_in'] = true ;
     echo("You have successfully registered");
     header("refresh:2;url=index.php");
 }
