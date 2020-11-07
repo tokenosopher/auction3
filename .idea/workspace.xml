@@ -26,15 +26,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a2a2964c-7130-415b-8902-95da3e037c97" name="Default Changelist" comment="Imran_auction_fully_operational">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1c7f3f2d-44fc-41b9-9e57-322557eb1100.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1c7f3f2d-44fc-41b9-9e57-322557eb1100.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1c7f3f2d-44fc-41b9-9e57-322557eb1100/storage_v2/_src_/database/databaseucl.Q_yqMA/schema/dbo.sYMBAA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1c7f3f2d-44fc-41b9-9e57-322557eb1100/storage_v2/_src_/database/databaseucl.Q_yqMA/schema/dbo.sYMBAA.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/create_auction_result.php" beforeDir="false" afterPath="$PROJECT_DIR$/create_auction_result.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login_result.php" beforeDir="false" afterPath="$PROJECT_DIR$/login_result.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testing_folder/test_update_users.php" beforeDir="false" afterPath="$PROJECT_DIR$/testing_folder/test_update_users.php" afterDir="false" />
-    </list>
-    <list id="827ee4a7-5b12-4b25-9eb7-c18796bcdfb3" name="Revert &quot;Commit before IntelliJ Setup&quot;" comment="Revert &quot;Commit before IntelliJ Setup&quot;&#10;&#10;This reverts commit a67df552" />
+    <list default="true" id="9a279c53-0514-41a7-855d-5b90c4ee8724" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,13 +41,13 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Imran_branch_GIT" />
+        <entry key="$PROJECT_DIR$" value="Imran_branch1" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.3" />
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
   <component name="ProjectId" id="1in4IPNRmFbEitOzKKK4XAeXmzf" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -77,7 +69,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
+    <property name="settings.editor.selected.configurable" value="web.server" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -110,12 +102,6 @@
       <workItem from="1603706504840" duration="2815000" />
       <workItem from="1603792811103" duration="11815000" />
       <workItem from="1604666655908" duration="1910000" />
-      <workItem from="1604845926291" duration="929000" />
-      <workItem from="1604930575055" duration="2233000" />
-      <workItem from="1604935023940" duration="2639000" />
-      <workItem from="1604961968032" duration="1262000" />
-      <workItem from="1604971317619" duration="771000" />
-      <workItem from="1605013051467" duration="3752000" />
     </task>
     <task id="LOCAL-00001" summary="First changed to GitHub">
       <created>1603643184282</created>
@@ -173,14 +159,7 @@
       <option name="project" value="LOCAL" />
       <updated>1604627697814</updated>
     </task>
-    <task id="LOCAL-00009" summary="Imran_auction_fully_operational">
-      <created>1604785721362</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1604785721362</updated>
-    </task>
-    <option name="localTasksCounter" value="10" />
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -231,14 +210,9 @@
     <MESSAGE value="After input email address filter (if(!filter_var...)) tested and works" />
     <MESSAGE value="after confirming that passwords match" />
     <MESSAGE value="Imran_Branch_test" />
-    <MESSAGE value="Imran_auction_fully_operational" />
-    <option name="LAST_COMMIT_MESSAGE" value="Imran_auction_fully_operational" />
+    <option name="LAST_COMMIT_MESSAGE" value="Imran_Branch_test" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="558" y="184" key="#CLI_Interpreters" timestamp="1604962380712">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="558" y="184" key="#CLI_Interpreters/0.0.1920.1080@0.0.1920.1080" timestamp="1604962380712" />
     <state x="698" y="344" key="#Notifications" timestamp="1603623702723">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -296,29 +270,27 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="271" height="457" key="HiddenNamespacesPopup/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603632047651" />
-    <state x="144" y="79" key="MergeDialog" timestamp="1604759520506">
+    <state x="144" y="79" key="MergeDialog" timestamp="1604622715159">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="144" y="79" key="MergeDialog/0.0.1440.900@0.0.1440.900" timestamp="1604759520506" />
-    <state x="358" y="218" key="MultipleFileMergeDialog" timestamp="1604759525643">
+    <state x="144" y="79" key="MergeDialog/0.0.1440.900@0.0.1440.900" timestamp="1604622715159" />
+    <state x="358" y="218" key="MultipleFileMergeDialog" timestamp="1604680510144">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="358" y="218" key="MultipleFileMergeDialog/0.0.1440.900@0.0.1440.900" timestamp="1604759525643" />
+    <state x="358" y="218" key="MultipleFileMergeDialog/0.0.1440.900@0.0.1440.900" timestamp="1604680510144" />
     <state x="794" y="443" key="NewPhpFileDialog" timestamp="1603642926806">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="794" y="443" key="NewPhpFileDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603642926806" />
-    <state x="479" y="161" key="SettingsEditor" timestamp="1604971810571">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state x="479" y="155" key="SettingsEditor" timestamp="1604749295415">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="479" y="155" key="SettingsEditor/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603806933821" />
-    <state x="479" y="161" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1604971810571" />
-    <state x="552" y="263" key="Vcs.Push.Dialog.v2" timestamp="1604785782563">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state x="479" y="155" key="SettingsEditor/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1604749295415" />
+    <state x="414" y="219" key="Vcs.Push.Dialog.v2" timestamp="1604627706992">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="552" y="253" key="Vcs.Push.Dialog.v2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603644319686" />
     <state x="414" y="219" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1604627706992" />
-    <state x="552" y="263" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1604785782563" />
     <state x="498" y="191" key="VcsDiffUtil.ChangesDialog" timestamp="1604621736887">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -335,33 +307,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="325" key="com.intellij.database.dbimport.ImportUtil.ChooseTargetDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603642410786" />
-    <state x="746" y="367" width="428" height="341" key="com.intellij.database.psi.DbRenamePsiElementProcessor.DbRenameDialog" timestamp="1604934954543">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="746" y="367" width="428" height="341" key="com.intellij.database.psi.DbRenamePsiElementProcessor.DbRenameDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1604934954543" />
     <state x="883" y="466" key="com.intellij.database.run.ParametersPanel.Standalone" timestamp="1603632290900">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="883" y="466" key="com.intellij.database.run.ParametersPanel.Standalone/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603632290900" />
-    <state x="-1422" y="-130" width="1110" height="647" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1605019577829">
-      <screen x="-1920" y="-498" width="1920" height="1080" />
+    <state x="842" y="288" width="845" height="594" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1604272113418">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="842" y="288" width="845" height="594" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1604272113418" />
-    <state x="-1422" y="-130" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1440.900/-1920.-498.1920.1080@-1920.-498.1920.1080" timestamp="1605019577829" />
-    <state x="632" y="249" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1440.900/-1920.-498.1920.1080@0.0.1440.900" timestamp="1604772900263" />
-    <state x="321" y="346" width="1110" height="647" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1604953738889" />
-    <state x="463" y="170" key="git4idea.branch.GitSmartOperationDialog" timestamp="1604759296576">
+    <state x="463" y="170" key="git4idea.branch.GitSmartOperationDialog" timestamp="1604622663745">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="463" y="170" key="git4idea.branch.GitSmartOperationDialog/0.0.1440.900@0.0.1440.900" timestamp="1604759296576" />
-    <state x="537" y="369" key="git4idea.rebase.GitUnstructuredEditor" timestamp="1604759523022">
+    <state x="463" y="170" key="git4idea.branch.GitSmartOperationDialog/0.0.1440.900@0.0.1440.900" timestamp="1604622663745" />
+    <state x="537" y="369" key="git4idea.rebase.GitUnstructuredEditor" timestamp="1604680520473">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="537" y="369" key="git4idea.rebase.GitUnstructuredEditor/0.0.1440.900@0.0.1440.900" timestamp="1604759523022" />
-    <state x="625" y="255" key="run.anything.popup" timestamp="1604783997978">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="625" y="255" key="run.anything.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1604783997978" />
+    <state x="537" y="369" key="git4idea.rebase.GitUnstructuredEditor/0.0.1440.900@0.0.1440.900" timestamp="1604680520472" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1604266426269">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
