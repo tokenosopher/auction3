@@ -19,13 +19,19 @@
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/Imran_branch_GIT" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a2a2964c-7130-415b-8902-95da3e037c97" name="Default Changelist" comment="Listings now display page information and already are aware if an item is being watched or not. Created an entirely new page which displays Watchlist results." />
+    <list default="true" id="a2a2964c-7130-415b-8902-95da3e037c97" name="Default Changelist" comment="Imran_Branch_test">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1c7f3f2d-44fc-41b9-9e57-322557eb1100.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1c7f3f2d-44fc-41b9-9e57-322557eb1100.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1c7f3f2d-44fc-41b9-9e57-322557eb1100/storage_v2/_src_/database/databaseucl.Q_yqMA/schema/dbo.sYMBAA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1c7f3f2d-44fc-41b9-9e57-322557eb1100/storage_v2/_src_/database/databaseucl.Q_yqMA/schema/dbo.sYMBAA.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/create_auction_result.php" beforeDir="false" afterPath="$PROJECT_DIR$/create_auction_result.php" afterDir="false" />
+    </list>
     <list id="827ee4a7-5b12-4b25-9eb7-c18796bcdfb3" name="Revert &quot;Commit before IntelliJ Setup&quot;" comment="Revert &quot;Commit before IntelliJ Setup&quot;&#10;&#10;This reverts commit a67df552" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,16 +41,17 @@
   <component name="ComposerSettings">
     <execution />
   </component>
-  <component name="Git.Pull.Settings">
-    <option name="BRANCH" value="master" />
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="Imran_branch_GIT" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="ChenWatchList_Branch" />
+        <entry key="$PROJECT_DIR$" value="Imran_branch1" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
   <component name="ProjectId" id="1in4IPNRmFbEitOzKKK4XAeXmzf" />
@@ -62,6 +69,12 @@
     <property name="database.data.extractors.current.export.id" value="SQL Inserts" />
     <property name="database.data.extractors.current.id" value="SQL Inserts" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/testing_folder" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="web.server" />
   </component>
   <component name="RecentsManager">
@@ -79,15 +92,13 @@
     <recent_temporary>
       <list>
         <item itemvalue="PHP Script.Test_2.php" />
-        <item itemvalue="PHP Script.Test_2.php" />
-        <item itemvalue="PHP Script.Test_2.php" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="6b1ceee0-0102-4196-970c-0f29a4e2e356" name="Default Changelist" comment="" />
+      <changelist id="a2a2964c-7130-415b-8902-95da3e037c97" name="Default Changelist" comment="Imran_Branch_test" />
       <created>1602529942064</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -96,9 +107,7 @@
       <workItem from="1603644140481" duration="2828000" />
       <workItem from="1603706504840" duration="2815000" />
       <workItem from="1603792811103" duration="11815000" />
-      <workItem from="1603814474370" duration="142000" />
-      <workItem from="1603897662801" duration="3458000" />
-      <workItem from="1603901265008" duration="1544000" />
+      <workItem from="1604666655908" duration="1910000" />
     </task>
     <task id="LOCAL-00001" summary="First changed to GitHub">
       <created>1603643184282</created>
@@ -121,14 +130,42 @@
       <option name="project" value="LOCAL" />
       <updated>1603644053557</updated>
     </task>
-    <task id="LOCAL-00004" summary="Chenuka did this">
-      <created>1603901940242</created>
+    <task id="LOCAL-00004" summary="After input email address filter (if(!filter_var...)) tested and works">
+      <created>1604265868188</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1603901940242</updated>
+      <updated>1604265868188</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="after confirming that passwords match">
+      <created>1604270926516</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1604270926516</updated>
+    </task>
+    <task id="LOCAL-00006" summary="after confirming that passwords match">
+      <created>1604270961618</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1604270961618</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Imran_Branch_test">
+      <created>1604622774152</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1604622774152</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Imran_Branch_test">
+      <created>1604627697814</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1604627697814</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -147,7 +184,18 @@
             <State>
               <option name="CUSTOM_BOOLEAN_PROPERTIES">
                 <map>
-                  <entry key="Show.Git.Branches" value="false" />
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/master" />
+                      </list>
+                    </value>
+                  </entry>
                 </map>
               </option>
             </State>
@@ -165,8 +213,10 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First changed to GitHub" />
     <MESSAGE value="new change" />
-    <MESSAGE value="Chenuka did this" />
-    <option name="LAST_COMMIT_MESSAGE" value="Chenuka did this" />
+    <MESSAGE value="After input email address filter (if(!filter_var...)) tested and works" />
+    <MESSAGE value="after confirming that passwords match" />
+    <MESSAGE value="Imran_Branch_test" />
+    <option name="LAST_COMMIT_MESSAGE" value="Imran_Branch_test" />
   </component>
   <component name="WindowStateProjectService">
     <state x="698" y="344" key="#Notifications" timestamp="1603623702723">
@@ -181,19 +231,19 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="349" y="361" key="#SQL_Dialects/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603800984958" />
-    <state x="319" y="151" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603900709042">
-      <screen x="0" y="0" width="1500" height="970" />
+    <state x="408" y="162" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603631109777">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="408" y="162" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603631109777" />
-    <state x="319" y="151" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1500.970@0.0.1500.970" timestamp="1603900709042" />
     <state x="715" y="322" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1603643334161">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="715" y="322" key="#com.intellij.fileTypes.FileTypeChooser/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603643334161" />
-    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1603636035781">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="69" y="80" width="1302" height="741" key="DiffContextDialog" timestamp="1604680677247">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603636035781" />
+    <state x="69" y="80" width="1302" height="741" key="DiffContextDialog/0.0.1440.900@0.0.1440.900" timestamp="1604680677247" />
     <state x="758" y="265" key="FileChooserDialogImpl" timestamp="1603629778407">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -206,45 +256,51 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="782" y="215" key="Github.UntrackedFilesDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603624781366" />
-    <state width="1458" height="259" key="GridCell.Tab.0.bottom" timestamp="1603901181269">
-      <screen x="0" y="0" width="1500" height="970" />
+    <state width="938" height="282" key="GridCell.Tab.0.bottom" timestamp="1603800945787">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="938" height="282" key="GridCell.Tab.0.bottom/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603800945787" />
-    <state width="1458" height="259" key="GridCell.Tab.0.bottom/0.0.1500.970@0.0.1500.970" timestamp="1603901181269" />
-    <state width="1458" height="259" key="GridCell.Tab.0.center" timestamp="1603901181269">
-      <screen x="0" y="0" width="1500" height="970" />
+    <state width="938" height="282" key="GridCell.Tab.0.center" timestamp="1603800945787">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="938" height="282" key="GridCell.Tab.0.center/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603800945787" />
-    <state width="1458" height="259" key="GridCell.Tab.0.center/0.0.1500.970@0.0.1500.970" timestamp="1603901181269" />
-    <state width="1458" height="259" key="GridCell.Tab.0.left" timestamp="1603901181268">
-      <screen x="0" y="0" width="1500" height="970" />
+    <state width="938" height="282" key="GridCell.Tab.0.left" timestamp="1603800945787">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="938" height="282" key="GridCell.Tab.0.left/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603800945787" />
-    <state width="1458" height="259" key="GridCell.Tab.0.left/0.0.1500.970@0.0.1500.970" timestamp="1603901181268" />
-    <state width="1458" height="259" key="GridCell.Tab.0.right" timestamp="1603901181269">
-      <screen x="0" y="0" width="1500" height="970" />
+    <state width="938" height="282" key="GridCell.Tab.0.right" timestamp="1603800945787">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="938" height="282" key="GridCell.Tab.0.right/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603800945787" />
-    <state width="1458" height="259" key="GridCell.Tab.0.right/0.0.1500.970@0.0.1500.970" timestamp="1603901181269" />
     <state width="271" height="457" key="HiddenNamespacesPopup" timestamp="1603632047651">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="271" height="457" key="HiddenNamespacesPopup/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603632047651" />
-    <state x="620" y="413" key="NewPhpFileDialog" timestamp="1603897848955">
-      <screen x="0" y="0" width="1500" height="970" />
+    <state x="144" y="79" key="MergeDialog" timestamp="1604622715159">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="144" y="79" key="MergeDialog/0.0.1440.900@0.0.1440.900" timestamp="1604622715159" />
+    <state x="358" y="218" key="MultipleFileMergeDialog" timestamp="1604680510144">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="358" y="218" key="MultipleFileMergeDialog/0.0.1440.900@0.0.1440.900" timestamp="1604680510144" />
+    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1603642926806">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="794" y="443" key="NewPhpFileDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603642926806" />
-    <state x="620" y="413" key="NewPhpFileDialog/0.0.1500.970@0.0.1500.970" timestamp="1603897848955" />
-    <state x="374" y="145" key="SettingsEditor" timestamp="1603814528206">
-      <screen x="0" y="0" width="1500" height="970" />
+    <state x="479" y="155" key="SettingsEditor" timestamp="1603806933821">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="479" y="155" key="SettingsEditor/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603806933821" />
-    <state x="374" y="145" key="SettingsEditor/0.0.1500.970@0.0.1500.970" timestamp="1603814528206" />
-    <state x="431" y="236" key="Vcs.Push.Dialog.v2" timestamp="1603901946864">
-      <screen x="0" y="0" width="1500" height="970" />
+    <state x="414" y="219" key="Vcs.Push.Dialog.v2" timestamp="1604627706992">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="552" y="253" key="Vcs.Push.Dialog.v2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603644319686" />
-    <state x="431" y="236" key="Vcs.Push.Dialog.v2/0.0.1500.970@0.0.1500.970" timestamp="1603901946864" />
+    <state x="414" y="219" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1604627706992" />
+    <state x="498" y="191" key="VcsDiffUtil.ChangesDialog" timestamp="1604621736887">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="498" y="191" key="VcsDiffUtil.ChangesDialog/0.0.1440.900@0.0.1440.900" timestamp="1604621736887" />
     <state x="859" y="397" width="255" height="272" key="com.intellij.database.actions.DdlActions$CreateObject$1" timestamp="1603632177731">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -261,9 +317,21 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="883" y="466" key="com.intellij.database.run.ParametersPanel.Standalone/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603632290900" />
-    <state x="842" y="288" width="845" height="594" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1603800705055">
+    <state x="842" y="288" width="845" height="594" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1604272113418">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="842" y="288" width="845" height="594" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603800705055" />
+    <state x="842" y="288" width="845" height="594" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1604272113418" />
+    <state x="463" y="170" key="git4idea.branch.GitSmartOperationDialog" timestamp="1604622663745">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="463" y="170" key="git4idea.branch.GitSmartOperationDialog/0.0.1440.900@0.0.1440.900" timestamp="1604622663745" />
+    <state x="537" y="369" key="git4idea.rebase.GitUnstructuredEditor" timestamp="1604680520473">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="537" y="369" key="git4idea.rebase.GitUnstructuredEditor/0.0.1440.900@0.0.1440.900" timestamp="1604680520472" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1604266426269">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1604266426269" />
   </component>
 </project>
