@@ -12,32 +12,44 @@
 
 $user["email"] = $_POST["email"];
 $user["password"] = $_POST["password"];
-$user["hashed_pass"] = password_hash($user["password"], PASSWORD_DEFAULT);
-echo $user["email"];
-echo $user["password"];
-echo $user["hashed_pass"];
 
-$params = array($user["email"], $user["hashed_pass"]);
+$params = array($user["email"]);
 $tsql = "SELECT UserID, EmailAddress, Passwd FROM databaseucl.dbo.Users2
         WHERE EmailAddress = ?";
 $cursorType = array("Scrollable" => SQLSRV_CURSOR_KEYSET);
 $select = sqlsrv_query($conn, $tsql, $params, $cursorType);
 if (sqlsrv_num_rows($select) == 1){
         $row = sqlsrv_fetch_array($select);
-        if (password_verify($user["password"], PASSWORD_DEFAULT)) {
-            echo "Password is valid";
+        if (password_verify($user["password"], $row['Passwd'])) {
+            echo "You've logged in! You will be redirected in a moment";
+            $_SESSION['user_id'] = $row['UserID'];
+            $_SESSION['email'] = $row['EmailAddress'];
+            $_SESSION['logged_in'] = true ;
+            //querying to see if user is buyer or seller:
+            $params_account_type = array($_SESSION['user_id']);
+            $query_account_type_buyer = "SELECT userID FROM Buyers
+                                          WHERE userID = ?";
+            $querying_account_type_buyer = sqlsrv_query($conn, $query_account_type_buyer, $params_account_type, $cursorType);
+            if (sqlsrv_has_rows($querying_account_type_buyer))
+            {
+                $_SESSION['account_type'] = 'buyer';
+            } else {
+                $_SESSION['account_type'] = 'seller';
+            }
+
+//
+//            $_SESSION['account_type'] = "seller";
+            // Redirect to index after 5 seconds
+            header("refresh:5;url=index.php");
+
         } else {
-            echo "Username or password are not valid";
+            echo "Invalid Password! Try again";
+            // Redirect to index after 5 seconds
+            header("refresh:5;url=index.php");
         }
 
-//    session_start();
-//    $_SESSION['user_id'] = $row['userID'];
-//    $_SESSION['email'] = $row['EmailAddress'];
-//    $_SESSION['logged_in'] = true;
-//    $_SESSION['account_type'] = "buyer";
-    echo ("Login_correct");
 } else {
-    echo "Invalid username and password, try again.";
+    echo "Invalid username and password! Try again.";
 }
 
 //session_start();
