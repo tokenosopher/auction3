@@ -6,68 +6,62 @@
 <?php
   // Get info from the URL:
   $item_id = $_GET['item_id'];
+  //check whether itemid exists in database
+  $validitemstring = "SELECT AI.itemId FROM AuctionItems AI WHERE AI.itemId = ".$item_id;
+  $validitem = sqlsrv_query($conn, $validitemstring);
+  $validitemnum = sqlsrv_fetch_array($validitem)['itemId'];
+  if($validitemnum){
 
-  // TODO: Use item_id to make a query to the database.
-    $isauctionstring = "SELECT AI.itemID, AI.ItemTitle, CAST(AI.ItemDescription AS VARCHAR(1000)) Description,
-    AI.ItemEndDate, MAX(B.BidValue) MaxBid,COUNT(B.BidValue) NoOfBids
+      $isauctionstring = "SELECT AI.itemID, AI.ItemTitle, CAST(AI.ItemDescription AS VARCHAR(1000)) Description,
+      AI.ItemEndDate, MAX(B.BidValue) MaxBid,COUNT(B.BidValue) NoOfBids
     FROM AuctionItems AI
     LEFT JOIN Bids B ON AI.itemID = B.itemID
     WHERE AI.itemID = ".$item_id."
     GROUP BY AI.itemID, AI.ItemTitle, CAST(AI.ItemDescription AS VARCHAR(1000)), AI.ItemEndDate;";
-    $listingResults= sqlsrv_query($conn, $isauctionstring);
+      $listingResults= sqlsrv_query($conn, $isauctionstring);
+      WHILE ($row = sqlsrv_fetch_array($listingResults)) {
+          $title = $row['ItemTitle'];
+          $description = $row['Description'];
+          $current_price = $row['MaxBid'];
+          $num_bids = $row['NoOfBids'];
+          $end_time = $row['ItemEndDate'];
+          break;
+      }
+      sqlsrv_free_stmt($listingResults);
 
-    WHILE ($row = sqlsrv_fetch_array($listingResults)) {
-        $title = $row['ItemTitle'];
-        $description = $row['Description'];
-        $current_price = $row['MaxBid'];
-        $num_bids = $row['NoOfBids'];
-        $end_time = $row['ItemEndDate'];
-        break;
-    }
-    sqlsrv_free_stmt($listingResults);
+      // Calculate time to auction end:
+      $now = new DateTime();
 
-  // DELETEME: For now, using placeholder data.
-  #$title = "Placeholder title";
-  #$description = "Description blah blah blah";
-  #$current_price = 30.50;
-  #$num_bids = 1;
-  #$end_time = new DateTime('2021-12-02T00:00:00');
-
+      if ($now < $end_time) {
+          $time_to_end = date_diff($now, $end_time);
+          $time_remaining = ' (in ' . display_time_remaining($time_to_end) . ')';
+      }
+  }
+  else{
+      echo "This auction does not exist!";
+  }
   // TODO: Note: Auctions that have ended may pull a different set of data,
   //       like whether the auction ended in a sale or was cancelled due
   //       to lack of high-enough bids. Or maybe not.
-  
-  // Calculate time to auction end:
-  $now = new DateTime();
-  
-  if ($now < $end_time) {
-    $time_to_end = date_diff($now, $end_time);
-    $time_remaining = ' (in ' . display_time_remaining($time_to_end) . ')';
-  }
-  
-  // TODO: If the user has a session, use it to make a query to the database
-  //       to determine if the user is already watching this item.
-  //       For now, this is hardcoded.
-    $has_session = true;
-    $user_id = 5;
-    $isbuyerstring = "SELECT TOP 1 BuyerID FROM Buyers WHERE Buyers.UserID =".$user_id;
-    $isbuyerresults = sqlsrv_query($conn, $isbuyerstring);
-    $buyer_id = sqlsrv_fetch_array($isbuyerresults)['BuyerID'];
-    sqlsrv_free_stmt($isbuyerresults);
-    $iswatchingstring = "SELECT * FROM WatchList W WHERE W.BuyerID =".$buyer_id." and W.ItemID =".$item_id;
-    $iswatching = sqlsrv_query($conn, $iswatchingstring);
-    $iswatchingresults = false;
-    WHILE ($row = sqlsrv_fetch_array($iswatching)) {
-        $iswatchingresults = $row['itemId'];
-        break;
+    if ($_SESSION['logged_in'] and $_SESSION['account_type'] == 'buyer'){
+        $user_id = $_SESSION['user_id'];
+        $buyer_id = get_buyer_id($user_id,$conn);
+        $has_session = true;
+        $iswatchingstring = "SELECT * FROM WatchList W WHERE W.BuyerID =".$buyer_id." and W.ItemID =".$item_id;
+        $iswatching = sqlsrv_query($conn, $iswatchingstring);
+        $iswatchingresults = false;
+        WHILE ($row = sqlsrv_fetch_array($iswatching)) {
+            $iswatchingresults = $row['itemId'];
+            break;
+        }
+        if($iswatchingresults){
+            $watching = true;
+        }
+        else{
+            $watching = false;
+        }
+        sqlsrv_free_stmt($iswatching);
     }
-    if($iswatchingresults){
-        $watching = true;
-    }
-    else{
-        $watching = false;
-    }
-    sqlsrv_free_stmt($iswatching);
 ?>
 
 
@@ -81,7 +75,7 @@
 <?php
   /* The following watchlist functionality uses JavaScript, but could
      just as easily use PHP as in other places in the code */
-  if ($now < $end_time):
+  if (($now and $end_time) and ($now < $end_time)):
 ?>
     <div id="watch_nowatch" <?php if ($has_session && $watching) echo('style="display: none"');?> >
       <button type="button" class="btn btn-outline-secondary btn-sm" onclick="addToWatchlist()">+ Add to watchlist</button>
@@ -110,7 +104,7 @@
      This auction ended <?php echo(date_format($end_time, 'j M H:i')) ?>
      <!-- TODO: Print the result of the auction here? -->
 <?php else: ?>
-     Auction ends <?php echo(date_format($end_time, 'j M H:i') . $time_remaining) ?></p>  
+     Auction ends <?php echo(date_format($end_time, 'j M H:i') . $time_remaining) ?></p>
     <p class="lead">Current bid: £<?php echo(number_format($current_price, 2)) ?></p>
 
     <!-- Bidding form -->
@@ -125,7 +119,7 @@
     </form>
 <?php endif ?>
 
-  
+
   </div> <!-- End of right col with bidding info -->
 
 </div> <!-- End of row #2 -->
@@ -145,13 +139,14 @@ function addToWatchlist(button) {
   // Sends item ID as an argument to that function.
   $.ajax('watchlist_funcs.php', {
     type: "POST",
-    data: {functionname: 'add_to_watchlist', arguments: <?php echo($item_id)?>},
+    data: {functionname: 'add_to_watchlist', arguments: [<?php echo($item_id);?>,<?php echo($buyer_id);?>]},
 
     success: 
       function (obj, textstatus) {
         // Callback function for when call is successful and returns obj
         console.log("Success");
         var objT = obj.trim();
+        console.log(objT);
  
         if (objT == "success") {
           $("#watch_nowatch").hide();
@@ -177,7 +172,7 @@ function removeFromWatchlist(button) {
   // Sends item ID as an argument to that function.
   $.ajax('watchlist_funcs.php', {
     type: "POST",
-    data: {functionname: 'remove_from_watchlist', arguments: [<?php echo($item_id);?>]},
+    data: {functionname: 'remove_from_watchlist', arguments: [<?php echo($item_id);?>,<?php echo($buyer_id);?>]},
 
     success: 
       function (obj, textstatus) {

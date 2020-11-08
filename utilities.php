@@ -61,4 +61,19 @@ function print_listing_li($item_id, $title, $desc, $price, $num_bids, $end_time)
   );
 }
 
+function get_buyer_id($user_id,$conn){
+    $isbuyerstring = "SELECT TOP 1 BuyerID FROM Buyers WHERE Buyers.UserID =".$user_id;
+    $isbuyerresults = sqlsrv_query($conn, $isbuyerstring);
+    $buyer_id = sqlsrv_fetch_array($isbuyerresults)['BuyerID'];
+    sqlsrv_free_stmt($isbuyerresults);
+    return $buyer_id;
+}
+function get_seller_id($user_id,$conn){
+    $issellerstring = "SELECT TOP 1 SellerID FROM Sellers WHERE Sellers.UserID =".$user_id;
+    $issellerresults = sqlsrv_query($conn, $issellerstring);
+    $seller_id = sqlsrv_fetch_array($issellerresults)['BuyerID'];
+    sqlsrv_free_stmt($issellerresults);
+    return $seller_id;
+}
+
 ?>
