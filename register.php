@@ -29,7 +29,7 @@
   <div class="form-group row">
     <label for="password" class="col-sm-2 col-form-label text-right">Password</label>
     <div class="col-sm-10">
-      <input type="password" name = "Password" class="form-control" id="password" placeholder="Password">
+      <input type="password" name = "Password" pattern=".{6,}" required title="8 characters minimum"    class="form-control" id="password" placeholder="Password">
       <small id="passwordHelp" class="form-text text-muted"><span class="text-danger">* Required.</span></small>
     </div>
   </div>
