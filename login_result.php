@@ -21,11 +21,10 @@ $select = sqlsrv_query($conn, $tsql, $params, $cursorType);
 if (sqlsrv_num_rows($select) == 1){
         $row = sqlsrv_fetch_array($select);
         if (password_verify($user["password"], $row['Passwd'])) {
-            echo '<section class="section"> ;
-            <div class="centered">
-            <h1><span>You are now logged in!</span></h1>
-            <p><span>You will be redirected in a second</span></p>
-            </div>';
+            echo '<div class="header">
+                  <h1>You are now logged in!</h1>
+                  <h2>You will be redirected in a second.</h2>
+                  </div>';
             $_SESSION['user_id'] = $row['UserID'];
             $_SESSION['email'] = $row['EmailAddress'];
             $_SESSION['logged_in'] = true ;
@@ -48,11 +47,8 @@ if (sqlsrv_num_rows($select) == 1){
                 $_SESSION['seller_id'] = $row_seller['sellerId'];
                 echo $_SESSION['seller_id'];
             }
-
-//
-//            $_SESSION['account_type'] = "seller";
-            // Redirect to index after 5 seconds
-//            header("refresh:5;url=index.php");
+            // Redirect to index after 1 second
+            header("refresh:2;url=index.php");
 
         } else {
             echo "Invalid Password! Try again";
