@@ -1,6 +1,7 @@
 <?php include_once("header.php")?>
 <?php require("utilities.php")?>
 <?php include_once 'db_con/db_li.php'?>
+<?php //include_once 'testing_folder/checking_sessions.php'?>
 
 <div class="container">
 
@@ -21,14 +22,15 @@
               <i class="fa fa-search"></i>
             </span>
           </div>
-          <input type="text" class="form-control border-left-0" id="keyword" placeholder="Search for anything">
+          <input type="text" class="form-control border-left-0" id="keyword" name="keyword" placeholder="Search for anything">
+            <!--We additionally want to add for the search result to stay in the search bar and save latest searches-->
         </div>
       </div>
     </div>
     <div class="col-md-3 pr-0">
       <div class="form-group">
         <label for="cat" class="sr-only">Search within:</label>
-        <select class="form-control" id="cat">
+        <select class="form-control" id="cat" name = "cat">
           <option selected value="all">All categories</option>
           <option value="fill">Fill me in</option>
           <option value="with">with options</option>
@@ -39,7 +41,7 @@
     <div class="col-md-3 pr-0">
       <div class="form-inline">
         <label class="mx-2" for="order_by">Sort by:</label>
-        <select class="form-control" id="order_by">
+        <select class="form-control" id="order_by" name = "order_by">
           <option selected value="pricelow">Price (low to high)</option>
           <option value="pricehigh">Price (high to low)</option>
           <option value="date">Soonest expiry</option>
@@ -89,51 +91,51 @@
   /* TODO: Use above values to construct a query. Use this query to 
      retrieve data from the database. (If there is no form data entered,
      decide on appropriate default value/default query to make. */
+
+  $active_auctions_query = "SELECT * FROM AuctionItems WHERE itemEndDate > GETDATE();";
+  $getResults = sqlsrv_query($conn, $active_auctions_query,array(), array( "Scrollable" => 'static' ));
   
   /* For the purposes of pagination, it would also be helpful to know the
      total number of results that satisfy the above query */
-  $num_results = 96; // TODO: Calculate me for real
+
+  $num_results = sqlsrv_num_rows($getResults); // TODO: Calculate me for real
   $results_per_page = 10;
   $max_page = ceil($num_results / $results_per_page);
 ?>
 
 <div class="container mt-5">
 
-<!-- TODO: If result set is empty, print an informative message. Otherwise... -->
+    <!-- TODO: If result set is empty, print an informative message. Otherwise... -->
+    <!--Done! Outputs "No auctions were found for your search request, please alter your search!"-->
+
+<?php
+  if ($num_results === NULL) {echo '<h2>No auctions were found for your search request, please alter your search!</h2>';}
+?>
 
 <ul class="list-group">
 
 <!-- TODO: Use a while loop to print a list item for each auction listing
      retrieved from the query -->
 
-<!--This part is done, now I need to figure out how to break down the page count-->
-    <?php
-    $query = "SELECT AI.itemId, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(1000)) Description, AI.itemEndDate, MAX(B.bidValue) MaxBid,COUNT(B.bidValue) NoOfBids
+<?php
+
+  $results_for_current_page = ($curr_page-1)*$results_per_page;
+
+  $query = "SELECT AI.itemId, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(1000)) Description, AI.itemEndDate, MAX(B.bidValue) MaxBid,COUNT(B.bidValue) NoOfBids
     FROM AuctionItems AI
     LEFT JOIN Bids B ON AI.itemID = B.itemID
+    WHERE itemEndDate > GETDATE()
     GROUP BY AI.itemId, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(1000)), AI.itemEndDate
-    ORDER BY AI.itemId;";
-    $getResults = sqlsrv_query($conn, $query);
+    ORDER BY AI.itemId
+    OFFSET  ROWS FETCH NEXT ? ROWS ONLY";
 
-    WHILE ($row = sqlsrv_fetch_array($getResults)) {
+$getResults = sqlsrv_query($conn, $query);
 
-        $item_id = $row['itemId'];
-        $title = $row['itemTitle'];
-        $desc = $row['Description'];
-        $end_time = $row['itemEndDate'];
-        $price = $row['MaxBid'];
-        $num_bids = $row['NoOfBids'];
-
-        print_listing_li($item_id, $title, $desc, $price, $num_bids, $end_time);
-    }
-
-    sqlsrv_free_stmt($getResults);
-    sqlsrv_close( $conn);
-    ?>
-
+WHILE ($row = sqlsrv_fetch_array($getResults)) {
+    print_listing_li($row['itemId'], $row['itemTitle'], $row['Description'], $row['MaxBid'], $row['NoOfBids'], $row['itemEndDate']);}
+?>
 
 </ul>
-<!--Need to work out how to do pagination-->
 <!-- Pagination for results listings -->
 <nav aria-label="Search results pages" class="mt-5">
   <ul class="pagination justify-content-center">

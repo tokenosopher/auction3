@@ -1,8 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BranchesTreeState">
-    <expand />
-    <select />
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/aleksei-browse" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6b1ceee0-0102-4196-970c-0f29a4e2e356" name="Default Changelist" comment="new change">
@@ -10,7 +31,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/1c7f3f2d-44fc-41b9-9e57-322557eb1100/storage_v2/_src_/database/databaseucl.Q_yqMA/schema/dbo.sYMBAA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1c7f3f2d-44fc-41b9-9e57-322557eb1100/storage_v2/_src_/database/databaseucl.Q_yqMA/schema/dbo.sYMBAA.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/browse.php" beforeDir="false" afterPath="$PROJECT_DIR$/browse.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mylistings.php" beforeDir="false" afterPath="$PROJECT_DIR$/mylistings.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +39,9 @@
   </component>
   <component name="ComposerSettings">
     <execution />
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="master" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -56,7 +79,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="web.server" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.web.browsers" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -67,11 +90,25 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Test_2.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/testing_folder/Test_2.php">
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="PHP Script.Test_2.php" />
+        <item itemvalue="PHP Script.Test_2.php" />
+        <item itemvalue="PHP Script.Test_2.php" />
         <item itemvalue="PHP Script.Test_2.php" />
       </list>
     </recent_temporary>
@@ -89,6 +126,8 @@
       <workItem from="1603706504840" duration="2815000" />
       <workItem from="1603792811103" duration="11815000" />
       <workItem from="1604603041228" duration="8915000" />
+      <workItem from="1604678890098" duration="1541000" />
+      <workItem from="1604680581098" duration="13561000" />
     </task>
     <task id="LOCAL-00001" summary="First changed to GitHub">
       <created>1603643184282</created>
@@ -158,7 +197,7 @@
             <State>
               <option name="CUSTOM_BOOLEAN_PROPERTIES">
                 <map>
-                  <entry key="Show.Git.Branches" value="false" />
+                  <entry key="Show.Git.Branches" value="true" />
                 </map>
               </option>
               <option name="FILTERS">
@@ -166,7 +205,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/master" />
+                        <option value="origin/aleksei-browse" />
                       </list>
                     </value>
                   </entry>
@@ -177,9 +216,19 @@
         </entry>
       </map>
     </option>
-    <option name="OPEN_GENERIC_TABS">
+    <option name="RECENT_FILTERS">
       <map>
-        <entry key="1" value="TOOL_WINDOW" />
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/aleksei-browse" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
@@ -229,38 +278,52 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="782" y="215" key="Github.UntrackedFilesDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603624781366" />
-    <state width="1294" height="272" key="GridCell.Tab.0.bottom" timestamp="1604659912964">
-      <screen x="-99" y="-1057" width="1920" height="1057" />
+    <state width="1294" height="272" key="GridCell.Tab.0.bottom" timestamp="1604847616846">
+      <screen x="-99" y="-1057" width="1920" height="1027" />
     </state>
     <state width="938" height="282" key="GridCell.Tab.0.bottom/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603800945787" />
     <state width="1294" height="272" key="GridCell.Tab.0.bottom/0.23.1440.847/-99.-1057.1920.1057@-99.-1057.1920.1057" timestamp="1604659912964" />
-    <state width="1294" height="272" key="GridCell.Tab.0.center" timestamp="1604659912963">
-      <screen x="-99" y="-1057" width="1920" height="1057" />
+    <state width="1294" height="272" key="GridCell.Tab.0.bottom/0.23.1440.877/-99.-1057.1920.1027@-99.-1057.1920.1027" timestamp="1604847616846" />
+    <state width="1294" height="272" key="GridCell.Tab.0.center" timestamp="1604847616845">
+      <screen x="-99" y="-1057" width="1920" height="1027" />
     </state>
     <state width="938" height="282" key="GridCell.Tab.0.center/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603800945787" />
     <state width="1294" height="272" key="GridCell.Tab.0.center/0.23.1440.847/-99.-1057.1920.1057@-99.-1057.1920.1057" timestamp="1604659912963" />
-    <state width="1294" height="272" key="GridCell.Tab.0.left" timestamp="1604659912962">
-      <screen x="-99" y="-1057" width="1920" height="1057" />
+    <state width="1294" height="272" key="GridCell.Tab.0.center/0.23.1440.877/-99.-1057.1920.1027@-99.-1057.1920.1027" timestamp="1604847616845" />
+    <state width="1294" height="272" key="GridCell.Tab.0.left" timestamp="1604847616845">
+      <screen x="-99" y="-1057" width="1920" height="1027" />
     </state>
     <state width="938" height="282" key="GridCell.Tab.0.left/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603800945787" />
     <state width="1294" height="272" key="GridCell.Tab.0.left/0.23.1440.847/-99.-1057.1920.1057@-99.-1057.1920.1057" timestamp="1604659912962" />
-    <state width="1294" height="272" key="GridCell.Tab.0.right" timestamp="1604659912964">
-      <screen x="-99" y="-1057" width="1920" height="1057" />
+    <state width="1294" height="272" key="GridCell.Tab.0.left/0.23.1440.877/-99.-1057.1920.1027@-99.-1057.1920.1027" timestamp="1604847616845" />
+    <state width="1294" height="272" key="GridCell.Tab.0.right" timestamp="1604847616846">
+      <screen x="-99" y="-1057" width="1920" height="1027" />
     </state>
     <state width="938" height="282" key="GridCell.Tab.0.right/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603800945787" />
     <state width="1294" height="272" key="GridCell.Tab.0.right/0.23.1440.847/-99.-1057.1920.1057@-99.-1057.1920.1057" timestamp="1604659912964" />
+    <state width="1294" height="272" key="GridCell.Tab.0.right/0.23.1440.877/-99.-1057.1920.1027@-99.-1057.1920.1027" timestamp="1604847616846" />
     <state width="271" height="457" key="HiddenNamespacesPopup" timestamp="1603632047651">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="271" height="457" key="HiddenNamespacesPopup/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603632047651" />
-    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1603642926806">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="-99" y="-1057" width="1920" height="1057" key="MergeDialog" timestamp="1604679552672">
+      <screen x="-99" y="-1057" width="1920" height="1057" />
+    </state>
+    <state x="-99" y="-1057" width="1920" height="1057" key="MergeDialog/0.23.1440.847/-99.-1057.1920.1057@-99.-1057.1920.1057" timestamp="1604679552672" />
+    <state x="502" y="-760" key="MultipleFileMergeDialog" timestamp="1604834355626">
+      <screen x="-99" y="-1057" width="1920" height="1057" />
+    </state>
+    <state x="502" y="-760" key="MultipleFileMergeDialog/0.23.1440.847/-99.-1057.1920.1057@-99.-1057.1920.1057" timestamp="1604834355626" />
+    <state x="695" y="-607" key="NewPhpFileDialog" timestamp="1604836836364">
+      <screen x="-99" y="-1057" width="1920" height="1057" />
     </state>
     <state x="794" y="443" key="NewPhpFileDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603642926806" />
-    <state x="479" y="155" key="SettingsEditor" timestamp="1603806933821">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="695" y="-607" key="NewPhpFileDialog/0.23.1440.847/-99.-1057.1920.1057@-99.-1057.1920.1057" timestamp="1604836836364" />
+    <state x="380" y="-899" key="SettingsEditor" timestamp="1604836146195">
+      <screen x="-99" y="-1057" width="1920" height="1057" />
     </state>
     <state x="479" y="155" key="SettingsEditor/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603806933821" />
+    <state x="380" y="-899" key="SettingsEditor/0.23.1440.847/-99.-1057.1920.1057@-99.-1057.1920.1057" timestamp="1604836146195" />
     <state x="453" y="-807" key="Vcs.Push.Dialog.v2" timestamp="1604606831085">
       <screen x="-99" y="-1057" width="1920" height="1027" />
     </state>
@@ -278,10 +341,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="838" y="397" width="316" height="246" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603632472251" />
-    <state x="690" y="325" key="com.intellij.database.dbimport.ImportUtil.ChooseTargetDialog" timestamp="1603642410786">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="591" y="-736" key="com.intellij.database.dbimport.ImportUtil.ChooseTargetDialog" timestamp="1604840536261">
+      <screen x="-99" y="-1057" width="1920" height="1027" />
     </state>
     <state x="690" y="325" key="com.intellij.database.dbimport.ImportUtil.ChooseTargetDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603642410786" />
+    <state x="591" y="-736" key="com.intellij.database.dbimport.ImportUtil.ChooseTargetDialog/0.23.1440.877/-99.-1057.1920.1027@-99.-1057.1920.1027" timestamp="1604840536261" />
     <state x="647" y="-716" width="428" height="343" key="com.intellij.database.psi.DbRenamePsiElementProcessor.DbRenameDialog" timestamp="1604608284652">
       <screen x="-99" y="-1057" width="1920" height="1027" />
     </state>
@@ -295,17 +359,35 @@
     </state>
     <state x="842" y="288" width="845" height="594" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1604272113418" />
     <state x="743" y="-717" width="551" height="564" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.23.1440.877/-99.-1057.1920.1027@-99.-1057.1920.1027" timestamp="1604611178210" />
-    <state x="674" y="-623" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1604658353138">
-      <screen x="-99" y="-1057" width="1920" height="1057" />
+    <state x="674" y="-635" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1604843401263">
+      <screen x="-99" y="-1057" width="1920" height="1027" />
     </state>
-    <state x="674" y="-623" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.847/-99.-1057.1920.1057@-99.-1057.1920.1057" timestamp="1604658353138" />
+    <state x="674" y="-623" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.847/-99.-1057.1920.1057@-99.-1057.1920.1057" timestamp="1604834362723" />
+    <state x="674" y="-635" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.877/-99.-1057.1920.1027@-99.-1057.1920.1027" timestamp="1604843401263" />
     <state x="568" y="-955" width="586" height="822" key="find.popup" timestamp="1604603553755">
       <screen x="-99" y="-1057" width="1920" height="1027" />
     </state>
     <state x="568" y="-955" width="586" height="822" key="find.popup/0.23.1440.877/-99.-1057.1920.1027@-99.-1057.1920.1027" timestamp="1604603553755" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1604266426269">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="626" y="-816" key="git4idea.branch.GitSmartOperationDialog" timestamp="1604847606061">
+      <screen x="-99" y="-1057" width="1920" height="1027" />
+    </state>
+    <state x="626" y="-809" key="git4idea.branch.GitSmartOperationDialog/0.23.1440.847/-99.-1057.1920.1057@-99.-1057.1920.1057" timestamp="1604681362020" />
+    <state x="626" y="-816" key="git4idea.branch.GitSmartOperationDialog/0.23.1440.877/-99.-1057.1920.1027@-99.-1057.1920.1027" timestamp="1604847606061" />
+    <state x="524" y="-835" width="672" height="670" key="search.everywhere.popup" timestamp="1604845276822">
+      <screen x="-99" y="-1057" width="1920" height="1027" />
     </state>
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1604266426269" />
+    <state x="524" y="-835" width="672" height="670" key="search.everywhere.popup/0.23.1440.877/-99.-1057.1920.1027@-99.-1057.1920.1027" timestamp="1604845276822" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/listing.php</url>
+          <line>8</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
