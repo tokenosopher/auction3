@@ -15,9 +15,9 @@
 
 
 // TODO: Check user's credentials (cookie/session).
-if ($_SESSION['logged_in'] and $_SESSION['account_type'] == 'buyer'){
+if (isset($_SESSION['logged_in']) and $_SESSION['account_type'] == 'buyer'){
     $user_id = $_SESSION['user_id'];
-    $buyer_id = get_buyer_id($user_id,$conn);
+    $buyer_id = $_SESSION['buyer_id'];
 
     $query = "SELECT AI.itemID, AI.ItemTitle, CAST(AI.ItemDescription AS VARCHAR(1000)) Description,AI.ItemEndDate, MAX(B.BidValue) MaxBid,COUNT(B.BidValue) NoOfBids
 FROM AuctionItems AI
@@ -41,8 +41,8 @@ GROUP BY AI.itemID, AI.ItemTitle, CAST(AI.ItemDescription AS VARCHAR(1000)), AI.
 
     sqlsrv_free_stmt($getResults);
 }
-elseif($_SESSION['logged_in'] and $_SESSION['account_type'] == 'seller'){
-    echo "Only buyer accounts will have watchlists";
+elseif(isset($_SESSION['logged_in']) and $_SESSION['account_type'] == 'seller'){
+    echo "Only buyer accounts will have watchlists, you are a seller account.";
 }
 else{
     echo "You must login to your buyer account in order to see your watchlist";

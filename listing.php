@@ -43,9 +43,9 @@
   // TODO: Note: Auctions that have ended may pull a different set of data,
   //       like whether the auction ended in a sale or was cancelled due
   //       to lack of high-enough bids. Or maybe not.
-    if ($_SESSION['logged_in'] and $_SESSION['account_type'] == 'buyer'){
+  if (isset($_SESSION['logged_in']) and $_SESSION['account_type'] == 'buyer'){
         $user_id = $_SESSION['user_id'];
-        $buyer_id = get_buyer_id($user_id,$conn);
+        $buyer_id = $_SESSION['buyer_id'];
         $has_session = true;
         $iswatchingstring = "SELECT * FROM WatchList W WHERE W.BuyerID =".$buyer_id." and W.ItemID =".$item_id;
         $iswatching = sqlsrv_query($conn, $iswatchingstring);
@@ -62,6 +62,10 @@
         }
         sqlsrv_free_stmt($iswatching);
     }
+  else{
+      $has_session = false;
+      $watching = false;
+  }
 ?>
 
 
@@ -75,10 +79,12 @@
 <?php
   /* The following watchlist functionality uses JavaScript, but could
      just as easily use PHP as in other places in the code */
-  if (($now and $end_time) and ($now < $end_time)):
+  if ($now < $end_time):
 ?>
     <div id="watch_nowatch" <?php if ($has_session && $watching) echo('style="display: none"');?> >
-      <button type="button" class="btn btn-outline-secondary btn-sm" onclick="addToWatchlist()">+ Add to watchlist</button>
+        <?php if(isset($buyer_id)):?>
+            <button type="button" class="btn btn-outline-secondary btn-sm" onclick="addToWatchlist()">+ Add to watchlist</button>
+        <?php endif /* Shows no button otherwise */ ?>
     </div>
     <div id="watch_watching" <?php if (!$has_session || !$watching) echo('style="display: none"');?> >
       <button type="button" class="btn btn-success btn-sm" disabled>Watching</button>
