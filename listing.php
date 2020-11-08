@@ -66,7 +66,7 @@
 
 
 <div class="container">
-
+    <?php if ($validitemnum):?>
 <div class="row"> <!-- Row #1 with auction title + watch button -->
   <div class="col-sm-8"> <!-- Left col -->
     <h2 class="my-3"><?php echo($title); ?></h2>
@@ -123,6 +123,7 @@
   </div> <!-- End of right col with bidding info -->
 
 </div> <!-- End of row #2 -->
+    <?php endif /* Print nothing otherwise */ ?>
 
 
 
