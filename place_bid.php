@@ -6,7 +6,7 @@
 // TODO: Extract $_POST variables, check they're OK, and attempt to make a bid.
 // Notify user of success/failure and redirect/give navigation options.
 
-    $min_bid_increase = 0.5;
+    $min_bid_increase = 1;
     $bid_amt = $_POST["bid"];
     $item_id = $_POST["item_id"];
     $buyer_id = $_SESSION["buyer_id"];
@@ -31,7 +31,7 @@
                         echo "\nCongratulations you are the highest bidder";
                     }
                     else{
-                        "\nYou are not the highest bidder.";
+                        echo "\nYou are not the highest bidder.";
                     }
                     if($bid_amt < $reserve_price){
                         echo "\nHowever, your bid is less than the Auction's reserve price.\n";
