@@ -19,11 +19,26 @@ if (isset($_SESSION['logged_in']) and $_SESSION['account_type'] == 'buyer'){
     $user_id = $_SESSION['user_id'];
     $buyer_id = $_SESSION['buyer_id'];
 
-    $query = "SELECT AI.itemID, AI.ItemTitle, CAST(AI.ItemDescription AS VARCHAR(1000)) Description,AI.ItemEndDate, MAX(B.BidValue) MaxBid,COUNT(B.BidValue) NoOfBids
-FROM AuctionItems AI
-LEFT JOIN Bids B ON AI.itemID = B.itemID
-WHERE AI.itemID IN (SELECT W.ItemID FROM WatchList W WHERE W.BuyerID = ".$buyer_id.")
-GROUP BY AI.itemID, AI.ItemTitle, CAST(AI.ItemDescription AS VARCHAR(1000)), AI.ItemEndDate;";
+    $query = sprintf("
+                SELECT 
+                       AI.itemID, 
+                       AI.ItemTitle, 
+                       CAST(AI.ItemDescription AS VARCHAR(1000)) Description,
+                       AI.ItemEndDate,
+                       AI.itemStartingPrice,
+                       MAX(B.BidValue) MaxBid,
+                       COUNT(B.BidValue) NoOfBids
+                FROM 
+                     AuctionItems AI
+                LEFT JOIN Bids B ON AI.itemID = B.itemID
+                WHERE 
+                      AI.itemID IN (SELECT W.ItemID FROM WatchList W WHERE W.BuyerID = %s)
+                GROUP BY 
+                    AI.itemID, 
+                    AI.ItemTitle, 
+                    AI.itemStartingPrice,     
+                    CAST(AI.ItemDescription AS VARCHAR(1000)),
+                    AI.ItemEndDate;", $buyer_id);
 
     $getResults= sqlsrv_query($conn, $query);
 
@@ -35,8 +50,9 @@ GROUP BY AI.itemID, AI.ItemTitle, CAST(AI.ItemDescription AS VARCHAR(1000)), AI.
         $end_time = $row['ItemEndDate'];
         $price = $row['MaxBid'];
         $num_bids = $row['NoOfBids'];
+        $start_price = $row['itemStartingPrice'];
 
-        print_listing_li($item_id, $title, $desc, $price, $num_bids, $end_time);
+        print_listing_li($item_id, $title, $desc, $price, $num_bids, $end_time, $start_price);
     }
 
     sqlsrv_free_stmt($getResults);

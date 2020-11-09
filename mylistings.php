@@ -1,6 +1,7 @@
 <?php include_once("header.php")?>
 <?php require("utilities.php")?>
-<?php include_once 'db_con/db_li.php'?>
+<?php include_once('db_con/db_li.php')?>
+<?php include_once('auction_functions.php')?>
 
 <div class="container">
 
@@ -15,30 +16,33 @@
 
 
   // TODO: Check user's credentials (cookie/session).
-  
-  // TODO: Perform a query to pull up their auctions.
-$query = "SELECT AI.itemId, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(1000)) Description,
-AI.itemEndDate, MAX(B.bidValue) MaxBid,COUNT(B.bidValue) NoOfBids
-FROM AuctionItems AI
-LEFT JOIN Bids B ON AI.itemID = B.itemID
-WHERE AI.sellerID = 2
-GROUP BY AI.itemID, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(1000)), AI.itemEndDate;";
-$getResults= sqlsrv_query($conn, $query);
+    if (isset($_SESSION['logged_in']) and $_SESSION['account_type'] == 'seller') {
+        $user_id = $_SESSION['user_id'];
+        $seller_id = $_SESSION['seller_id'];
+        // TODO: Perform a query to pull up their auctions.
 
-  // TODO: Loop through results and print them out as list items.
+        $getResults = getmylistings();
 
-WHILE ($row = sqlsrv_fetch_array($getResults)) {
+        // TODO: Loop through results and print them out as list items.
 
-    $item_id = $row['itemId'];
-    $title = $row['itemTitle'];
-    $desc = $row['Description'];
-    $end_time = $row['itemEndDate'];
-    $price = $row['MaxBid'];
-    $num_bids = $row['NoOfBids'];
+        WHILE ($row = sqlsrv_fetch_array($getResults)) {
 
-    print_listing_li($item_id, $title, $desc, $price, $num_bids, $end_time);
-}
-sqlsrv_free_stmt($getResults);
-sqlsrv_close( $conn);
+            $item_id = $row['itemId'];
+            $title = $row['itemTitle'];
+            $desc = $row['Description'];
+            $end_time = $row['itemEndDate'];
+            $price = $row['MaxBid'];
+            $num_bids = $row['NoOfBids'];
+            $starting_price = $row['itemStartingPrice'];
+            $reserve_price = $row['itemReservePrice'];
+
+            $auction_status = getauctionstatus($item_id);;
+
+            print_my_listings_li($item_id, $title, $desc, $price, $num_bids, $end_time,$starting_price,$reserve_price,$auction_status);
+        }
+        sqlsrv_free_stmt($getResults);
+        sqlsrv_close( $conn);
+
+    }
 ?>
 <?php include_once("footer.php")?>

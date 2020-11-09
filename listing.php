@@ -1,33 +1,23 @@
 <?php include_once("header.php")?>
 <?php require("utilities.php")?>
 <?php include_once('db_con/db_li.php')?>
+<?php include_once('auction_functions.php')?>
 
 
 <?php
   // Get info from the URL:
   $item_id = $_GET['item_id'];
   //check whether itemid exists in database
-  $validitemstring = "SELECT AI.itemId FROM AuctionItems AI WHERE AI.itemId = ".$item_id;
-  $validitem = sqlsrv_query($conn, $validitemstring);
-  $validitemnum = sqlsrv_fetch_array($validitem)['itemId'];
-  if($validitemnum){
+  $isvalidauction = validauction($item_id);
+  if($isvalidauction){
 
-      $isauctionstring = "SELECT AI.itemID, AI.ItemTitle, CAST(AI.ItemDescription AS VARCHAR(1000)) Description,
-      AI.ItemEndDate, MAX(B.BidValue) MaxBid,COUNT(B.BidValue) NoOfBids
-    FROM AuctionItems AI
-    LEFT JOIN Bids B ON AI.itemID = B.itemID
-    WHERE AI.itemID = ".$item_id."
-    GROUP BY AI.itemID, AI.ItemTitle, CAST(AI.ItemDescription AS VARCHAR(1000)), AI.ItemEndDate;";
-      $listingResults= sqlsrv_query($conn, $isauctionstring);
-      WHILE ($row = sqlsrv_fetch_array($listingResults)) {
-          $title = $row['ItemTitle'];
-          $description = $row['Description'];
-          $current_price = $row['MaxBid'];
-          $num_bids = $row['NoOfBids'];
-          $end_time = $row['ItemEndDate'];
-          break;
-      }
-      sqlsrv_free_stmt($listingResults);
+      $auctiondetails = getauctiondetails($item_id);
+      $title = $auctiondetails['title'];
+      $description = $auctiondetails['description'];
+      $current_price = $auctiondetails['current_price'];
+      $num_bids = $auctiondetails['num_bids'];
+      $end_time = $auctiondetails['end_time'];
+      $starting_price = $auctiondetails['starting_price'];
 
       // Calculate time to auction end:
       $now = new DateTime();
@@ -36,6 +26,8 @@
           $time_to_end = date_diff($now, $end_time);
           $time_remaining = ' (in ' . display_time_remaining($time_to_end) . ')';
       }
+
+      $auctionstatus = getauctionstatus($item_id);
   }
   else{
       echo "This auction does not exist!";
@@ -47,20 +39,8 @@
         $user_id = $_SESSION['user_id'];
         $buyer_id = $_SESSION['buyer_id'];
         $has_session = true;
-        $iswatchingstring = "SELECT * FROM WatchList W WHERE W.BuyerID =".$buyer_id." and W.ItemID =".$item_id;
-        $iswatching = sqlsrv_query($conn, $iswatchingstring);
-        $iswatchingresults = false;
-        WHILE ($row = sqlsrv_fetch_array($iswatching)) {
-            $iswatchingresults = $row['itemId'];
-            break;
-        }
-        if($iswatchingresults){
-            $watching = true;
-        }
-        else{
-            $watching = false;
-        }
-        sqlsrv_free_stmt($iswatching);
+        $watching = iswatchingauction($buyer_id,$item_id);
+        $usermaxbid = buyermaxbidonauction($item_id);
     }
   else{
       $has_session = false;
@@ -70,7 +50,7 @@
 
 
 <div class="container">
-    <?php if ($validitemnum):?>
+    <?php if ($isvalidauction):?>
 <div class="row"> <!-- Row #1 with auction title + watch button -->
   <div class="col-sm-8"> <!-- Left col -->
     <h2 class="my-3"><?php echo($title); ?></h2>
@@ -100,6 +80,11 @@
     <div class="itemDescription">
     <?php echo($description); ?>
     </div>
+    <br/>
+      <div class="itemDescription">
+          <?php echo($auctionstatus); ?>
+      </div>
+
 
   </div>
 
@@ -111,18 +96,25 @@
      <!-- TODO: Print the result of the auction here? -->
 <?php else: ?>
      Auction ends <?php echo(date_format($end_time, 'j M H:i') . $time_remaining) ?></p>
-    <p class="lead">Current bid: £<?php echo(number_format($current_price, 2)) ?></p>
+    <?php if(isset($usermaxbid) and $usermaxbid > 0):?>
+        <p class="lead">Your highest bid: £<?php echo(number_format($usermaxbid, 2)) ?></p>
+    <?php endif ?>
+      <p class="lead">Current highest bid: £<?php echo(number_format($current_price, 2)) ?></p>
+    <p class="lead">Starting Price: £<?php echo(number_format($starting_price, 2)) ?></p>
 
     <!-- Bidding form -->
-    <form method="POST" action="place_bid.php">
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text">£</span>
-        </div>
-	    <input type="number" class="form-control" id="bid">
-      </div>
-      <button type="submit" class="btn btn-primary form-control">Place bid</button>
-    </form>
+    <?php if(isset($buyer_id)): ?>
+        <form method="POST" action="place_bid.php">
+          <input type="hidden" name="item_id" value="<?php echo $item_id;?>">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">£</span>
+            </div>
+            <input type="number" class="form-control" id="bid" name="bid">
+          </div>
+          <button type="submit" class="btn btn-primary form-control">Place bid</button>
+        </form>
+    <?php endif ?>
 <?php endif ?>
 
 
@@ -137,7 +129,7 @@
 
 
 <script> 
-// JavaScript functions: addToWatchlist and removeFromWatchlist.
+// JavaScript functions: addToWatchlist and removeFromWatchlist. Add bid
 
 function addToWatchlist(button) {
   console.log("These print statements are helpful for debugging btw");
@@ -204,6 +196,5 @@ function removeFromWatchlist(button) {
         console.log("Error");
       }
   }); // End of AJAX call
-
-} // End of addToWatchlist func
+} // End of removeFromWatchlist func
 </script>

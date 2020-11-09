@@ -113,9 +113,10 @@
   $current_price = 30;
   $num_bids = 1;
   $end_date = new DateTime('2020-09-16T11:00:00');
+  $starting_price = 0;
   
   // This uses a function defined in utilities.php
-  print_listing_li($item_id, $title, $description, $current_price, $num_bids, $end_date);
+  print_listing_li($item_id, $title, $description, $current_price, $num_bids, $end_date,$starting_price);
   
   $item_id = "516";
   $title = "Different title";
@@ -123,8 +124,9 @@
   $current_price = 13.50;
   $num_bids = 3;
   $end_date = new DateTime('2020-11-02T00:00:00');
+  $starting_price = 10;
   
-  print_listing_li($item_id, $title, $description, $current_price, $num_bids, $end_date);
+  print_listing_li($item_id, $title, $description, $current_price, $num_bids, $end_date,$starting_price);
 ?>
 
 </ul>

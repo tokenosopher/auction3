@@ -1,5 +1,6 @@
 <?php include_once("header.php")?>
 <?php require("utilities.php")?>
+<?php include_once('auction_functions.php')?>
 
 <div class="container">
 
@@ -14,11 +15,31 @@
   
   
   // TODO: Check user's credentials (cookie/session).
-  
-  // TODO: Perform a query to pull up the auctions they've bidded on.
-  
-  // TODO: Loop through results and print them out as list items.
-  
+if (isset($_SESSION['logged_in']) and $_SESSION['account_type'] == 'buyer') {
+    $user_id = $_SESSION['user_id'];
+    $buyer_id = $_SESSION['buyer_id'];
+    // TODO: Perform a query to pull up the auctions they've bidded on.
+
+    $getResults = getmybids();
+
+    // TODO: Loop through results and print them out as list items.
+    WHILE ($row = sqlsrv_fetch_array($getResults)) {
+
+        $item_id = $row['itemId'];
+        $title = $row['itemTitle'];
+        $desc = $row['Description'];
+        $end_time = $row['itemEndDate'];
+        $price = $row['MaxBid'];
+        $num_bids = $row['NoOfBids'];
+        $usermaxbid = $row['UserMaxBid'];
+
+        $auction_status = getauctionstatus($item_id);
+
+        print_bids_li($item_id, $title, $desc, $price, $num_bids, $end_time,$usermaxbid,$auction_status);
+    }
+    sqlsrv_free_stmt($getResults);
+    sqlsrv_close($conn);
+}
 ?>
 
 <?php include_once("footer.php")?>
