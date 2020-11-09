@@ -1,7 +1,6 @@
 <?php include_once("header.php")?>
 <?php require("utilities.php")?>
 <?php include_once 'db_con/db_li.php'?>
-<?php //include_once 'testing_folder/checking_sessions.php'?>
 
 <div class="container">
 
@@ -30,11 +29,21 @@
     <div class="col-md-3 pr-0">
       <div class="form-group">
         <label for="cat" class="sr-only">Search within:</label>
-        <select class="form-control" id="cat" name = "cat">
-          <option selected value="all">All categories</option>
-          <option value="fill">Fill me in</option>
-          <option value="with">with options</option>
-          <option value="populated">populated from a database?</option>
+          <?php
+          $category_search_query = "SELECT * FROM Category";
+          $getResultsCategories = sqlsrv_query($conn, $category_search_query);
+          ?>
+            <select class="form-control" id="cat" name = "cat">
+              <option selected value="all">All categories</option>
+                <?php
+                while ($rows = sqlsrv_fetch_array($getResultsCategories,SQLSRV_FETCH_ASSOC))
+                {
+                    $category_id = $rows['categoryId'];
+                    $category_name = $rows['categoryName'];
+                    echo "<option value = '$category_id'>$category_name</option>";
+                }
+          ?>
+          <!--This part of the code dynamically pulls Categories from DB into HTML Dropdown Menu-->
         </select>
       </div>
     </div>
@@ -59,7 +68,11 @@
 </div>
 
 <?php
+
   // Retrieve these from the URL
+
+//TODO: I still need to work out how perform a query search for the key word
+
   if (!isset($_GET['keyword'])) {
     // TODO: Define behavior if a keyword has not been specified.
   }
@@ -67,34 +80,59 @@
     $keyword = $_GET['keyword'];
   }
 
-  if (!isset($_GET['cat'])) {
+  if (!isset($_GET['cat']) OR htmlspecialchars($_GET['cat']) == 'all') {
     // TODO: Define behavior if a category has not been specified.
+      $category_search = " ";
   }
+
   else {
     $category = $_GET['cat'];
+    $category_search = "AND categoryId = $category";
   }
-  
+
+//  echo htmlspecialchars($_GET['cat']);
+
   if (!isset($_GET['order_by'])) {
     // TODO: Define behavior if an order_by value has not been specified.
+
+      $ordering = "MaxBid";
   }
   else {
     $ordering = $_GET['order_by'];
+    $ass_arrays_ordering = array("pricelow"=>"MaxBid", "pricehigh"=>"MaxBid DESC", "date"=>"AI.itemEndDate");
+    $ordering = $ass_arrays_ordering[$ordering];
+
+  /*  This part of drop down menu is also done. I have created an Associative Arrays, in Python they are called
+  dictionaries, to match the value of html with query input for SQL.
+  I am thinking, should we just change the variable in html to match with those required for SQL? */
   }
-  
+
+//This part is done, pagination is working fine.
+
   if (!isset($_GET['page'])) {
     $curr_page = 1;
   }
   else {
     $curr_page = $_GET['page'];
   }
-
   /* TODO: Use above values to construct a query. Use this query to 
      retrieve data from the database. (If there is no form data entered,
      decide on appropriate default value/default query to make. */
 
-  $active_auctions_query = "SELECT * FROM AuctionItems WHERE itemEndDate > GETDATE();";
-  $getResults = sqlsrv_query($conn, $active_auctions_query,array(), array( "Scrollable" => 'static' ));
-  
+  $active_auctions_query = "SELECT AI.itemId, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(1000)) Description, AI.itemEndDate, MAX(B.bidValue) MaxBid,COUNT(B.bidValue) NoOfBids, categoryId
+    FROM AuctionItems AI
+    LEFT JOIN Bids B ON AI.itemID = B.itemID
+    WHERE itemEndDate > GETDATE() {$category_search}
+    GROUP BY AI.itemId, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(1000)), AI.itemEndDate, categoryId";
+
+  // I broke up the query into two parts since a pretty similar query has to be used twice
+
+  $getResults = sqlsrv_query($conn, $active_auctions_query,array(), array( "Scrollable" => SQLSRV_CURSOR_KEYSET));
+
+// reference 1:  https://www.php.net/manual/en/function.sqlsrv-query.php
+// reference 2:  https://www.php.net/manual/en/function.sqlsrv-num-rows.php
+// reference 3:  https://docs.microsoft.com/en-us/sql/connect/php/cursor-types-sqlsrv-driver?view=sql-server-ver15
+
   /* For the purposes of pagination, it would also be helpful to know the
      total number of results that satisfy the above query */
 
@@ -109,7 +147,7 @@
     <!--Done! Outputs "No auctions were found for your search request, please alter your search!"-->
 
 <?php
-  if ($num_results === NULL) {echo '<h2>No auctions were found for your search request, please alter your search!</h2>';}
+  if ($num_results === 0) {echo '<h2>No auctions were found for your search request, please alter your search!</h2>';}
 ?>
 
 <ul class="list-group">
@@ -121,16 +159,15 @@
 
   $results_for_current_page = ($curr_page-1)*$results_per_page;
 
-  $query = "SELECT AI.itemId, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(1000)) Description, AI.itemEndDate, MAX(B.bidValue) MaxBid,COUNT(B.bidValue) NoOfBids
-    FROM AuctionItems AI
-    LEFT JOIN Bids B ON AI.itemID = B.itemID
-    WHERE itemEndDate > GETDATE()
-    GROUP BY AI.itemId, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(1000)), AI.itemEndDate
-    ORDER BY AI.itemId
-    OFFSET  ROWS FETCH NEXT ? ROWS ONLY";
+//$results_for_current_page shows the offset for the current page, for the first page it will be 0, second 10, third 20 and so on
+
+  $query = "{$active_auctions_query} ORDER BY {$ordering} OFFSET {$results_for_current_page} ROWS FETCH NEXT {$results_per_page} ROWS ONLY";
+
+//The query above is dynamic. This means that it fetches the page value then adds an offset and lists the next 10 active auctions
 
 $getResults = sqlsrv_query($conn, $query);
 
+//Tightened this bit up, no need for transitional variables
 WHILE ($row = sqlsrv_fetch_array($getResults)) {
     print_listing_li($row['itemId'], $row['itemTitle'], $row['Description'], $row['MaxBid'], $row['NoOfBids'], $row['itemEndDate']);}
 ?>
@@ -153,7 +190,7 @@ WHILE ($row = sqlsrv_fetch_array($getResults)) {
   $low_page_boost = max(2 - ($max_page - $curr_page), 0);
   $low_page = max(1, $curr_page - 2 - $low_page_boost);
   $high_page = min($max_page, $curr_page + 2 + $high_page_boost);
-  
+
   if ($curr_page != 1) {
     echo('
     <li class="page-item">
