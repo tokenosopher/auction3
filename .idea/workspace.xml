@@ -26,7 +26,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a2a2964c-7130-415b-8902-95da3e037c97" name="Default Changelist" comment="Imran_Auction_revisited" />
+    <list default="true" id="a2a2964c-7130-415b-8902-95da3e037c97" name="Default Changelist" comment="Imran_auction_fully_operational" />
     <list id="827ee4a7-5b12-4b25-9eb7-c18796bcdfb3" name="Revert &quot;Commit before IntelliJ Setup&quot;" comment="Revert &quot;Commit before IntelliJ Setup&quot;&#10;&#10;This reverts commit a67df552" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +108,7 @@
       <workItem from="1604935023940" duration="2639000" />
       <workItem from="1604961968032" duration="1262000" />
       <workItem from="1604971317619" duration="771000" />
-      <workItem from="1605013051467" duration="4103000" />
+      <workItem from="1605013051467" duration="3752000" />
     </task>
     <task id="LOCAL-00001" summary="First changed to GitHub">
       <created>1603643184282</created>
@@ -173,14 +173,7 @@
       <option name="project" value="LOCAL" />
       <updated>1604785721362</updated>
     </task>
-    <task id="LOCAL-00010" summary="Imran_Auction_revisited">
-      <created>1605020606749</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1605020606749</updated>
-    </task>
-    <option name="localTasksCounter" value="11" />
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -207,7 +200,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/master" />
+                        <option value="origin/Imran_Branch2" />
                       </list>
                     </value>
                   </entry>
@@ -232,8 +225,7 @@
     <MESSAGE value="after confirming that passwords match" />
     <MESSAGE value="Imran_Branch_test" />
     <MESSAGE value="Imran_auction_fully_operational" />
-    <MESSAGE value="Imran_Auction_revisited" />
-    <option name="LAST_COMMIT_MESSAGE" value="Imran_Auction_revisited" />
+    <option name="LAST_COMMIT_MESSAGE" value="Imran_auction_fully_operational" />
   </component>
   <component name="WindowStateProjectService">
     <state x="558" y="184" key="#CLI_Interpreters" timestamp="1604962380712">
@@ -314,10 +306,11 @@
     </state>
     <state x="479" y="155" key="SettingsEditor/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603806933821" />
     <state x="479" y="161" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1604971810571" />
-    <state x="552" y="263" key="Vcs.Push.Dialog.v2" timestamp="1604785782563">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state x="414" y="219" key="Vcs.Push.Dialog.v2" timestamp="1605026789589">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="552" y="253" key="Vcs.Push.Dialog.v2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603644319686" />
+    <state x="414" y="219" key="Vcs.Push.Dialog.v2/0.0.1440.900/-1920.-498.1920.1080@0.0.1440.900" timestamp="1605026789589" />
     <state x="414" y="219" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1604627706992" />
     <state x="552" y="263" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1604785782563" />
     <state x="498" y="191" key="VcsDiffUtil.ChangesDialog" timestamp="1604621736887">
