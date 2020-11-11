@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="@localhost" uuid="825ac18e-ffd7-4c58-a73f-50c6070a0ada">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" exact-version="0" />
+      <schema-mapping />
+    </data-source>
+    <data-source name="@localhost_Narcis" uuid="142375ad-fed3-46d5-981e-f06f451f803d">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" exact-version="0" />
+      <schema-mapping />
+    </data-source>
+    <data-source name="Test@localhost" uuid="e5ae1a88-7b0b-48ca-a66e-5ce5094e7f16">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" exact-version="0" />
+      <schema-mapping />
+    </data-source>
+    <data-source name="@databaseucl.database.windows.net" uuid="1c7f3f2d-44fc-41b9-9e57-322557eb1100">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="AZURE" exact-version="0" />
+      <schema-mapping />
+    </data-source>
+  </component>
+</project>
