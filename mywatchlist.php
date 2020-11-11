@@ -15,53 +15,33 @@
 
 
 // TODO: Check user's credentials (cookie/session).
-if (isset($_SESSION['logged_in']) and $_SESSION['account_type'] == 'buyer'){
-    $user_id = $_SESSION['user_id'];
-    $buyer_id = $_SESSION['buyer_id'];
+$user_id=5;
+$isbuyerstring = "SELECT TOP 1 BuyerID FROM Buyers WHERE Buyers.UserID =".$user_id;
+$isbuyerresults = sqlsrv_query($conn, $isbuyerstring);
+$buyer_id = sqlsrv_fetch_array($isbuyerresults)['BuyerID'];
+sqlsrv_free_stmt($isbuyerresults);
 
-    $query = sprintf("
-                SELECT 
-                       AI.itemID, 
-                       AI.ItemTitle, 
-                       CAST(AI.ItemDescription AS VARCHAR(1000)) Description,
-                       AI.ItemEndDate,
-                       AI.itemStartingPrice,
-                       MAX(B.BidValue) MaxBid,
-                       COUNT(B.BidValue) NoOfBids
-                FROM 
-                     AuctionItems AI
-                LEFT JOIN Bids B ON AI.itemID = B.itemID
-                WHERE 
-                      AI.itemID IN (SELECT W.ItemID FROM WatchList W WHERE W.BuyerID = %s)
-                GROUP BY 
-                    AI.itemID, 
-                    AI.ItemTitle, 
-                    AI.itemStartingPrice,     
-                    CAST(AI.ItemDescription AS VARCHAR(1000)),
-                    AI.ItemEndDate;", $buyer_id);
+$query = "SELECT AI.itemID, AI.ItemTitle, CAST(AI.ItemDescription AS VARCHAR(1000)) Description,AI.ItemEndDate, MAX(B.BidValue) MaxBid,COUNT(B.BidValue) NoOfBids
+FROM AuctionItems AI
+LEFT JOIN Bids B ON AI.itemID = B.itemID
+WHERE AI.itemID IN (SELECT W.ItemID FROM WatchList W WHERE W.BuyerID = ".$buyer_id.")
+GROUP BY AI.itemID, AI.ItemTitle, CAST(AI.ItemDescription AS VARCHAR(1000)), AI.ItemEndDate;";
 
-    $getResults= sqlsrv_query($conn, $query);
+$getResults= sqlsrv_query($conn, $query);
 
-    WHILE ($row = sqlsrv_fetch_array($getResults)) {
+WHILE ($row = sqlsrv_fetch_array($getResults)) {
 
-        $item_id = $row['itemID'];
-        $title = $row['ItemTitle'];
-        $desc = $row['Description'];
-        $end_time = $row['ItemEndDate'];
-        $price = $row['MaxBid'];
-        $num_bids = $row['NoOfBids'];
-        $start_price = $row['itemStartingPrice'];
+    $item_id = $row['itemID'];
+    $title = $row['ItemTitle'];
+    $desc = $row['Description'];
+    $end_time = $row['ItemEndDate'];
+    $price = $row['MaxBid'];
+    $num_bids = $row['NoOfBids'];
 
-        print_listing_li($item_id, $title, $desc, $price, $num_bids, $end_time, $start_price);
-    }
-
-    sqlsrv_free_stmt($getResults);
+    print_listing_li($item_id, $title, $desc, $price, $num_bids, $end_time);
 }
-elseif(isset($_SESSION['logged_in']) and $_SESSION['account_type'] == 'seller'){
-    echo "Only buyer accounts will have watchlists, you are a seller account.";
-}
-else{
-    echo "You must login to your buyer account in order to see your watchlist";
-}
+
+sqlsrv_free_stmt($getResults);
+
 ?>
 <?php include_once("footer.php")?>
