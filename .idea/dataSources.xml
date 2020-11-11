@@ -19,11 +19,11 @@
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/Test</jdbc-url>
     </data-source>
-    <data-source source="LOCAL" name="databaseucl@databaseucl.database.windows.net" uuid="1c7f3f2d-44fc-41b9-9e57-322557eb1100">
+    <data-source source="LOCAL" name="@databaseucl.database.windows.net" uuid="1c7f3f2d-44fc-41b9-9e57-322557eb1100">
       <driver-ref>azure.ms</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
-      <jdbc-url>jdbc:sqlserver://databaseucl.database.windows.net:1433;database=databaseucl</jdbc-url>
+      <jdbc-url>jdbc:sqlserver://databaseucl.database.windows.net:1433</jdbc-url>
     </data-source>
   </component>
 </project>
