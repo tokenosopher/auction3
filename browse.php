@@ -42,6 +42,7 @@
                     $category_name = $rows['categoryName'];
                     echo "<option value = '$category_id'>$category_name</option>";
                 }
+
           ?>
           <!--This part of the code dynamically pulls Categories from DB into HTML Dropdown Menu-->
         </select>
@@ -119,11 +120,11 @@
      retrieve data from the database. (If there is no form data entered,
      decide on appropriate default value/default query to make. */
 
-  $active_auctions_query = "SELECT AI.itemId, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(1000)) Description, AI.itemEndDate, MAX(B.bidValue) MaxBid,COUNT(B.bidValue) NoOfBids, categoryId
+  $active_auctions_query = "SELECT AI.itemId, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(1000)) Description, AI.itemEndDate, MAX(B.bidValue) MaxBid,COUNT(B.bidValue) NoOfBids, categoryId, itemStartingPrice
     FROM AuctionItems AI
     LEFT JOIN Bids B ON AI.itemID = B.itemID
     WHERE itemEndDate > GETDATE() {$category_search}
-    GROUP BY AI.itemId, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(1000)), AI.itemEndDate, categoryId";
+    GROUP BY AI.itemId, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(1000)), AI.itemEndDate, categoryId, itemStartingPrice";
 
   // I broke up the query into two parts since a pretty similar query has to be used twice
 
@@ -169,7 +170,7 @@ $getResults = sqlsrv_query($conn, $query);
 
 //Tightened this bit up, no need for transitional variables
 WHILE ($row = sqlsrv_fetch_array($getResults)) {
-    print_listing_li($row['itemId'], $row['itemTitle'], $row['Description'], $row['MaxBid'], $row['NoOfBids'], $row['itemEndDate']);}
+    print_listing_li($row['itemId'], $row['itemTitle'], $row['Description'], $row['MaxBid'], $row['NoOfBids'], $row['itemEndDate'],$row['itemStartingPrice']);}
 ?>
 
 </ul>
