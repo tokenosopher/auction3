@@ -17,8 +17,8 @@
 
         //echo ($auction["ItemTitle"]) ."<br>";
         //echo ($auction["ItemDescription"]) . "<br>";
-        echo (gettype($auction["ItemStartingPrice"])) . "<br>";
-        echo (gettype($auction["ItemReservePrice"])) . "<br>";
+        //echo (gettype($auction["ItemStartingPrice"])) . "<br>";
+        //echo (gettype($auction["ItemReservePrice"])) . "<br>";
         //echo (($auction["ItemEndDate"])) . "<br>";
         //echo ($auction["Category"]) . "<br>";
         //echo (gettype($auction["Category"])) . "<br>";
@@ -29,19 +29,22 @@
         $auction['ItemStartingPrice']<($auction["ItemReservePrice"])
         or die("Your starting price is higher than your reserve price!");
 
-        session_start();
+        // session_start();
 
         //echo ( gettype($_SESSION['user_id']))."<br>";
         //echo ($_SESSION['email'])."<br>";
        // echo (gettype($_SESSION['logged_in']))."<br>";
         //echo ($_SESSION['account_type'])."<br>";
 
-        $query1 = "SELECT sellerId FROM databaseucl.dbo.Sellers
-        WHERE (userId = '{$_SESSION['user_id']}')" ;
+        //$query1 = "SELECT sellerId FROM databaseucl.dbo.Sellers
+        //WHERE (userId = '{$_SESSION['user_id']}')" ;
 
-        $select1 = sqlsrv_query($conn, $query1,);
-        $row1 = sqlsrv_fetch_array($select1);
+        //$select1 = sqlsrv_query($conn, $query1,);
+        //$row1 = sqlsrv_fetch_array($select1);
         //echo ($row1[0]);
+        //echo ($_SESSION['seller_id']);
+        $myseller_id=$_SESSION['seller_id'];
+        //echo $myseller_id;
 
 
 
@@ -63,7 +66,7 @@
         or die('Error connecting to the server.' . sqlsrv_errors()['message']); */
 
         $query = "INSERT INTO databaseucl.dbo.AuctionItems(sellerId, ItemTitle, ItemDescription,ItemStartingPrice, ItemReservePrice,ItemEndDate,categoryId)
-                    VALUES ( '${row1[0]}','${auction["ItemTitle"]}', '${auction["ItemDescription"]}', '${auction["ItemStartingPrice"]}','${auction["ItemReservePrice"]}', '${auction["ItemEndDate"]}', '${auction["Category"]}' )";
+                    VALUES ( '${myseller_id}','${auction["ItemTitle"]}', '${auction["ItemDescription"]}', '${auction["ItemStartingPrice"]}','${auction["ItemReservePrice"]}', '${auction["ItemEndDate"]}', '${auction["Category"]}' )";
 
         $result = sqlsrv_query($conn, $query)
         or die('Error making saveToDatabase query');
