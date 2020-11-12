@@ -66,28 +66,12 @@ if ($user["accountType"] == "buyer") {
     $insert_buyer = "INSERT INTO Buyers (UserID)".
         "VALUES ('${user['userID']}')";
     sqlsrv_query($conn, $insert_buyer);
-    //retrieving user's buyer id below:
-    $params_account_type = array($user['userID']);
-    $query_account_type_buyer = "SELECT userId, buyerId FROM Buyers
-                                          WHERE userId = ?";
-    $querying_account_type_buyer = sqlsrv_query($conn, $query_account_type_buyer, $params_account_type);
-    WHILE ($row = sqlsrv_fetch_array($querying_account_type_buyer)) {
-        $user["buyer_id"] = $row["buyerId"];
-    }
 }
 
 else if ($user["accountType"] == "seller") {
     $insert_seller = "INSERT INTO Sellers (UserID)".
         "VALUES ('${user['userID']}')";
     sqlsrv_query($conn, $insert_seller);
-    //retrieving user's seller id below:
-    $params_account_type = array($user['userID']);
-    $query_account_type_seller = "SELECT userId, sellerId FROM Sellers
-                                          WHERE userId = ?";
-    $querying_account_type_seller = sqlsrv_query($conn, $query_account_type_seller, $params_account_type);
-    WHILE ($row = sqlsrv_fetch_array($querying_account_type_seller)) {
-        $user["seller_id"] = $row["sellerId"];
-    }
 }
 
 
@@ -97,12 +81,6 @@ if ($result==true) {
     $_SESSION['account_type'] = $user["accountType"];
     $_SESSION['user_id'] = $user["userID"];
     $_SESSION['logged_in'] = true ;
-    if (isset($user['buyer_id'])) {
-        $_SESSION['buyer_id'] = $user['buyer_id'];
-    }
-    else {
-        $_SESSION['seller_id'] = $user['seller_id'];
-    }
     echo("You have successfully registered");
     header("refresh:2;url=index.php");
 }
