@@ -19,14 +19,19 @@
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:origin/master" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:Imran_Branch2" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a2a2964c-7130-415b-8902-95da3e037c97" name="Default Changelist" comment="Imran_Auction_revisited" />
+    <list default="true" id="a2a2964c-7130-415b-8902-95da3e037c97" name="Default Changelist" comment="Imran_auction_fully_operational">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1c7f3f2d-44fc-41b9-9e57-322557eb1100.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1c7f3f2d-44fc-41b9-9e57-322557eb1100.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1c7f3f2d-44fc-41b9-9e57-322557eb1100/storage_v2/_src_/database/databaseucl.Q_yqMA/schema/dbo.sYMBAA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1c7f3f2d-44fc-41b9-9e57-322557eb1100/storage_v2/_src_/database/databaseucl.Q_yqMA/schema/dbo.sYMBAA.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/create_auction.php" beforeDir="false" afterPath="$PROJECT_DIR$/create_auction.php" afterDir="false" />
+    </list>
     <list id="827ee4a7-5b12-4b25-9eb7-c18796bcdfb3" name="Revert &quot;Commit before IntelliJ Setup&quot;" comment="Revert &quot;Commit before IntelliJ Setup&quot;&#10;&#10;This reverts commit a67df552" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +47,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Imran_branch_GIT" />
+        <entry key="$PROJECT_DIR$" value="19d03deff0f725d1eb019fc19ef0d2a0689934e2" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -87,6 +92,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="PHP Script.Test_2.php" />
+        <item itemvalue="PHP Script.Test_2.php" />
       </list>
     </recent_temporary>
   </component>
@@ -108,7 +114,9 @@
       <workItem from="1604935023940" duration="2639000" />
       <workItem from="1604961968032" duration="1262000" />
       <workItem from="1604971317619" duration="771000" />
-      <workItem from="1605013051467" duration="4103000" />
+      <workItem from="1605013051467" duration="3752000" />
+      <workItem from="1605186924251" duration="413000" />
+      <workItem from="1605187387981" duration="678000" />
     </task>
     <task id="LOCAL-00001" summary="First changed to GitHub">
       <created>1603643184282</created>
@@ -173,14 +181,7 @@
       <option name="project" value="LOCAL" />
       <updated>1604785721362</updated>
     </task>
-    <task id="LOCAL-00010" summary="Imran_Auction_revisited">
-      <created>1605020606749</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1605020606749</updated>
-    </task>
-    <option name="localTasksCounter" value="11" />
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -207,7 +208,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/master" />
+                        <option value="Imran_Branch2" />
                       </list>
                     </value>
                   </entry>
@@ -232,8 +233,7 @@
     <MESSAGE value="after confirming that passwords match" />
     <MESSAGE value="Imran_Branch_test" />
     <MESSAGE value="Imran_auction_fully_operational" />
-    <MESSAGE value="Imran_Auction_revisited" />
-    <option name="LAST_COMMIT_MESSAGE" value="Imran_Auction_revisited" />
+    <option name="LAST_COMMIT_MESSAGE" value="Imran_auction_fully_operational" />
   </component>
   <component name="WindowStateProjectService">
     <state x="558" y="184" key="#CLI_Interpreters" timestamp="1604962380712">
@@ -293,13 +293,15 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="938" height="282" key="GridCell.Tab.0.right/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603800945787" />
-    <state width="271" height="457" key="HiddenNamespacesPopup" timestamp="1603632047651">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="271" height="457" key="HiddenNamespacesPopup/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603632047651" />
-    <state x="144" y="79" key="MergeDialog" timestamp="1604759520506">
+    <state width="243" height="396" key="HiddenNamespacesPopup" timestamp="1605187530550">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
+    <state width="271" height="457" key="HiddenNamespacesPopup/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1603632047651" />
+    <state width="243" height="396" key="HiddenNamespacesPopup/0.0.1440.900/-1920.-498.1920.1080@0.0.1440.900" timestamp="1605187530550" />
+    <state x="144" y="79" key="MergeDialog" timestamp="1605187618338">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="144" y="79" key="MergeDialog/0.0.1440.900/-1920.-498.1920.1080@0.0.1440.900" timestamp="1605187618338" />
     <state x="144" y="79" key="MergeDialog/0.0.1440.900@0.0.1440.900" timestamp="1604759520506" />
     <state x="358" y="218" key="MultipleFileMergeDialog" timestamp="1604759525643">
       <screen x="0" y="0" width="1440" height="900" />
@@ -351,9 +353,10 @@
     <state x="-1422" y="-130" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1440.900/-1920.-498.1920.1080@-1920.-498.1920.1080" timestamp="1605019577829" />
     <state x="632" y="249" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1440.900/-1920.-498.1920.1080@0.0.1440.900" timestamp="1604772900263" />
     <state x="321" y="346" width="1110" height="647" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1604953738889" />
-    <state x="463" y="170" key="git4idea.branch.GitSmartOperationDialog" timestamp="1604759296576">
+    <state x="463" y="170" key="git4idea.branch.GitSmartOperationDialog" timestamp="1605187610375">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
+    <state x="463" y="170" key="git4idea.branch.GitSmartOperationDialog/0.0.1440.900/-1920.-498.1920.1080@0.0.1440.900" timestamp="1605187610375" />
     <state x="463" y="170" key="git4idea.branch.GitSmartOperationDialog/0.0.1440.900@0.0.1440.900" timestamp="1604759296576" />
     <state x="537" y="369" key="git4idea.rebase.GitUnstructuredEditor" timestamp="1604759523022">
       <screen x="0" y="0" width="1440" height="900" />
