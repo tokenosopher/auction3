@@ -42,6 +42,7 @@
                     $category_name = $rows['categoryName'];
                     echo "<option value = '$category_id'>$category_name</option>";
                 }
+
           ?>
           <!--This part of the code dynamically pulls Categories from DB into HTML Dropdown Menu-->
         </select>
@@ -123,7 +124,7 @@
     FROM AuctionItems AI
     LEFT JOIN Bids B ON AI.itemID = B.itemID
     WHERE itemEndDate > GETDATE() {$category_search}
-    GROUP BY AI.itemId, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(1000)), AI.itemEndDate, categoryId, AI.itemStartingPrice";
+    GROUP BY AI.itemId, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(1000)), AI.itemEndDate, categoryId, itemStartingPrice";
 
   // I broke up the query into two parts since a pretty similar query has to be used twice
 
