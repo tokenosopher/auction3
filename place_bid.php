@@ -24,7 +24,7 @@
         if (isset($end_time) and ($now < $end_time)) {
             if($bid_amt >= $start_price){
                 $buyermaxbidvalue = buyermaxbidonauction($item_id);
-                if($bid_amt > ($buyermaxbidvalue + $min_bid_increase)){
+                if($bid_amt >= ($buyermaxbidvalue + $min_bid_increase)){
                     add_bid($item_id,$bid_amt);
                     echo "Sucessfully bid £".$bid_amt." on the Auction";
                     if($bid_amt > $current_price){

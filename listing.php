@@ -18,6 +18,8 @@
       $num_bids = $auctiondetails['num_bids'];
       $end_time = $auctiondetails['end_time'];
       $starting_price = $auctiondetails['starting_price'];
+      $seller = $auctiondetails['seller_id'];
+      $selleremail = getselleremail($seller);
 
       // Calculate time to auction end:
       $now = new DateTime();
@@ -78,12 +80,22 @@
   <div class="col-sm-8"> <!-- Left col with item info -->
 
     <div class="itemDescription">
-    <?php echo($description); ?>
+          Seller: <?php echo($selleremail); ?>
+    </div><br/>
+    <div class="itemDescription">
+        <h5>Item Description</h5>
+        <?php echo($description); ?>
     </div>
     <br/>
-      <div class="itemDescription">
-          <?php echo($auctionstatus); ?>
-      </div>
+    <div class="itemDescription">
+        <h5>Auction Status</h5>
+        <?php echo($auctionstatus); ?>
+    </div>
+    <br/><br/><br/>
+    <div>
+        <h5>Bidding History</h5>
+        <?php printbidsforauction($item_id);?>
+    </div>
 
 
   </div>
