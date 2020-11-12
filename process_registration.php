@@ -9,27 +9,11 @@ $user["Password"] = $_POST["Password"];
 $user["passwordConfirmation"] = $_POST["passwordConfirmation"];
 $user["accountType"] = $_POST["accountType"];
 
-//
 //// TODO: Extract $_POST variables, check they're OK, and attempt to create
-//// an account. Notify user of success/failure and redirect/give navigation
-//// options.
-//
-//$serverName = "databaseucl.database.windows.net";
-//$connectionOptions = array(
-//    "Database" => "databaseucl",
-//    "Uid" => "narcis",
-//    "PWD" => "P4ssword"
-//);
-//
-//$conn = sqlsrv_connect($serverName, $connectionOptions)
-//or die('Error connecting to the server.' . sqlsrv_errors()['message']);
 
 if(!filter_var($user["EmailAddress"], FILTER_VALIDATE_EMAIL)) {
     exit('Invalid email address');
 }
-//$sel2= "SELECT FROM Users (EmailAddress)."
-//    "WHERE VALUES ('${user['EmailAddress']}"
-//query2 = "SELECT EmailAddress FROM databaseucl.dbo.Users WHERE EmailAddress = $user["EmailAddress"]"
 
 $params = array($user["EmailAddress"]);
 $tsql = "SELECT EmailAddress FROM databaseucl.dbo.Users2
@@ -90,7 +74,21 @@ else if ($user["accountType"] == "seller") {
     }
 }
 
-
+//Inserting first name, if any:
+if (isset($_POST['first_name'])) {
+    $insert_first_name = "UPDATE databaseucl.dbo.Users2 
+                        SET FirstName = '{$_POST['first_name']}' 
+                        WHERE UserID = {$user["userID"]}";
+    sqlsrv_query($conn, $insert_first_name);
+}
+//Inserting family name, if any:
+if (isset($_POST['family_name'])) {
+    $insert_family_name = "UPDATE databaseucl.dbo.Users2 
+                        SET FamilyName = '{$_POST['family_name']}' 
+                        WHERE UserID = {$user["userID"]}";
+    sqlsrv_query($conn, $insert_family_name);
+}
+//setting session values:
 if ($result==true) {
 //    session_start();
     $_SESSION['email'] = $user["EmailAddress"];

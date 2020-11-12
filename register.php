@@ -20,16 +20,30 @@
 	</div>
   </div>
   <div class="form-group row">
+        <label for="first_name" class="col-sm-2 col-form-label text-right">First Name</label>
+    <div class="col-sm-10">
+      <input type="text" name = "first_name" pattern="[A-Za-z]{1,32}" class="form-control" id="first_name" placeholder="First name">
+      <small id="emailHelp" class="form-text text-muted"><span class="text-muted">* Optional.</span></small>
+    </div>
+  </div>
+  <div class="form-group row">
+        <label for="first_name" class="col-sm-2 col-form-label text-right">Family Name</label>
+        <div class="col-sm-10">
+            <input type="text" name = "family_name" pattern="[A-Za-z]{1,32}" title = "Only letters are allowed" class="form-control" id="family_name" placeholder="Family name">
+            <small id="emailHelp" class="form-text text-muted"><span class="text-muted">* Optional.</span></small>
+        </div>
+    </div>
+  <div class="form-group row">
     <label for="email" class="col-sm-2 col-form-label text-right">Email</label>
 	<div class="col-sm-10">
-      <input type="text" name = "email" class="form-control" id="email" placeholder="Email">
+      <input type="email" name = "email" class="form-control" id="email" placeholder="Email">
       <small id="emailHelp" class="form-text text-muted"><span class="text-danger">* Required.</span></small>
 	</div>
   </div>
   <div class="form-group row">
     <label for="password" class="col-sm-2  col-form-label text-right">Password</label>
     <div class="col-sm-10">
-      <input type="password" name = "Password" pattern=".{6,}" required title="8 characters minimum"    class="form-control" id="password" placeholder="Password">
+      <input type="password" name = "Password" pattern=".{6,}" required title="6 characters minimum"    class="form-control" id="password" placeholder="Password">
       <small id="passwordHelp" class="form-text text-muted"><span class="text-danger">* Required.</span></small>
     </div>
   </div>
