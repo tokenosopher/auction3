@@ -28,6 +28,19 @@
         }
     }
 
+    function getselleremail($seller_id){
+        $checkstring ="
+                        SELECT U.EmailAddress 
+                        FROM Sellers S
+                        LEFT JOIN Users2 U on U.UserID = S.userId 
+                        WHERE S.sellerId =".$seller_id;
+        global $conn;
+        $results = sqlsrv_query($conn, $checkstring);
+        $email = sqlsrv_fetch_array($results)['EmailAddress'];
+        sqlsrv_free_stmt($results);
+        return $email;
+    }
+
     function getmylistings(){
         $seller_id = $_SESSION['seller_id'];
         $query =
@@ -185,12 +198,63 @@
         return $winningbid;
     }
 
+    //this obfuscate email function was found here:
+    //https://stackoverflow.com/questions/20545301/partially-hide-email-address-in-php
+    //user kks21199 12-12-2013 13:57
+    function obfuscateemail($email){
+        $em   = explode("@",$email);
+        $name = implode('@', array_slice($em, 0, count($em)-1));
+        $len  = floor(strlen($name)/2);
+        return substr($name,0, $len) . str_repeat('*', $len) . "@" . end($em);
+    }
+
+    function printbidsforauction($item_id){
+        $querystring = sprintf("
+                        SELECT
+                            Bids.bidValue,
+                            Bids.bidDateTime,
+                            U.EmailAddress
+                        FROM 
+                             Bids 
+                        LEFT JOIN Buyers B on Bids.buyerId = B.buyerId
+                        LEFT JOIN Users2 U on B.userId = U.UserID
+                        WHERE Bids.itemId =%s
+                        ORDER BY
+                            Bids.bidValue desc,
+                            Bids.bidDateTime asc
+                        ", $item_id);
+        global $conn;
+        $bidsforauction = sqlsrv_query($conn, $querystring);
+        echo(
+            '<li class="list-group-item d-flex justify-content-between">
+                        <div class="text-center text-nowrap"><h6>User</h6></div>
+                        <div class="text-center text-nowrap"><h6>Bid Amount</h6></div>
+                        <div class="text-center text-nowrap"><h6>Date and Time</h6></div>
+             </li>'
+        );
+        WHILE ($row = sqlsrv_fetch_array($bidsforauction)) {
+            $Email_Address = obfuscateemail($row['EmailAddress']);
+            $Bid_value = $row["bidValue"];
+            $Bid_Datetime = date_format($row["bidDateTime"],"Y-M-d H:i:s u e");
+
+            echo(
+                    '<li class="list-group-item d-flex justify-content-between">
+                        <div class="p-2 mr-5">'.$Email_Address.'</div>
+                        <div class="text-center text-nowrap">£'.$Bid_value.'</div>
+                        <div class="text-center text-nowrap">'.$Bid_Datetime.'</div>
+                    </li>'
+            );
+        }
+        sqlsrv_free_stmt($bidsforauction);
+    }
+
     function getauctionstatus($item_id){
         $auctionended = auctionended($item_id);
         $auction = getauctiondetails($item_id);
         $reserve_price = $auction['reserve_price'];
         $maxbid = $auction['current_price'];
         $num_bids = $auction['num_bids'];
+        $auction_seller = $auction['seller_id'];
         if($num_bids > 0){
             $winning_bid = getcurrentwinninguser($item_id);
             $winnerid = $winning_bid['BuyerId'];
@@ -207,8 +271,12 @@
                     if(isset($buyer_id) and $buyer_id == $winnerid){
                         $status = $status." You won this auction.";
                     }
-                    else{
+                    elseif($_SESSION('seller_id') == $auction_seller){
                         $winner_string = sprintf(" The winner was %s.",$winnersemail);
+                        $status = $status.$winner_string;
+                    }
+                    else{
+                        $winner_string = sprintf(" The winner was %s.",obfuscateemail($winnersemail));
                         $status = $status.$winner_string;
                     }
                 }
@@ -230,12 +298,12 @@
                         }
                         else{
                             $status = $status." You are currently not winning this auction.";
-                            $winner_string = sprintf(" The leader is currently %s, bid higher to get into the lead.",$winnersemail);
+                            $winner_string = sprintf(" The leader is currently %s, bid higher to get into the lead.",obfuscateemail($winnersemail));
                             $status = $status.$winner_string;
                         }
                     }
                     else{
-                        $winner_string = sprintf(" The leader is currently %s.",$winnersemail);
+                        $winner_string = sprintf(" The leader is currently %s.",obfuscateemail($winnersemail));
                         $status = $status.$winner_string;
                     }
                 }
@@ -262,7 +330,8 @@
                 MAX(B.BidValue) MaxBid,
                 COUNT(B.BidValue) NoOfBids, 
                 AI.itemStartingPrice,
-                AI.itemReservePrice
+                AI.itemReservePrice,
+                AI.sellerId
              FROM 
                 AuctionItems AI
              LEFT JOIN 
@@ -271,6 +340,7 @@
                 AI.itemID = %s
              GROUP BY 
                 AI.itemID, 
+                AI.sellerId,      
                 AI.ItemTitle, 
                 CAST(AI.ItemDescription AS VARCHAR(1000)), 
                 AI.ItemEndDate,
@@ -287,6 +357,7 @@
             "end_time" => $row['ItemEndDate'],
             "starting_price" => $row['itemStartingPrice'],
             "reserve_price" => $row['itemReservePrice'],
+            "seller_id" => $row['sellerId']
             ];
             break;
         }
