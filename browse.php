@@ -120,7 +120,7 @@
      retrieve data from the database. (If there is no form data entered,
      decide on appropriate default value/default query to make. */
 
-  $active_auctions_query = "SELECT AI.itemId, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(1000)) Description, AI.itemEndDate, MAX(B.bidValue) MaxBid,COUNT(B.bidValue) NoOfBids, categoryId, AI.itemStartingPrice
+  $active_auctions_query = "SELECT AI.itemId, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(1000)) Description, AI.itemEndDate, MAX(B.bidValue) MaxBid,COUNT(B.bidValue) NoOfBids, categoryId, itemStartingPrice
     FROM AuctionItems AI
     LEFT JOIN Bids B ON AI.itemID = B.itemID
     WHERE itemEndDate > GETDATE() {$category_search}
@@ -170,7 +170,7 @@ $getResults = sqlsrv_query($conn, $query);
 
 //Tightened this bit up, no need for transitional variables
 WHILE ($row = sqlsrv_fetch_array($getResults)) {
-    print_listing_li($row['itemId'], $row['itemTitle'], $row['Description'], $row['MaxBid'], $row['NoOfBids'], $row['itemEndDate'],$row['AI.itemStartingPrice']);}
+    print_listing_li($row['itemId'], $row['itemTitle'], $row['Description'], $row['MaxBid'], $row['NoOfBids'], $row['itemEndDate'],$row['itemStartingPrice']);}
 ?>
 
 </ul>
