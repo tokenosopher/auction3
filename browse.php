@@ -41,6 +41,7 @@
                     $category_id = $rows['categoryId'];
                     $category_name = $rows['categoryName'];
                     echo "<option value = '$category_id'>$category_name</option>";
+//                test gitignore
                 }
 
           ?>
