@@ -25,12 +25,8 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a2a2964c-7130-415b-8902-95da3e037c97" name="Default Changelist" comment="Imran_auction_fully_operational">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1c7f3f2d-44fc-41b9-9e57-322557eb1100.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1c7f3f2d-44fc-41b9-9e57-322557eb1100.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1c7f3f2d-44fc-41b9-9e57-322557eb1100/storage_v2/_src_/database/databaseucl.Q_yqMA/schema/dbo.sYMBAA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1c7f3f2d-44fc-41b9-9e57-322557eb1100/storage_v2/_src_/database/databaseucl.Q_yqMA/schema/dbo.sYMBAA.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/create_auction.php" beforeDir="false" afterPath="$PROJECT_DIR$/create_auction.php" afterDir="false" />
+    <list default="true" id="a2a2964c-7130-415b-8902-95da3e037c97" name="Default Changelist" comment="Implemented dunamic category selection">
+      <change beforePath="$PROJECT_DIR$/create_auction_result.php" beforeDir="false" afterPath="$PROJECT_DIR$/create_auction_result.php" afterDir="false" />
     </list>
     <list id="827ee4a7-5b12-4b25-9eb7-c18796bcdfb3" name="Revert &quot;Commit before IntelliJ Setup&quot;" comment="Revert &quot;Commit before IntelliJ Setup&quot;&#10;&#10;This reverts commit a67df552" />
     <option name="SHOW_DIALOG" value="false" />
@@ -116,7 +112,7 @@
       <workItem from="1604971317619" duration="771000" />
       <workItem from="1605013051467" duration="3752000" />
       <workItem from="1605186924251" duration="413000" />
-      <workItem from="1605187387981" duration="678000" />
+      <workItem from="1605187387981" duration="1027000" />
     </task>
     <task id="LOCAL-00001" summary="First changed to GitHub">
       <created>1603643184282</created>
@@ -181,7 +177,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604785721362</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Implemented dunamic category selection">
+      <created>1605188114915</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1605188114915</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -233,7 +236,8 @@
     <MESSAGE value="after confirming that passwords match" />
     <MESSAGE value="Imran_Branch_test" />
     <MESSAGE value="Imran_auction_fully_operational" />
-    <option name="LAST_COMMIT_MESSAGE" value="Imran_auction_fully_operational" />
+    <MESSAGE value="Implemented dunamic category selection" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented dunamic category selection" />
   </component>
   <component name="WindowStateProjectService">
     <state x="558" y="184" key="#CLI_Interpreters" timestamp="1604962380712">
