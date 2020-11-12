@@ -17,8 +17,8 @@
 
         //echo ($auction["ItemTitle"]) ."<br>";
         //echo ($auction["ItemDescription"]) . "<br>";
-        //echo (gettype($auction["ItemStartingPrice"])) . "<br>";
-        //echo (gettype($auction["ItemReservePrice"])) . "<br>";
+        echo (gettype($auction["ItemStartingPrice"])) . "<br>";
+        echo (gettype($auction["ItemReservePrice"])) . "<br>";
         //echo (($auction["ItemEndDate"])) . "<br>";
         //echo ($auction["Category"]) . "<br>";
         //echo (gettype($auction["Category"])) . "<br>";
@@ -26,6 +26,8 @@
         $current_date<($auction["ItemEndDate"])
            or die("Your auction end date is in the past!");
 
+        $auction['ItemStartingPrice']<($auction["ItemReservePrice"])
+        or die("Your starting price is higher than your reserve price!");
 
         session_start();
 
