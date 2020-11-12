@@ -14,7 +14,7 @@ $user["email"] = $_POST["email"];
 $user["password"] = $_POST["password"];
 
 $params = array($user["email"]);
-$tsql = "SELECT userID, EmailAddress, Passwd FROM databaseucl.dbo.Users2
+$tsql = "SELECT UserID, EmailAddress, Passwd FROM databaseucl.dbo.Users2
         WHERE EmailAddress = ?";
 $cursorType = array("Scrollable" => SQLSRV_CURSOR_KEYSET);
 $select = sqlsrv_query($conn, $tsql, $params, $cursorType);
