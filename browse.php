@@ -177,7 +177,7 @@ $getResults = sqlsrv_query($conn, $query);
 
 //Tightened this bit up, no need for transitional variables
 WHILE ($row = sqlsrv_fetch_array($getResults)) {
-    print_listing_li($row['itemId'], $row['itemTitle'], $row['Description'], $row['MaxBid'], $row['NoOfBids'], $row['itemEndDate'],$row['AI.itemStartingPrice']);}
+    print_listing_li($row['itemId'], $row['itemTitle'], $row['Description'], $row['MaxBid'], $row['NoOfBids'], $row['itemEndDate'],$row['itemStartingPrice']);}
 ?>
 
 </ul>
