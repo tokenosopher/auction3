@@ -44,31 +44,29 @@
     function getmylistings(){
         $seller_id = $_SESSION['seller_id'];
         $query =
-            "SELECT 
-                AI.itemId, 
-                AI.itemTitle, 
-                CAST(AI.itemDescription AS VARCHAR(1000)) Description,
-                AI.itemEndDate,
-                AI.itemStartingPrice,
-                AI.itemReservePrice,
-                MAX(B.bidValue) MaxBid,
-                COUNT(B.bidValue) NoOfBids
-             FROM 
-                AuctionItems AI
-             LEFT JOIN Bids B ON 
-                AI.itemID = B.itemID
-             WHERE 
-                AI.sellerID = ".$seller_id." 
-             GROUP BY 
-                AI.itemID, 
-                AI.itemTitle, 
-                CAST(AI.itemDescription AS VARCHAR(1000)),
-                AI.itemStartingPrice,
-                AI.itemReservePrice,
-                AI.itemEndDate;";
-        global $conn;
-        $getResults= sqlsrv_query($conn, $query);
-        return $getResults;
+            "SELECT
+             AI.itemId,
+             AI.itemTitle,
+             CAST(AI.itemDescription AS VARCHAR(1000)) Description,
+             AI.itemEndDate,
+             AI.itemStartingPrice,
+             AI.itemReservePrice,
+             MAX(B.bidValue) MaxBid,
+             COUNT(B.bidValue) NoOfBids
+             FROM
+             AuctionItems AI
+             LEFT JOIN Bids B ON
+             AI.itemID = B.itemID
+             WHERE
+             AI.sellerID = {$seller_id}
+             GROUP BY
+             AI.itemId,
+             AI.itemTitle,
+             CAST(AI.itemDescription AS VARCHAR(1000)),
+             AI.itemStartingPrice,
+             AI.itemReservePrice,
+             AI.itemEndDate; ";
+        return $query;
     }
 
     function getmybids(){
