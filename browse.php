@@ -85,10 +85,18 @@
 //TODO: I still need to work out how perform a query search for the key word
 
   if (!isset($_GET['keyword'])) {
-    // TODO: Define behavior if a keyword has not been specified.
+      $search_keyword = " ";
+      // TODO: Define behavior if a keyword has not been specified.
   }
   else {
     $keyword = $_GET['keyword'];
+
+//    Now I have to clean both sides of the search from blank spaces and break down
+//    the search into an array that will allow me to search for every word in the search
+
+    $keyword = ltrim($keyword);
+    $keyword = rtrim($keyword);
+
   }
 
   if (!isset($_GET['cat']) OR htmlspecialchars($_GET['cat']) == 'all') {
@@ -130,7 +138,7 @@
   $active_auctions_query = "SELECT AI.itemId, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(1000)) Description, AI.itemEndDate, MAX(B.bidValue) MaxBid,COUNT(B.bidValue) NoOfBids, categoryId, AI.itemStartingPrice
     FROM AuctionItems AI
     LEFT JOIN Bids B ON AI.itemID = B.itemID
-    WHERE itemEndDate > GETDATE() {$category_search}
+    WHERE itemEndDate > GETDATE() {$category_search} 
     GROUP BY AI.itemId, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(1000)), AI.itemEndDate, categoryId, AI.itemStartingPrice";
 
   // I broke up the query into two parts since a pretty similar query has to be used twice
