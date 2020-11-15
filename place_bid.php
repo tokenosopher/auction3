@@ -1,6 +1,7 @@
 <?php include_once('db_con/db_li.php')?>
 <?php include_once('header.php')?>
 <?php include_once('auction_functions.php')?>
+<?php include_once ('email_functions.php')?>
 
 <?php
 // TODO: Extract $_POST variables, check they're OK, and attempt to make a bid.
@@ -12,6 +13,7 @@
     $buyer_id = $_SESSION["buyer_id"];
 
     $auction = getauctiondetails($item_id);
+    $current_price=0;
     $current_price = $auction['current_price'];
     $end_time = $auction['end_time'];
     $start_price = $auction['starting_price'];
@@ -23,10 +25,11 @@
     if(isset($buyer_id)){
         if (isset($end_time) and ($now < $end_time)) {
             if($bid_amt >= $start_price){
-                $buyermaxbidvalue = buyermaxbidonauction($item_id);
-                if($bid_amt >= ($buyermaxbidvalue + $min_bid_increase)){
+                //$buyermaxbidvalue = buyermaxbidonauction($item_id);
+                if( $bid_amt >= ($current_price + $min_bid_increase) ){
                     add_bid($item_id,$bid_amt);
                     echo "Sucessfully bid £".$bid_amt." on the Auction";
+                    outbidMail($item_id);
                     if($bid_amt > $current_price){
                         echo "\nCongratulations you are the highest bidder";
                     }
@@ -39,8 +42,8 @@
                     }
                 }
                 else{
-                    echo "\nYou need to bid more than your previous greatest bid for this auction.\n";
-                    echo "Please enter a value of £".($buyermaxbidvalue + $min_bid_increase)." or more";
+                    echo "\nYou need to bid more than the current price. \n";
+                    echo "Please enter a value of £".($current_price + $min_bid_increase)." or more";
                 }
             }
             else{
@@ -55,6 +58,15 @@
         }
     }
     else{ echo "You need to login as a buyer account inorder to make a bid";}
+?>
+
+<?php
+
+
+
+
+
+
 ?>
 <br/><br/>
 <form action="listing.php" method="GET">

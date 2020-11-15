@@ -122,7 +122,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text">£</span>
             </div>
-            <input type="number" class="form-control" id="bid" name="bid" step="0.01">
+            <input type="number" class="form-control" id="bid" name="bid" step="0.01" min="0">
           </div>
           <button type="submit" class="btn btn-primary form-control">Place bid</button>
         </form>
