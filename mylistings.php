@@ -59,8 +59,8 @@ if (isset($_SESSION['logged_in']) and $_SESSION['account_type'] == 'seller') {
 
         print_my_listings_li($item_id, $title, $desc, $price, $num_bids, $end_time, $starting_price, $reserve_price, $auction_status);
     }
-//    sqlsrv_free_stmt($getResults);
-//    sqlsrv_close($conn);
+    //sqlsrv_free_stmt($getResults);
+    //sqlsrv_close($conn);
 }
 ?>
 

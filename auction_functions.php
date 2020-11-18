@@ -193,7 +193,9 @@
             break;
         }
         sqlsrv_free_stmt($winninguserresults);
-        return $winningbid;
+        if(isset($winningbid)){
+            return $winningbid;
+        }
     }
 
     //this obfuscate email function was found here:
@@ -253,7 +255,9 @@
         $maxbid = $auction['current_price'];
         $num_bids = $auction['num_bids'];
         $auction_seller = $auction['seller_id'];
-        $current_user = $_SESSION['seller_id'];
+        if(isset($_SESSION['seller_id'])){
+            $current_user = $_SESSION['seller_id'];
+        }
         if($num_bids > 0){
             $winning_bid = getcurrentwinninguser($item_id);
             $winnerid = $winning_bid['BuyerId'];
