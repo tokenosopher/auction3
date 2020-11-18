@@ -1,6 +1,5 @@
 <?php include_once('db_con/db_li.php')?>
 
-
 <?php
     function is_session_started(){
         if ( php_sapi_name() !== 'cli' ) {
@@ -254,6 +253,7 @@
         $maxbid = $auction['current_price'];
         $num_bids = $auction['num_bids'];
         $auction_seller = $auction['seller_id'];
+        $current_user = $_SESSION['seller_id'];
         if($num_bids > 0){
             $winning_bid = getcurrentwinninguser($item_id);
             $winnerid = $winning_bid['BuyerId'];
@@ -270,7 +270,7 @@
                     if(isset($buyer_id) and $buyer_id == $winnerid){
                         $status = $status." You won this auction.";
                     }
-                    elseif($_SESSION['seller_id'] == $auction_seller){
+                    elseif($current_user == $auction_seller){
                         $winner_string = sprintf(" The winner was %s.",$winnersemail);
                         $status = $status.$winner_string;
                     }
