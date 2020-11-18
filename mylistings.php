@@ -53,8 +53,8 @@ if (isset($_SESSION['logged_in']) and $_SESSION['account_type'] == 'seller') {
         $end_time = $row['itemEndDate'];
         $price = $row['MaxBid'];
         $num_bids = $row['NoOfBids'];
-        $starting_price = $row['AI.itemStartingPrice'];
-        $reserve_price = $row['AI.itemReservePrice'];
+        $starting_price = $row['itemStartingPrice'];
+        $reserve_price = $row['itemReservePrice'];
         $auction_status = getauctionstatus($item_id);
 
         print_my_listings_li($item_id, $title, $desc, $price, $num_bids, $end_time, $starting_price, $reserve_price, $auction_status);
