@@ -1,5 +1,6 @@
 <?php include_once('db_con/db_li.php')?>
 
+
 <?php
     function is_session_started(){
         if ( php_sapi_name() !== 'cli' ) {
@@ -269,7 +270,7 @@
                     if(isset($buyer_id) and $buyer_id == $winnerid){
                         $status = $status." You won this auction.";
                     }
-                    elseif($_SESSION('seller_id') == $auction_seller){
+                    elseif($_SESSION['seller_id'] == $auction_seller){
                         $winner_string = sprintf(" The winner was %s.",$winnersemail);
                         $status = $status.$winner_string;
                     }
