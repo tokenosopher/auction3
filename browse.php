@@ -21,7 +21,7 @@
               <i class="fa fa-search"></i>
             </span>
           </div>
-          <input type="text" class="form-control border-left-0" id="keyword" name="keyword" placeholder="Search for anything" <?php if(isset($_GET['keyword'])) {echo "value=".htmlspecialchars($_GET['keyword']);}?>>
+          <input type="text" class="form-control border-left-0" id="keyword" name="keyword" placeholder="Search for anything" <?php if(isset($_GET['keyword'])) {echo "value= '{$_GET['keyword']}'";}?>>
             <!--We additionally want to add for the search result to stay in the search bar and save latest searches-->
         </div>
       </div>
@@ -89,7 +89,7 @@
   }
   else {
     $keyword = $_GET['keyword'];
-
+    echo $keyword;
 //    Now I have to clean both sides of the search from blank spaces and break down
 //    the search into an array that will allow me to search for every word in the search
     $keyword = ltrim($keyword);
@@ -179,12 +179,12 @@
 
 //$results_for_current_page shows the offset for the current page, for the first page it will be 0, second 10, third 20 and so on
 
-  $query = "SELECT AI.itemId, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(1000)) Description, AI.itemEndDate, MAX(B.bidValue) 
-    MaxBid,COUNT(B.bidValue) NoOfBids, AI.categoryId, AI.itemStartingPrice
+  $query = "SELECT AI.itemId, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(100)) Description, AI.itemEndDate, MAX(B.bidValue) MaxBid,
+    COUNT(B.bidValue) NoOfBids, AI.categoryId, AI.itemStartingPrice
     FROM AuctionItems AI
     LEFT JOIN Bids B ON AI.itemID = B.itemID
     WHERE (AI.itemEndDate > GETDATE()) {$search_keyword} {$category_search} 
-    GROUP BY AI.itemId, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(1000)), AI.itemEndDate, AI.categoryId, 
+    GROUP BY AI.itemId, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(100)), AI.itemEndDate, AI.categoryId, 
       AI.itemStartingPrice ORDER BY {$ordering} OFFSET {$results_for_current_page} ROWS FETCH NEXT {$results_per_page} ROWS ONLY";
 //echo $query;
 //The query above is dynamic. This means that it fetches the page value then adds an offset and lists the next 10 active auctions
