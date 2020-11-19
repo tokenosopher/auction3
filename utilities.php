@@ -108,8 +108,7 @@ function print_bids_li($item_id, $title, $desc, $price, $num_bids, $end_time,$us
     );
 }
 
-function print_my_listings_li($item_id, $title, $desc, $price, $num_bids, $end_time,$starting_price,$reserve_price,$auction_status)
-{
+function print_my_listings_li($item_id, $title, $desc, $price, $num_bids, $end_time,$starting_price,$reserve_price,$auction_status){
     // Truncate long descriptions
     if (strlen($desc) > 250) {
         $desc_shortened = substr($desc, 0, 250) . '...';

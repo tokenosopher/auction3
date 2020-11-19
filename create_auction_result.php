@@ -30,9 +30,11 @@
         $query = "INSERT INTO databaseucl.dbo.AuctionItems(sellerId, ItemTitle, ItemDescription,ItemStartingPrice, ItemReservePrice,ItemEndDate,categoryId)
                     VALUES ( '${myseller_id}','${auction["ItemTitle"]}', '${auction["ItemDescription"]}', '${auction["ItemStartingPrice"]}','${auction["ItemReservePrice"]}', '${auction["ItemEndDate"]}', '${auction["Category"]}' )";
 
+
+
         $result = sqlsrv_query($conn, $query)
         or die('Error making saveToDatabase query');
-        sqlsrv_close($conn);
+        //sqlsrv_close($conn);
 
         if ($result==true)
             echo('<div class="text-center">Auction successfully created! <a href="mylistings.php">View your new listing.</a></div>');

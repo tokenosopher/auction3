@@ -18,6 +18,8 @@
       $num_bids = $auctiondetails['num_bids'];
       $end_time = $auctiondetails['end_time'];
       $starting_price = $auctiondetails['starting_price'];
+      $seller = $auctiondetails['seller_id'];
+      $selleremail = getselleremail($seller);
 
       // Calculate time to auction end:
       $now = new DateTime();
@@ -78,12 +80,22 @@
   <div class="col-sm-8"> <!-- Left col with item info -->
 
     <div class="itemDescription">
-    <?php echo($description); ?>
+          Seller: <?php echo($selleremail); ?>
+    </div><br/>
+    <div class="itemDescription">
+        <h5>Item Description</h5>
+        <?php echo($description); ?>
     </div>
     <br/>
-      <div class="itemDescription">
-          <?php echo($auctionstatus); ?>
-      </div>
+    <div class="itemDescription">
+        <h5>Auction Status</h5>
+        <?php echo($auctionstatus); ?>
+    </div>
+    <br/><br/><br/>
+    <div>
+        <h5>Bidding History</h5>
+        <?php printbidsforauction($item_id);?>
+    </div>
 
 
   </div>
@@ -110,7 +122,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text">£</span>
             </div>
-            <input type="number" class="form-control" id="bid" name="bid">
+            <input type="number" class="form-control" id="bid" name="bid" step="0.01" min="0">
           </div>
           <button type="submit" class="btn btn-primary form-control">Place bid</button>
         </form>

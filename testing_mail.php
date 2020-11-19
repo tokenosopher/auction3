@@ -1,5 +1,7 @@
+<?php include_once 'db_con/db_li.php'?>
 <?php
 require_once('PHPMailer/PHPMailerAutoload.php');
+
 
 $mail = new PHPMailer();
 $mail -> isSMTP();

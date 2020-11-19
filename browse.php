@@ -34,15 +34,19 @@
           $getResultsCategories = sqlsrv_query($conn, $category_search_query);
           ?>
             <select class="form-control" id="cat" name = "cat">
-              <option selected value="all">All categories</option>
+              <option value="all">All categories</option>
                 <?php
                 while ($rows = sqlsrv_fetch_array($getResultsCategories,SQLSRV_FETCH_ASSOC))
                 {
                     $category_id = $rows['categoryId'];
                     $category_name = $rows['categoryName'];
-                    echo "<option value = '$category_id'>$category_name</option>";
-                }
 
+                    if ($_GET['cat'] == $category_id)
+                    {echo "<option selected value = '$category_id'>$category_name</option>";}
+                    else
+                    {echo "<option value = '$category_id'>$category_name</option>";}
+
+                }
           ?>
           <!--This part of the code dynamically pulls Categories from DB into HTML Dropdown Menu-->
         </select>
@@ -52,9 +56,16 @@
       <div class="form-inline">
         <label class="mx-2" for="order_by">Sort by:</label>
         <select class="form-control" id="order_by" name = "order_by">
-          <option selected value="pricelow">Price (low to high)</option>
-          <option value="pricehigh">Price (high to low)</option>
-          <option value="date">Soonest expiry</option>
+            <?php
+                $ass_arrays_ordering = array("MaxBid"=>"Price (low to high)", "MaxBid DESC"=>"Price (high to low)", "itemEndDate"=>"Soonest expiry");
+                    foreach ($ass_arrays_ordering as $order_by => $text)
+                    {
+                        if ($_GET['order_by'] == $order_by)
+                        {echo "<option selected value='$order_by'>$text</option>";}
+                            else
+                        {echo "<option value='$order_by'>$text</option>";}
+                    }
+            ?>
         </select>
       </div>
     </div>
@@ -64,7 +75,6 @@
   </div>
 </form>
 </div> <!-- end search specs bar -->
-
 
 </div>
 
@@ -95,13 +105,10 @@
 
   if (!isset($_GET['order_by'])) {
     // TODO: Define behavior if an order_by value has not been specified.
-
-      $ordering = "MaxBid";
+    $ordering = "MaxBid";
   }
   else {
     $ordering = $_GET['order_by'];
-    $ass_arrays_ordering = array("pricelow"=>"MaxBid", "pricehigh"=>"MaxBid DESC", "date"=>"AI.itemEndDate");
-    $ordering = $ass_arrays_ordering[$ordering];
 
   /*  This part of drop down menu is also done. I have created an Associative Arrays, in Python they are called
   dictionaries, to match the value of html with query input for SQL.
@@ -120,11 +127,11 @@
      retrieve data from the database. (If there is no form data entered,
      decide on appropriate default value/default query to make. */
 
-  $active_auctions_query = "SELECT AI.itemId, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(1000)) Description, AI.itemEndDate, MAX(B.bidValue) MaxBid,COUNT(B.bidValue) NoOfBids, categoryId, itemStartingPrice
+  $active_auctions_query = "SELECT AI.itemId, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(1000)) Description, AI.itemEndDate, MAX(B.bidValue) MaxBid,COUNT(B.bidValue) NoOfBids, categoryId, AI.itemStartingPrice
     FROM AuctionItems AI
     LEFT JOIN Bids B ON AI.itemID = B.itemID
     WHERE itemEndDate > GETDATE() {$category_search}
-    GROUP BY AI.itemId, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(1000)), AI.itemEndDate, categoryId, itemStartingPrice";
+    GROUP BY AI.itemId, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(1000)), AI.itemEndDate, categoryId, AI.itemStartingPrice";
 
   // I broke up the query into two parts since a pretty similar query has to be used twice
 
