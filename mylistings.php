@@ -31,7 +31,6 @@ $num_results = sqlsrv_num_rows($getting_array);
 $results_per_page = 10;
 $max_page = ceil($num_results / $results_per_page);
 
-if ($num_results === 0) {echo '<h2>No auctions were found for your search request, please alter your search!</h2>';}
 ?>
 
 <ul class="list-group">
@@ -110,16 +109,16 @@ if (isset($_SESSION['logged_in']) and $_SESSION['account_type'] == 'seller') {
       <a class="page-link" href="mylistings.php?' . $querystring . 'page=' . $i . '">' . $i . '</a>
     </li>');
             }
-
-            if ($curr_page != $max_page) {
-                echo('
-    <li class="page-item">
-      <a class="page-link" href="mylistings.php?' . $querystring . 'page=' . ($curr_page + 1) . '" aria-label="Next">
-        <span aria-hidden="true"><i class="fa fa-arrow-right"></i></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </li>');
-            }
+    if ($num_results != 0) {
+        if ($curr_page != $max_page) {
+            echo('<li class="page-item">
+    <a class="page-link" href="mylistings.php?' . $querystring . 'page=' . ($curr_page + 1) . '" aria-label="Next">
+    <span aria-hidden="true"><i class="fa fa-arrow-right"></i></span>
+    <span class="sr-only">Next</span>
+    </a>
+    </li>');}
+    }
+    else {echo ('<div class="text-center">You have no listings! <a href="create_auction.php.php">Create one!</a></div>');}
             ?>
 
         </ul>
