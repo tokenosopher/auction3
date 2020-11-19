@@ -6,11 +6,12 @@
 function outbidMail($item_id){
     $querystring = sprintf("
                         SELECT
-                            DISTINCT TOP(1)  U.EmailAddress, bidValue
+                            DISTINCT TOP(1)  U.EmailAddress, bidValue,itemTitle
                         FROM 
                              Bids 
                         LEFT JOIN Buyers B on Bids.buyerId = B.buyerId
                         LEFT JOIN Users2 U on B.userId = U.UserID
+                        LEFT JOIN AuctionItems AI on Bids.itemId = AI.itemId
                         WHERE Bids.itemId =%s and B.buyerId != %s 
                         ORDER BY bidValue DESC 
                         ", $item_id, $_SESSION['buyer_id']);
@@ -18,11 +19,11 @@ function outbidMail($item_id){
     global $conn;
     $emailBids = sqlsrv_query($conn, $querystring);
     while($row = sqlsrv_fetch_array($emailBids,SQLSRV_FETCH_ASSOC)) {
-
-
+        $itemTitle = $row['itemTitle'];
+        $bidValue = $row['bidValue'];
         $emailAddress = $row["EmailAddress"];
-        $subject= 'You have been outbid ';
-        $body = 'You have been outbid';
+        $subject= sprintf('You have been outbid on the auction for %s',$itemTitle);
+        $body = sprintf('Your bid of %s has been surpassed by another user. If you want to win this auction please bid higher!',$bidValue) ;
         sendEmail($emailAddress,$subject,$body);
 
 

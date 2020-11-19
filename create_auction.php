@@ -47,7 +47,7 @@
             ?>
             <div class="col-sm-10">
             <select class="form-control" name="auctionCategory" id="auctionCategory">
-                <option selected value="all">All categories</option>
+                <option selected value=29>All categories</option>
                     <?php
                     while ($rows = sqlsrv_fetch_array($getResultsCategories,SQLSRV_FETCH_ASSOC))
                     {
