@@ -89,7 +89,6 @@
   }
   else {
     $keyword = $_GET['keyword'];
-    echo $keyword;
 //    Now I have to clean both sides of the search from blank spaces and break down
 //    the search into an array that will allow me to search for every word in the search
     $keyword = ltrim($keyword);
@@ -240,7 +239,7 @@ WHILE ($row = sqlsrv_fetch_array($getResults)) {
       <a class="page-link" href="browse.php?' . $querystring . 'page=' . $i . '">' . $i . '</a>
     </li>');
   }
-//  echo $curr_page == $max_page;
+
   if ($num_results != 0){
   if ($curr_page != $max_page){
     echo('
