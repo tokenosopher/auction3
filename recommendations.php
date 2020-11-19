@@ -13,8 +13,10 @@
   // search bar. This can be started after browse.php is working with a database.
   // Feel free to extract out useful functions from browse.php and put them in
 //  // the shared "utilities.php" where they can be shared by multiple files.
-
+// TODO: Check user's credentials (cookie/session).
 if (isset($_SESSION['user_id'])) {
+    // TODO: Perform a query to pull up auctions they might be interested in.
+
     //retrieving top 3 categories that the user bid on:
     $retrieve_buyer_cat = "select top 3 Bids.buyerId, count(Bids.itemId) as nr_bids_on_category, AI.categoryId
                         into #retrievebids
@@ -24,7 +26,7 @@ if (isset($_SESSION['user_id'])) {
                         group by AI.categoryId, Bids.buyerId
                         ORDER BY nr_bids_on_category DESC";
     sqlsrv_query($conn, $retrieve_buyer_cat);
-    //getting a visual of the retrieve_bids results (not needed for the final query):
+//    getting a visual of the retrieve_bids results (not needed for the final query):
 //    $retrieve_table_query = "SELECT *
 //                                FROM #retrievebids";
 //    $getResults= sqlsrv_query($conn, $retrieve_table_query);
@@ -34,6 +36,7 @@ if (isset($_SESSION['user_id'])) {
 //    while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
 //        echo nl2br($row['buyerId'] . " " . $row['nr_bids_on_category'] . " " . $row['categoryId']. PHP_EOL);
 //        }
+
     //selecting the top 3 buyers that have bid on the top 3 categories of the user:
     $retrieve_similar_buyers ="select top 3 Bids.buyerId, count(Bids.itemId) as nr_bids_on_category, AI.categoryId
                         into #top_buyers
@@ -44,7 +47,7 @@ if (isset($_SESSION['user_id'])) {
                         group by buyerId, categoryId
                         ORDER BY nr_bids_on_category DESC";
     sqlsrv_query($conn, $retrieve_similar_buyers);
-    //getting a visual of the retrieve_buyers results (not needed for the final query):
+//    getting a visual of the retrieve_buyers results (not needed for the final query):
 //    $retrieve_table_query2 = "SELECT *
 //                                FROM #top_buyers";
 //    $getResults2= sqlsrv_query($conn, $retrieve_table_query2);
@@ -54,18 +57,19 @@ if (isset($_SESSION['user_id'])) {
 //    while ($row = sqlsrv_fetch_array($getResults2, SQLSRV_FETCH_ASSOC)) {
 //        echo nl2br($row['buyerId'] . " " . $row['nr_bids_on_category'] . " " . $row['categoryId']. PHP_EOL);
 //    }
+
     //selecting the top 10 bids (by number of bids) that others have bid on and that the og buyer didn't:
-    $retrieve_top_bids = "select top 10 count(Bids.itemId) as num_bids_per_id, Bids.itemId
+    $retrieve_top_bids = "select count(Bids.itemId) as num_bids_per_id, Bids.itemId
                             into #top_bids
                             from Bids
                                      inner join AuctionItems AI on AI.itemId = Bids.itemId
-                            where (Bids.buyerId = 14 or Bids.buyerId = 32 or Bids.buyerId =11)
-                              and Bids.itemId not in (select Bids.itemId from AuctionItems where Bids.buyerId = {$_SESSION['buyer_id']})
+                            where Bids.buyerId in (select buyerId from #top_buyers)
+                              and Bids.itemId not in (select Bids.itemId from Bids where Bids.buyerId = {$_SESSION['buyer_id']})
                               and AI.itemEndDate > getdate()
                             group by Bids.itemId
                             ORDER BY num_bids_per_id DESC";
     sqlsrv_query($conn, $retrieve_top_bids);
-    //getting a visual of the top_bids results (not needed for the final query):
+//    getting a visual of the top_bids results (not needed for the final query):
 //    $retrieve_table_query3 = "SELECT *
 //                                FROM #top_bids";
 //    $getResults3= sqlsrv_query($conn, $retrieve_table_query3);
@@ -76,6 +80,7 @@ if (isset($_SESSION['user_id'])) {
 //        echo nl2br($row['num_bids_per_id'] . " " . $row['itemId'] . PHP_EOL);
 //    }
 
+    //printing the results on the page based on the retrieve top bids
     $print_bids = "SELECT 
                    AI.itemID, 
                    AI.ItemTitle, 
@@ -103,6 +108,7 @@ if (isset($_SESSION['user_id'])) {
 //    while ($row = sqlsrv_fetch_array($getResults4   , SQLSRV_FETCH_ASSOC)) {
 //        echo nl2br($row['Description'] . " " . $row['itemID'] . PHP_EOL);
 //    }
+    // TODO: Loop through results and print them out as list items.
         WHILE ($row = sqlsrv_fetch_array($getResults4)) {
 
             $item_id = $row['itemID'];
@@ -120,11 +126,9 @@ if (isset($_SESSION['user_id'])) {
 
 
 
-  // TODO: Check user's credentials (cookie/session).
-  
-  // TODO: Perform a query to pull up auctions they might be interested in.
-  
-  // TODO: Loop through results and print them out as list items.
+
+
+
 
 
 ?>
