@@ -7,6 +7,8 @@
         $auction = array();
         $myvar = $_POST["auctionTitle"];
         $auction["ItemTitle"] = str_replace("'","''",$myvar); //replacing all apostrophes with double quote marks
+        $auction["ItemTitle"] !=''
+            or die ("You must include a title for your auction!");
         $myvar1 = $_POST["auctionDetails"];
         $auction["ItemDescription"] = str_replace("'","''",$myvar1); // replacing all apostrophes with double quote marks
         $auction["Category"] = intval($_POST["auctionCategory"]); // converting html str input into integer to store in the database
@@ -20,7 +22,7 @@
         else {
                 $auction["ItemReservePrice"] = floatval($_POST["auctionReservePrice"]);
         }
-       ; // converting string into float for price
+        ; // converting string into float for price
 
         $myvar2 = $_POST["auctionEndDate"];
         $auction["ItemEndDate"]=str_replace("T"," ",$myvar2); // converting html datetime into compatible form with the database
