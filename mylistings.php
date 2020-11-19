@@ -40,6 +40,7 @@
 // TODO: Perform a query to pull up their auctions.
 
     $results_for_current_page = ($curr_page-1)*$results_per_page;
+    echo $results_for_current_page;
     $query = "SELECT AI.itemId, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(1000)) Description, AI.itemEndDate,
     AI.itemStartingPrice, AI.itemReservePrice, MAX(B.bidValue) MaxBid, COUNT(B.bidValue) NoOfBids
     FROM AuctionItems AI
@@ -64,11 +65,9 @@
         $auction_status = getauctionstatus($item_id);
 
         print_my_listings_li($item_id, $title, $desc, $price, $num_bids, $end_time, $starting_price, $reserve_price, $auction_status);
-        }
-        //sqlsrv_free_stmt($getResults);
-        //sqlsrv_close($conn);
-        }
-        ?>
+        }}
+    sqlsrv_free_stmt($getResults);
+    ?>
 
     </ul>
     <!-- Pagination for results listings -->
@@ -126,7 +125,10 @@
     </li>');}
     }
     else {echo ('<div class="text-center">You have no listings! <a href="create_auction.php.php">Create one!</a></div>');}
-            ?>
+
+
+    sqlsrv_close($conn);
+    ?>
 
         </ul>
     </nav>
