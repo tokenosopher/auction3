@@ -12,6 +12,6 @@ echo    '<div class="header">
          </div>';
 
 // Redirect to index
-header("refresh:2;url=index.php");
+header("refresh:1.5;url=index.php");
 
 ?>

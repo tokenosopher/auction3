@@ -4,7 +4,7 @@
 
 <div class="container">
 
-<h2 class="my-3">Top 10 recommendations for you based on your previous bids</h2>
+<h2 class="my-3">Top recommendations for you based on your previous bids:</h2>
     <h4 class="my-5"></h4>
 
 <?php
@@ -26,6 +26,14 @@ if (isset($_SESSION['user_id'])) {
                         group by AI.categoryId, Bids.buyerId
                         ORDER BY nr_bids_on_category DESC";
     sqlsrv_query($conn, $retrieve_buyer_cat);
+    $query_for_empty_rows = "Select * from #retrievebids";
+    $stmt = sqlsrv_query($conn, $query_for_empty_rows);
+    if (!sqlsrv_has_rows( $stmt )) {
+        echo "<br>We need to get to know you better in order to make recommendations. <br />";
+        echo "<br>We will add some once you bid more.</br>";
+        die();
+}
+
 //    getting a visual of the retrieve_bids results (not needed for the final query):
 //    $retrieve_table_query = "SELECT *
 //                                FROM #retrievebids";

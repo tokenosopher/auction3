@@ -47,25 +47,26 @@ if (sqlsrv_num_rows($select) == 1){
                 $_SESSION['seller_id'] = $row_seller['sellerId'];
                 echo $_SESSION['seller_id'];
             }
-            // Redirect to index after 1 second
-            header("refresh:2;url=index.php");
+            // Redirect to index after 1.5 seconds
+            header("refresh:1.5;url=index.php");
 
         } else {
-            echo "Invalid Password! Try again";
-            // Redirect to index after 5 seconds
-            header("refresh:5;url=index.php");
+            echo '<div class="header">
+                  <h1>Invalid password! :( </h1>
+                  <h2>Try again</h2>
+                  </div>';
+            // Redirect to index after 1.5 seconds
+            header("refresh:1.5;url=index.php");
         }
 
 } else {
-    echo "Invalid username and password! Try again.";
+    echo '<div class="header">
+                  <h1>Invalid username and password! :( </h1>
+                  <h2>Try again</h2>
+                  </div>';
+    // Redirect to index after 1.5 seconds
+    header("refresh:1.5;url=index.php");
 }
 
-//session_start();
-//$_SESSION['account_type'] = "buyer";
-////
-//echo('<div class="text-center">You are now logged in! You will be redirected shortly.</div>');
-//
-//// Redirect to index after 5 seconds
-//header("refresh:5;url=index.php");
 
 ?>
