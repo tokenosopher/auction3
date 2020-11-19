@@ -21,7 +21,7 @@
               <i class="fa fa-search"></i>
             </span>
           </div>
-          <input type="text" class="form-control border-left-0" id="keyword" name="keyword" placeholder="Search for anything" <?php if(isset($_GET[keyword])){echo "value='$_GET[keyword]'";}?>>
+          <input type="text" class="form-control border-left-0" id="keyword" name="keyword" placeholder="Search for anything" <?php if(isset($_GET['keyword'])) {echo "value=".htmlspecialchars($_GET['keyword']);}?>>
             <!--We additionally want to add for the search result to stay in the search bar and save latest searches-->
         </div>
       </div>
