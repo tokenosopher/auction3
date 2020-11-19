@@ -6,45 +6,52 @@
 <h2 class="my-3">My listings</h2>
 
 <div class="container mt-5">
-<?php
-  // This page is for showing a user the auction listings they've made.
-  // It will be pretty similar to browse.php, except there is no search bar.
-  // This can be started after browse.php is working with a database.
-  // Feel free to extract out useful functions from browse.php and put them in
-  // the shared "utilities.php" where they can be shared by multiple files.
-// TODO: Perform a query to pull up their auctions.
-
-
-
-// TODO: Pagination part of the query
-if (!isset($_GET['page'])) {
-    $curr_page = 1;
-}
-else {
-    $curr_page = $_GET['page'];
-}
-
-$query = getmylistings();
-
-$getting_array = sqlsrv_query($conn, $query, array(), array( "Scrollable" => SQLSRV_CURSOR_KEYSET));
-$num_results = sqlsrv_num_rows($getting_array);
-$results_per_page = 10;
-$max_page = ceil($num_results / $results_per_page);
-
-?>
 
 <ul class="list-group">
 
-    <?php
+<?php
 // TODO: Check user's credentials (cookie/session).
-if (isset($_SESSION['logged_in']) and $_SESSION['account_type'] == 'seller') {
-    $user_id = $_SESSION['user_id'];
-    $seller_id = $_SESSION['seller_id'];
+
+    if (isset($_SESSION['logged_in']) and $_SESSION['account_type'] == 'seller') {
+        $user_id = $_SESSION['user_id'];
+        $seller_id = $_SESSION['seller_id'];
+
+        // This page is for showing a user the auction listings they've made.
+        // It will be pretty similar to browse.php, except there is no search bar.
+        // This can be started after browse.php is working with a database.
+        // Feel free to extract out useful functions from browse.php and put them in
+        // the shared "utilities.php" where they can be shared by multiple files.
+
+// TODO: Pagination part of the query
+
+    if (!isset($_GET['page'])) {
+            $curr_page = 1;
+        } else {
+            $curr_page = $_GET['page'];
+        }
+        $query_no_of_listings = "SELECT * FROM AuctionItems WHERE sellerID = {$seller_id}";
+        $getting_array = sqlsrv_query($conn, $query_no_of_listings, array(), array("Scrollable" => SQLSRV_CURSOR_KEYSET));
+        $num_results = sqlsrv_num_rows($getting_array);
+        $results_per_page = 10;
+        $max_page = ceil($num_results / $results_per_page);
 
 
-    // TODO: Loop through results and print them out as list items.
+
+// TODO: Perform a query to pull up their auctions.
+
+    $results_for_current_page = ($curr_page-1)*$results_per_page;
+    $query = "SELECT AI.itemId, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(1000)) Description, AI.itemEndDate,
+    AI.itemStartingPrice, AI.itemReservePrice, MAX(B.bidValue) MaxBid, COUNT(B.bidValue) NoOfBids
+    FROM AuctionItems AI
+    LEFT JOIN Bids B ON AI.itemID = B.itemID
+    WHERE AI.sellerID = {$seller_id}
+    GROUP BY AI.itemId, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(1000)), AI.itemEndDate, 
+    AI.itemStartingPrice, AI.itemReservePrice ORDER BY itemEndDate DESC OFFSET {$results_for_current_page} ROWS FETCH NEXT {$results_per_page} ROWS ONLY";
+
+// TODO: Loop through results and print them out as list items.
+
     $getResults = sqlsrv_query($conn,$query);
-    while ($row = sqlsrv_fetch_array($getResults)) {
+        while ($row = sqlsrv_fetch_array($getResults)) {
 
         $item_id = $row['itemId'];
         $title = $row['itemTitle'];
@@ -57,11 +64,11 @@ if (isset($_SESSION['logged_in']) and $_SESSION['account_type'] == 'seller') {
         $auction_status = getauctionstatus($item_id);
 
         print_my_listings_li($item_id, $title, $desc, $price, $num_bids, $end_time, $starting_price, $reserve_price, $auction_status);
-    }
-    //sqlsrv_free_stmt($getResults);
-    //sqlsrv_close($conn);
-}
-?>
+        }
+        //sqlsrv_free_stmt($getResults);
+        //sqlsrv_close($conn);
+        }
+        ?>
 
     </ul>
     <!-- Pagination for results listings -->
