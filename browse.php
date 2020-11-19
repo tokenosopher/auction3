@@ -21,7 +21,7 @@
               <i class="fa fa-search"></i>
             </span>
           </div>
-          <input type="text" class="form-control border-left-0" id="keyword" name="keyword" placeholder="Search for anything">
+          <input type="text" class="form-control border-left-0" id="keyword" name="keyword" placeholder="Search for anything" <?php if(isset($_GET[keyword])){echo "value='$_GET[keyword]'";}?>>
             <!--We additionally want to add for the search result to stay in the search bar and save latest searches-->
         </div>
       </div>
@@ -57,8 +57,8 @@
         <label class="mx-2" for="order_by">Sort by:</label>
         <select class="form-control" id="order_by" name = "order_by">
             <?php
-                $ass_arrays_ordering = array("MaxBid"=>"Price (low to high)", "MaxBid DESC"=>"Price (high to low)", "itemEndDate"=>"Soonest expiry");
-                    foreach ($ass_arrays_ordering as $order_by => $text)
+                $assoc_arrays_ordering = array("MaxBid"=>"Price (low to high)", "MaxBid DESC"=>"Price (high to low)", "itemEndDate"=>"Soonest expiry");
+                    foreach ($assoc_arrays_ordering as $order_by => $text)
                     {
                         if ($_GET['order_by'] == $order_by)
                         {echo "<option selected value='$order_by'>$text</option>";}
@@ -83,22 +83,32 @@
   // Retrieve these from the URL
 
 //TODO: I still need to work out how perform a query search for the key word
-
-  if (!isset($_GET['keyword'])) {
-    // TODO: Define behavior if a keyword has not been specified.
+  if (!isset($_GET['keyword']) or $_GET['keyword'] == "") {
+      $search_keyword = " ";
+      // TODO: Define behavior if a keyword has not been specified.
   }
   else {
     $keyword = $_GET['keyword'];
+
+//    Now I have to clean both sides of the search from blank spaces and break down
+//    the search into an array that will allow me to search for every word in the search
+    $keyword = ltrim($keyword);
+    $keyword = rtrim($keyword);
+    $keywords_item_description = "AI.itemDescription like '%".implode("%' OR AI.itemDescription like '%",explode(" ",$keyword))."%'";
+    $test = implode("%' OR AI.itemDescription like '%",explode(" ",$keyword));
+    $keywords_item_title = "AI.itemTitle like '%".implode("%' OR AI.itemTitle like '%",explode(" ",$keyword))."%'";
+
+    $search_keyword = "AND ({$keywords_item_description} OR {$keywords_item_title})";
   }
 
-  if (!isset($_GET['cat']) OR htmlspecialchars($_GET['cat']) == 'all') {
+  if (!isset($_GET['cat']) OR $_GET['cat'] == 'all') {
     // TODO: Define behavior if a category has not been specified.
       $category_search = " ";
   }
 
   else {
     $category = $_GET['cat'];
-    $category_search = "AND categoryId = $category";
+    $category_search = "AND AI.categoryId = $category";
   }
 
 //  echo htmlspecialchars($_GET['cat']);
@@ -127,14 +137,12 @@
      retrieve data from the database. (If there is no form data entered,
      decide on appropriate default value/default query to make. */
 
-  $active_auctions_query = "SELECT AI.itemId, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(1000)) Description, AI.itemEndDate, MAX(B.bidValue) MaxBid,COUNT(B.bidValue) NoOfBids, categoryId, AI.itemStartingPrice
+  $active_auctions_query = "SELECT *
     FROM AuctionItems AI
-    LEFT JOIN Bids B ON AI.itemID = B.itemID
-    WHERE itemEndDate > GETDATE() {$category_search}
-    GROUP BY AI.itemId, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(1000)), AI.itemEndDate, categoryId, AI.itemStartingPrice";
+    WHERE (AI.itemEndDate > GETDATE()) {$search_keyword} {$category_search}";
 
   // I broke up the query into two parts since a pretty similar query has to be used twice
-
+//echo $active_auctions_query;
   $getResults = sqlsrv_query($conn, $active_auctions_query,array(), array( "Scrollable" => SQLSRV_CURSOR_KEYSET));
 
 // reference 1:  https://www.php.net/manual/en/function.sqlsrv-query.php
@@ -145,8 +153,10 @@
      total number of results that satisfy the above query */
 
   $num_results = sqlsrv_num_rows($getResults); // TODO: Calculate me for real
+//echo $num_results;
   $results_per_page = 10;
   $max_page = ceil($num_results / $results_per_page);
+//  echo ",",$num_results;
 ?>
 
 <div class="container mt-5">
@@ -155,7 +165,7 @@
     <!--Done! Outputs "No auctions were found for your search request, please alter your search!"-->
 
 <?php
-  if ($num_results === 0) {echo '<h2>No auctions were found for your search request, please alter your search!</h2>';}
+  if ($num_results == 0) {echo '<h2>No auctions were found for your search request, please alter your search!</h2>';}
 ?>
 
 <ul class="list-group">
@@ -169,8 +179,14 @@
 
 //$results_for_current_page shows the offset for the current page, for the first page it will be 0, second 10, third 20 and so on
 
-  $query = "{$active_auctions_query} ORDER BY {$ordering} OFFSET {$results_for_current_page} ROWS FETCH NEXT {$results_per_page} ROWS ONLY";
-
+  $query = "SELECT AI.itemId, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(1000)) Description, AI.itemEndDate, MAX(B.bidValue) 
+    MaxBid,COUNT(B.bidValue) NoOfBids, AI.categoryId, AI.itemStartingPrice
+    FROM AuctionItems AI
+    LEFT JOIN Bids B ON AI.itemID = B.itemID
+    WHERE (AI.itemEndDate > GETDATE()) {$search_keyword} {$category_search} 
+    GROUP BY AI.itemId, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(1000)), AI.itemEndDate, AI.categoryId, 
+      AI.itemStartingPrice ORDER BY {$ordering} OFFSET {$results_for_current_page} ROWS FETCH NEXT {$results_per_page} ROWS ONLY";
+//echo $query;
 //The query above is dynamic. This means that it fetches the page value then adds an offset and lists the next 10 active auctions
 
 $getResults = sqlsrv_query($conn, $query);
@@ -184,7 +200,7 @@ WHILE ($row = sqlsrv_fetch_array($getResults)) {
 <!-- Pagination for results listings -->
 <nav aria-label="Search results pages" class="mt-5">
   <ul class="pagination justify-content-center">
-  
+
 <?php
   // Copy any currently-set GET variables to the URL.
   $querystring = "";
@@ -212,22 +228,21 @@ WHILE ($row = sqlsrv_fetch_array($getResults)) {
   for ($i = $low_page; $i <= $high_page; $i++) {
     if ($i == $curr_page) {
       // Highlight the link
-      echo('
-    <li class="page-item active">');
+      echo('<li class="page-item active">');
     }
     else {
       // Non-highlighted link
-      echo('
-    <li class="page-item">');
+      echo('<li class="page-item">');
     }
-    
+
     // Do this in any case
     echo('
       <a class="page-link" href="browse.php?' . $querystring . 'page=' . $i . '">' . $i . '</a>
     </li>');
   }
-  
-  if ($curr_page != $max_page) {
+//  echo $curr_page == $max_page;
+  if ($num_results != 0){
+  if ($curr_page != $max_page){
     echo('
     <li class="page-item">
       <a class="page-link" href="browse.php?' . $querystring . 'page=' . ($curr_page + 1) . '" aria-label="Next">
@@ -235,7 +250,8 @@ WHILE ($row = sqlsrv_fetch_array($getResults)) {
         <span class="sr-only">Next</span>
       </a>
     </li>');
-  }
+  }}
+  else {echo "";}
 ?>
 
   </ul>

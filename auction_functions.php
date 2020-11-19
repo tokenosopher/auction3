@@ -65,7 +65,7 @@
              CAST(AI.itemDescription AS VARCHAR(1000)),
              AI.itemStartingPrice,
              AI.itemReservePrice,
-             AI.itemEndDate; ";
+             AI.itemEndDate;";
         return $query;
     }
 
