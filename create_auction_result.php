@@ -10,8 +10,18 @@
         $myvar1 = $_POST["auctionDetails"];
         $auction["ItemDescription"] = str_replace("'","''",$myvar1); // replacing all apostrophes with double quote marks
         $auction["Category"] = intval($_POST["auctionCategory"]); // converting html str input into integer to store in the database
+
         $auction["ItemStartingPrice"] = floatval($_POST["auctionStartPrice"]); //converting string into float for price
-        $auction["ItemReservePrice"] = floatval($_POST["auctionReservePrice"]); // converting string into float for price
+
+        if ($_POST["auctionReservePrice"]==0){
+            $auction["ItemReservePrice"]=floatval($_POST["auctionStartPrice"]);
+
+        }
+        else {
+                $auction["ItemReservePrice"] = floatval($_POST["auctionReservePrice"]);
+        }
+       ; // converting string into float for price
+
         $myvar2 = $_POST["auctionEndDate"];
         $auction["ItemEndDate"]=str_replace("T"," ",$myvar2); // converting html datetime into compatible form with the database
 
@@ -20,7 +30,7 @@
         $current_date<($auction["ItemEndDate"])
            or die("Your auction end date is in the past!");
 
-        $auction['ItemStartingPrice']<($auction["ItemReservePrice"])
+        $auction['ItemStartingPrice']<($auction["ItemReservePrice"]+0.01)
         or die("Your starting price is higher than your reserve price!");
 
 
