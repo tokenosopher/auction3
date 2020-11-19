@@ -14,7 +14,7 @@ echo nl2br("Reading data from table" . PHP_EOL);
 if ($getResults == FALSE)
     echo (sqlsrv_errors());
 while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
-    echo nl2br($row['FirstName'] . " " . $row['FamilyName'] . PHP_EOL);
+    echo nl2br($row['firstName'] . " " . $row['familyName'] . PHP_EOL);
 }
 sqlsrv_free_stmt($getResults);
 
