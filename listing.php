@@ -80,7 +80,7 @@
   <div class="col-sm-8"> <!-- Left col with item info -->
 
     <div class="itemDescription">
-          Seller: <?php echo($selleremail); ?>
+          Seller: <?php echo(obfuscateemail($selleremail)); ?>
     </div><br/>
     <div class="itemDescription">
         <h5>Item Description</h5>
