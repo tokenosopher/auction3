@@ -1,6 +1,7 @@
 <?php include_once('db_con/db_li.php')?>
 
 <?php
+    //sometimes the session disconnects, this function restarts it whenever it is called.
     function is_session_started(){
         if ( php_sapi_name() !== 'cli' ) {
             if ( version_compare(phpversion(), '5.4.0', '>=') ) {
@@ -14,6 +15,7 @@
 
     if ( is_session_started() === FALSE ) session_start();
 
+    //checks to see if auction exists given item id from the URL
     function validauction($item_id){
         $checkstring = "SELECT itemId FROM AuctionItems WHERE itemId =".$item_id;
         global $conn;
@@ -28,6 +30,7 @@
         }
     }
 
+    //Get's the seller's email address, given the ID
     function getselleremail($seller_id){
         $checkstring ="
                         SELECT U.EmailAddress 
@@ -41,6 +44,7 @@
         return $email;
     }
 
+    //used to get all the listings of a particular seller for mylistings.php
     function getmylistings(){
         $seller_id = $_SESSION['seller_id'];
         $query =
@@ -69,6 +73,7 @@
         return $query;
     }
 
+    //Gets all auctions the user bid on. Shows maximum bid the user has put down for item as well as the true Max.
     function getmybids(){
         $buyer_id = $_SESSION['buyer_id'];
         $query = sprintf(
@@ -99,6 +104,7 @@
         return $getResults;
     }
 
+    //checks if a certain buyer is watching a particular auction
     function iswatchingauction($buyer_id,$item_id){
 
         $checkstring = sprintf("SELECT * FROM WatchList WHERE buyerId = %s and itemID = %s", $buyer_id, $item_id);
@@ -114,6 +120,7 @@
         }
     }
 
+    //Called to check if an auction has ended
     function auctionended($item_id){
         $checkstring = "SELECT AI.ItemEndDate FROM AuctionItems AI WHERE AI.itemID = ".$item_id;
         global $conn;
@@ -129,6 +136,7 @@
         }
     }
 
+    //Finds the maximum bid a (currently logged in) buyer has on a particular auction
     function buyermaxbidonauction($item_id){
         $buyer_id = $_SESSION["buyer_id"];
         $buyermaxbidstring = sprintf(
@@ -155,6 +163,7 @@
         return $buyermaxbidvalue;
     }
 
+    //adds bid to database
     function add_bid($item_id,$bid_amt){
         $buyer_id = $_SESSION["buyer_id"];
         $insertstring = sprintf(
@@ -166,6 +175,7 @@
         sqlsrv_query($conn,$insertstring);
     }
 
+    //Who is currently winning/ has already won an auction (even if below reserve price)
     function getcurrentwinninguser($item_id){
         $winninguserstring = sprintf(
             "SELECT TOP 1 
@@ -208,6 +218,7 @@
         return substr($name,0, $len) . str_repeat('*', $len) . "@" . end($em);
     }
 
+    //prints out the bidding history of an auction
     function printbidsforauction($item_id){
         $querystring = sprintf("
                         SELECT
@@ -248,6 +259,7 @@
         sqlsrv_free_stmt($bidsforauction);
     }
 
+    //Returns a string stating if the auction is finished, who is winning/has won, and if reserve price has been met.
     function getauctionstatus($item_id){
         $auctionended = auctionended($item_id);
         $auction = getauctiondetails($item_id);
@@ -274,7 +286,7 @@
                     if(isset($buyer_id) and $buyer_id == $winnerid){
                         $status = $status." You won this auction.";
                     }
-                    elseif($current_user == $auction_seller){
+                    elseif(isset($current_user) and $current_user == $auction_seller){
                         $winner_string = sprintf(" The winner was %s.",$winnersemail);
                         $status = $status.$winner_string;
                     }
@@ -282,6 +294,7 @@
                         $winner_string = sprintf(" The winner was %s.",obfuscateemail($winnersemail));
                         $status = $status.$winner_string;
                     }
+                    $status = $status." Item sold for £".$maxbid;
                 }
                 else{
                     $status = $status."The maximum bid failed to meet the reserve price, there is no winner.";
@@ -322,6 +335,7 @@
     }
 
     //This function returns an associative array. Access results using $varname["attribute"], see below for attr names
+    //can be used to easily extract auction details given an itemid
     function getauctiondetails($item_id){
 
         $isauctionstring = sprintf(
@@ -368,6 +382,9 @@
         return $auction;
     }
 
+    //checks to see if a user has outbid themselves on a particular item. used to stop
+    //additional annoying emails being sent out to other bidders that already know that they have been
+    //outbid
     function selfOutbid($item_id){
         $querystring = sprintf("
                         SELECT TOP(2)

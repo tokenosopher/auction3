@@ -66,6 +66,7 @@ function print_listing_li($item_id, $title, $desc, $price, $num_bids, $end_time,
   );
 }
 
+//Used on the mybids.php page for printing out items that have been bid on. Displays user's highest bid and the current price.
 function print_bids_li($item_id, $title, $desc, $price, $num_bids, $end_time,$usermaxbid,$auction_status){
     // Truncate long descriptions
     if (strlen($desc) > 250) {
@@ -108,6 +109,7 @@ function print_bids_li($item_id, $title, $desc, $price, $num_bids, $end_time,$us
     );
 }
 
+//function used to print listings in mylistings.php
 function print_my_listings_li($item_id, $title, $desc, $price, $num_bids, $end_time,$starting_price,$reserve_price,$auction_status){
     // Truncate long descriptions
     if (strlen($desc) > 250) {

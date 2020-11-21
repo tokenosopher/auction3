@@ -14,11 +14,12 @@
 // the shared "utilities.php" where they can be shared by multiple files.
 
 
-// TODO: Check user's credentials (cookie/session).
+// Checks user's credentials (cookie/session).
 if (isset($_SESSION['logged_in']) and $_SESSION['account_type'] == 'buyer'){
     $user_id = $_SESSION['user_id'];
     $buyer_id = $_SESSION['buyer_id'];
 
+    //query to extract all watched items.
     $query = sprintf("
                 SELECT 
                        AI.itemID, 
@@ -42,10 +43,12 @@ if (isset($_SESSION['logged_in']) and $_SESSION['account_type'] == 'buyer'){
 
     $getResults= sqlsrv_query($conn, $query);
 
+    //default message if no items are watched
     if(!sqlsrv_fetch_array($getResults)['itemId']){
         echo "You haven't watched any items! Explore items for sale now!";
     }
 
+    //loops through results and prints them out
     WHILE ($row = sqlsrv_fetch_array($getResults)) {
 
         $item_id = $row['itemID'];

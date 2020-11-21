@@ -5,12 +5,13 @@
 
 
 <?php
-  // Get info from the URL:
+  // Gets itemId from the URL:
   $item_id = $_GET['item_id'];
   //check whether itemid exists in database
   $isvalidauction = validauction($item_id);
   if($isvalidauction){
 
+      //extracting auction details.....
       $auctiondetails = getauctiondetails($item_id);
       $title = $auctiondetails['title'];
       $description = $auctiondetails['description'];
@@ -35,10 +36,8 @@
   else{
       echo "This auction does not exist!";
   }
-  // TODO: Note: Auctions that have ended may pull a different set of data,
-  //       like whether the auction ended in a sale or was cancelled due
-  //       to lack of high-enough bids. Or maybe not.
   if (isset($_SESSION['logged_in']) and $_SESSION['account_type'] == 'buyer'){
+        //detecting whether or not the user is already watching the auction or not.
         $user_id = $_SESSION['user_id'];
         $buyer_id = $_SESSION['buyer_id'];
         $has_session = true;
@@ -53,91 +52,79 @@
 
 
 <div class="container">
-<?php if ($isvalidauction):?>
-<div class="row"> <!-- Row #1 with auction title + watch button -->
-  <div class="col-sm-8"> <!-- Left col -->
-    <h2 class="my-3"><?php echo($title); ?></h2>
-  </div>
-  <div class="col-sm-4 align-self-center"> <!-- Right col -->
-<?php
-  /* The following watchlist functionality uses JavaScript, but could
-     just as easily use PHP as in other places in the code */
-  if ($now < $end_time):
-?>
-    <div id="watch_nowatch" <?php if ($has_session && $watching) echo('style="display: none"');?> >
-        <?php if(isset($buyer_id)):?>
-            <button type="button" class="btn btn-outline-secondary btn-sm" onclick="addToWatchlist()">+ Add to watchlist</button>
-        <?php endif /* Shows no button otherwise */ ?>
-    </div>
-    <div id="watch_watching" <?php if (!$has_session || !$watching) echo('style="display: none"');?> >
-      <button type="button" class="btn btn-success btn-sm" disabled>Watching</button>
-      <button type="button" class="btn btn-danger btn-sm" onclick="removeFromWatchlist()">Remove watch</button>
-    </div>
-<?php endif /* Print nothing otherwise */ ?>
-  </div>
-</div>
-
-<div class="row"> <!-- Row #2 with auction description + bidding info -->
-  <div class="col-sm-8"> <!-- Left col with item info -->
-
-    <div class="itemDescription">
-          Seller: <?php echo(obfuscateemail($selleremail)); ?>
-    </div><br/>
-    <div class="itemDescription">
-        <h5>Item Description</h5>
-        <?php echo($description); ?>
-    </div>
-    <br/>
-    <div class="itemDescription">
-        <h5>Auction Status</h5>
-        <?php echo($auctionstatus); ?>
-    </div>
-    <br/><br/><br/>
-    <div>
-        <h5>Bidding History</h5>
-        <?php printbidsforauction($item_id);?>
-    </div>
-
-
-  </div>
-
-  <div class="col-sm-4"> <!-- Right col with bidding info -->
-
-    <p>
-<?php if ($now > $end_time): ?>
-     This auction ended <?php echo(date_format($end_time, 'j M H:i')) ?>
-     <!-- TODO: Print the result of the auction here? -->
-<?php else: ?>
-     Auction ends <?php echo(date_format($end_time, 'j M H:i') . $time_remaining) ?></p>
-    <?php if(isset($usermaxbid) and $usermaxbid > 0):?>
-        <p class="lead">Your highest bid: £<?php echo(number_format($usermaxbid, 2)) ?></p>
-    <?php endif ?>
-    <?php if(isset($_SESSION['seller_id']) and ($_SESSION['seller_id'] == $seller) and ($reserve_price != $starting_price)):?>
-        <p class="lead">Reserve Price: £<?php echo(number_format($reserve_price, 2)) ?></p>
-    <?php endif ?>
-    <p class="lead">Current highest bid: £<?php echo(number_format($current_price, 2)) ?></p>
-    <p class="lead">Starting Price: £<?php echo(number_format($starting_price, 2)) ?></p>
-
-    <!-- Bidding form -->
-    <?php if(isset($buyer_id)): ?>
-        <form method="POST" action="place_bid.php">
-          <input type="hidden" name="item_id" value="<?php echo $item_id;?>">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text">£</span>
-            </div>
-            <input type="number" class="form-control" id="bid" name="bid" step="0.01" min="0">
-          </div>
-          <button type="submit" class="btn btn-primary form-control">Place bid</button>
-        </form>
-    <?php endif ?>
-<?php endif ?>
-
-
-  </div> <!-- End of right col with bidding info -->
-
-</div> <!-- End of row #2 -->
+<?php if ($isvalidauction):?> <!-- first checks if an auction is valid before bothering with the rest of the code -->
+    <div class="row"> <!-- Row #1 with auction title + watch button -->
+      <div class="col-sm-8"> <!-- Left column -->
+        <h2 class="my-3"><?php echo($title); ?></h2>
+      </div>
+      <div class="col-sm-4 align-self-center"> <!-- Right column - Add and remove to watchlist buttons, impossible for sellers to see this -->
+    <?php if ($now < $end_time):?>
+        <div id="watch_nowatch" <?php if ($has_session && $watching) echo('style="display: none"');?> >
+            <?php if(isset($buyer_id)):?>
+                <button type="button" class="btn btn-outline-secondary btn-sm" onclick="addToWatchlist()">+ Add to watchlist</button>
+            <?php endif /* Shows no button otherwise */ ?>
+        </div>
+        <div id="watch_watching" <?php if (!$has_session || !$watching) echo('style="display: none"');?> >
+          <button type="button" class="btn btn-success btn-sm" disabled>Watching</button>
+          <button type="button" class="btn btn-danger btn-sm" onclick="removeFromWatchlist()">Remove watch</button>
+        </div>
     <?php endif /* Print nothing otherwise */ ?>
+      </div>
+    </div>
+
+    <div class="row"> <!-- Row #2 with auction description + auction status + bidding history + bidding info -->
+      <div class="col-sm-8"> <!-- Left col with item info -->
+            <div class="itemDescription">
+                  Seller: <?php echo(obfuscateemail($selleremail)); ?> <!--shows seller email too!-->
+            </div><br/>
+            <div class="itemDescription">
+                <h5>Item Description</h5>
+                <?php echo($description); ?>
+            </div>
+            <br/>
+            <div class="itemDescription">
+                <h5>Auction Status</h5>
+                <?php echo($auctionstatus); ?>
+            </div>
+            <br/><br/>
+            <div>
+                <h5>Bidding History</h5>
+                <?php printbidsforauction($item_id);?> <!--here be the bidding history-->
+            </div>
+      </div> <!-- End of Left col with item info -->
+
+      <div class="col-sm-4"> <!-- Right col with bidding info (time remaining, end date, user max bid amt, current price, starting price, reserve price) -->
+          <?php if ($now > $end_time): ?>
+              This auction ended <?php echo(date_format($end_time, 'j M H:i')) ?>
+          <?php else: ?>
+              Auction ends <?php echo(date_format($end_time, 'j M H:i') . $time_remaining) ?>
+                <?php if(isset($usermaxbid) and $usermaxbid > 0):?>
+                    <p class="lead">Your highest bid: £<?php echo(number_format($usermaxbid, 2)) ?></p>
+                <?php endif ?>
+                <?php if(isset($_SESSION['seller_id']) and ($_SESSION['seller_id'] == $seller) and ($reserve_price != $starting_price)):?>
+                    <p class="lead">Reserve Price: £<?php echo(number_format($reserve_price, 2)) ?></p>
+                <?php endif ?>
+                <p class="lead">Current highest bid: £<?php echo(number_format($current_price, 2)) ?></p>
+                <p class="lead">Starting Price: £<?php echo(number_format($starting_price, 2)) ?></p>
+
+                <!-- Bidding form -->
+                <?php if(isset($buyer_id)): ?>
+                    <form method="POST" action="place_bid.php">
+                      <input type="hidden" name="item_id" value="<?php echo $item_id;?>">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">£</span>
+                        </div>
+                        <input type="number" class="form-control" id="bid" name="bid" step="0.01" min="0">
+                      </div>
+                      <button type="submit" class="btn btn-primary form-control">Place bid</button>
+                    </form>
+                <?php endif ?>
+            <?php endif ?>
+      </div> <!-- End of right col with bidding info -->
+
+    </div> <!-- End of row #2 -->
+<?php endif /* Print nothing otherwise */ ?>
 
 
 

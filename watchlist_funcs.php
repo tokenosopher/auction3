@@ -9,7 +9,7 @@
     // Extract arguments from the POST variables:
     $item_id = $_POST['arguments'][0];
     $buyer_id = $_POST['arguments'][1];
-
+    //addWatchlist function
     if ($_POST['functionname'] == "add_to_watchlist") {
         if ($buyer_id){
             $parameters = "(".$buyer_id.",".$item_id.")";
@@ -20,7 +20,7 @@
         else{
             $res = "failure";
         }
-    }
+    }//removefromWatchlist function
     elseif ($_POST['functionname'] == "remove_from_watchlist") {
         if ($buyer_id){
             $conditionstring = " WHERE ItemID = ".$item_id." AND BuyerID = ".$buyer_id;
