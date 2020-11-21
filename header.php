@@ -1,11 +1,6 @@
 <?php
   // FIXME: At the moment, I've allowed these values to be set manually.
-  // But eventually, with a database, these should be set automatically
-  // ONLY after the user's login credentials have been verified via a
-  // database query.
     session_start();
-//  $_SESSION['logged_in'] = false;
-//  $_SESSION['account_type'] = 'seller';
 ?>
 
 
@@ -18,6 +13,7 @@
   <!-- Bootstrap and FontAwesome CSS -->
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
 
   <!-- Custom CSS file -->
   <link rel="stylesheet" href="css/custom.css">
@@ -30,7 +26,7 @@
 
 <!-- Navbars -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light mx-2">
-  <a class="navbar-brand" href="#">Nicage Auction</a>
+  <a class="navbar-brand" href="browse.php">Nicage Auction</a>
   <ul class="navbar-nav ml-auto">
     <li class="nav-item">
     
@@ -94,11 +90,11 @@
         <form method="POST" action="login_result.php">
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="text" class="form-control" id="email" name= "email" placeholder="Email">
+            <input type="email" class="form-control" id="email" name= "email" placeholder="Email" required>
           </div>
           <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" name = "password" placeholder="Password">
+            <input type="password" class="form-control" id="password" name = "password" placeholder="Password" required>
           </div>
           <button type="submit" class="btn btn-primary form-control">Sign in</button>
         </form>
