@@ -102,12 +102,6 @@
 
 //  This part of the code look for exact match of the word
     $exact_match = "AND AI.itemDescription like '%".$keyword."%' or AI.itemTitle like '%".$keyword."%'";
-
-//  This part of the code looks for separate words, we have to perform some sting manipulation to get it the right format
-//  to be put into SQL query
-    $keywords_item_description = "AI.itemDescription like '%".implode("%' OR AI.itemDescription like '%",explode(" ",$keyword))."%'";
-    $keywords_item_title = "AI.itemTitle like '%".implode("%' OR AI.itemTitle like '%",explode(" ",$keyword))."%'";
-    $search_keywords = "AND ({$keywords_item_description} OR {$keywords_item_title})";
   }
 
   if (!isset($_GET['cat']) OR $_GET['cat'] == 'all') {
@@ -167,9 +161,21 @@ function number_of_listings($conn,$search,$category_search)
 $num_results = number_of_listings($conn,$exact_match,$category_search);
 
     if ($num_results == 0)
-    {$num_results = number_of_listings($conn,$search_keywords,$category_search);
-    $search_keyword = $search_keywords;}
-    else{$search_keyword = $exact_match;}
+    {
+    //  This part of the code looks for separate words, we have to perform some sting manipulation to get it the right format
+    //  to be put into SQL query
+    $keywords_item_description_and = "AI.itemDescription like '%".implode("%' AND AI.itemDescription like '%",explode(" ",$keyword))."%'";
+    $keywords_item_title_and = "AI.itemTitle like '%".implode("%' AND AI.itemTitle like '%",explode(" ",$keyword))."%'";
+    $search_keywords = "AND ({$keywords_item_description_and} OR {$keywords_item_title_and})";
+    $num_results = number_of_listings($conn,$search_keywords,$category_search);
+
+        if($num_results == 0)
+        {$keywords_item_description_or = "AI.itemDescription like '%".implode("%' OR AI.itemDescription like '%",explode(" ",$keyword))."%'";
+        $keywords_item_title_or = "AI.itemTitle like '%".implode("%' OR AI.itemTitle like '%",explode(" ",$keyword))."%'";
+        $search_keywords = "AND ({$keywords_item_description_or} OR {$keywords_item_title_or})";
+        $num_results = number_of_listings($conn,$search_keywords,$category_search);}
+    }
+    else {$search_keywords = $exact_match;}
 
 $results_per_page = 10;
 $max_page = ceil($num_results / $results_per_page);
@@ -195,7 +201,7 @@ $max_page = ceil($num_results / $results_per_page);
     COUNT(B.bidValue) NoOfBids, AI.categoryId, AI.itemStartingPrice
     FROM AuctionItems AI
     LEFT JOIN Bids B ON AI.itemID = B.itemID
-    WHERE (AI.itemEndDate > GETDATE()) {$search_keyword} {$category_search} 
+    WHERE (AI.itemEndDate > GETDATE()) {$search_keywords} {$category_search} 
     GROUP BY AI.itemId, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(100)), AI.itemEndDate, AI.categoryId, 
       AI.itemStartingPrice ORDER BY {$ordering} OFFSET {$results_for_current_page} ROWS FETCH NEXT {$results_per_page} ROWS ONLY";
 
