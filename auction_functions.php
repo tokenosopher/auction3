@@ -367,4 +367,38 @@
         sqlsrv_free_stmt($listingResults);
         return $auction;
     }
+
+    function selfOutbid($item_id){
+        $querystring = sprintf("
+                        SELECT TOP(2)
+                            Bids.bidValue,
+                            Bids.bidDateTime,
+                            U.EmailAddress
+                        FROM 
+                             Bids 
+                        LEFT JOIN Buyers B on Bids.buyerId = B.buyerId
+                        LEFT JOIN Users2 U on B.userId = U.UserID
+                        WHERE Bids.itemId =%s
+                        ORDER BY
+                            Bids.bidValue desc,
+                            Bids.bidDateTime asc
+                        ", $item_id);
+        global $conn;
+        $bidsforauction = sqlsrv_query($conn, $querystring);
+        $counter=0;
+        $first_email=[''];
+        $second_email=[''];
+        WHILE ($row = sqlsrv_fetch_array($bidsforauction)) {
+            $Email_Address = $row['EmailAddress'];
+            if ($counter == 0) {$first_email[0]=$Email_Address;}
+            elseif ($counter==1){$second_email[0]=$Email_Address;}
+            $counter= $counter+1;
+        }
+        if ($first_email[0]==$second_email[0]){ return false;}
+        else {return true;}
+    }
+
+
+
 ?>
+

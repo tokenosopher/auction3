@@ -58,7 +58,7 @@
                     ?>
                     <!--This part of the code dynamically pulls Categories from DB into HTML Dropdown Menu-->
                 </select>
-            </select>
+
             <small id="categoryHelp" class="form-text text-muted"><span class="text-danger">* Required.</span> Select a category for this item.</small>
           </div>
         </div>
