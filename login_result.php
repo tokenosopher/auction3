@@ -51,10 +51,11 @@ if (sqlsrv_num_rows($select) == 1){
                 $querying_account_type_seller = sqlsrv_query($conn, $query_account_type_seller, $params_account_type, $cursorType);
                 $row_seller = sqlsrv_fetch_array($querying_account_type_seller);
                 $_SESSION['seller_id'] = $row_seller['sellerId'];
-                echo $_SESSION['seller_id'];
             }
             // Redirect to index after 1.5 seconds
             header("refresh:1.5;url=index.php");
+            //freeing the $querying_account_type_buyer resource
+            sqlsrv_free_stmt($querying_account_type_buyer);
         //if username valid but password invalid, display splash screen and redirect to index:
         } else {
             echo '<div class="header">

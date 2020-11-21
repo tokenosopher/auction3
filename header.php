@@ -1,11 +1,6 @@
 <?php
   // FIXME: At the moment, I've allowed these values to be set manually.
-  // But eventually, with a database, these should be set automatically
-  // ONLY after the user's login credentials have been verified via a
-  // database query.
     session_start();
-//  $_SESSION['logged_in'] = false;
-//  $_SESSION['account_type'] = 'seller';
 ?>
 
 
@@ -18,6 +13,7 @@
   <!-- Bootstrap and FontAwesome CSS -->
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
 
   <!-- Custom CSS file -->
   <link rel="stylesheet" href="css/custom.css">
