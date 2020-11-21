@@ -47,6 +47,7 @@
                     {echo "<option value = '$category_id'>$category_name</option>";}
 
                 }
+          sqlsrv_free_stmt($getResultsCategories);
           ?>
           <!--This part of the code dynamically pulls Categories from DB into HTML Dropdown Menu-->
         </select>
@@ -95,13 +96,13 @@
     $keyword = rtrim($keyword);
 
 //  This part of the code avoids SQL injection through single apostrophe sign
-    $keyword = str_replace("'","''",$keyword);
+   $GLOBALS[query_keyword] = str_replace("'","''",$keyword);
 
 //  We use two ways of searching for key work, first we look for exact match and if no results were found then
 //  we break up the sting into individual words and search for them to match
 
 //  This part of the code look for exact match of the word
-    $exact_match = "AND AI.itemDescription like '%".$keyword."%' or AI.itemTitle like '%".$keyword."%'";
+    $GLOBALS[exact_match] = "AND AI.itemDescription like '%".$GLOBALS[query_keyword]."%' or AI.itemTitle like '%".$GLOBALS[query_keyword]."%'";
   }
 
   if (!isset($_GET['cat']) OR $_GET['cat'] == 'all') {
@@ -153,29 +154,28 @@ function number_of_listings($conn,$search,$category_search)
        reference 2:  https://www.php.net/manual/en/function.sqlsrv-num-rows.php
      reference 3:  https://docs.microsoft.com/en-us/sql/connect/php/cursor-types-sqlsrv-driver?view=sql-server-ver15*/
 
-    $temp_num_results = sqlsrv_num_rows($getResults);// TODO: Calculate me for real
-    return $temp_num_results;
+    return sqlsrv_num_rows($getResults);// TODO: Calculate me for real
     }
 
-//  We use the above function to serach for the exact match first
-$num_results = number_of_listings($conn,$exact_match,$category_search);
+//  We use the above function to search for the exact match first
 
+    $num_results = number_of_listings($conn,$GLOBALS[exact_match],$category_search);
     if ($num_results == 0)
     {
     //  This part of the code looks for separate words, we have to perform some sting manipulation to get it the right format
     //  to be put into SQL query
-    $keywords_item_description_and = "AI.itemDescription like '%".implode("%' AND AI.itemDescription like '%",explode(" ",$keyword))."%'";
-    $keywords_item_title_and = "AI.itemTitle like '%".implode("%' AND AI.itemTitle like '%",explode(" ",$keyword))."%'";
+    $keywords_item_description_and = "AI.itemDescription like '%".implode("%' AND AI.itemDescription like '%",explode(" ",$GLOBALS[query_keyword]))."%'";
+    $keywords_item_title_and = "AI.itemTitle like '%".implode("%' AND AI.itemTitle like '%",explode(" ",$GLOBALS[query_keyword]))."%'";
     $search_keywords = "AND ({$keywords_item_description_and} OR {$keywords_item_title_and})";
     $num_results = number_of_listings($conn,$search_keywords,$category_search);
 
         if($num_results == 0)
-        {$keywords_item_description_or = "AI.itemDescription like '%".implode("%' OR AI.itemDescription like '%",explode(" ",$keyword))."%'";
-        $keywords_item_title_or = "AI.itemTitle like '%".implode("%' OR AI.itemTitle like '%",explode(" ",$keyword))."%'";
+        {$keywords_item_description_or = "AI.itemDescription like '%".implode("%' OR AI.itemDescription like '%",explode(" ",$GLOBALS[query_keyword]))."%'";
+        $keywords_item_title_or = "AI.itemTitle like '%".implode("%' OR AI.itemTitle like '%",explode(" ",$GLOBALS[query_keyword]))."%'";
         $search_keywords = "AND ({$keywords_item_description_or} OR {$keywords_item_title_or})";
         $num_results = number_of_listings($conn,$search_keywords,$category_search);}
     }
-    else {$search_keywords = $exact_match;}
+    else {$search_keywords = $GLOBALS[exact_match];}
 
 $results_per_page = 10;
 $max_page = ceil($num_results / $results_per_page);
@@ -210,7 +210,9 @@ $getResults = sqlsrv_query($conn, $query);
 //Tightened this bit up, no need for transitional variables
 WHILE ($row = sqlsrv_fetch_array($getResults)) {
     print_listing_li($row['itemId'], $row['itemTitle'], $row['Description'], $row['MaxBid'], $row['NoOfBids'], $row['itemEndDate'],$row['itemStartingPrice']);}
-?>
+    sqlsrv_free_stmt($getResults);
+    sqlsrv_close($conn);
+    ?>
 
 </ul>
 <!-- Pagination for results listings -->
