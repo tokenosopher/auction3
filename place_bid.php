@@ -29,7 +29,8 @@
                 if( $bid_amt >= ($current_price + $min_bid_increase) ){
                     add_bid($item_id,$bid_amt);
                     echo "Sucessfully bid £".$bid_amt." on the Auction";
-                    outbidMail($item_id);
+                    if (selfOutbid($item_id)){outbidMail($item_id);}
+                    watchlistMail($item_id);
                     if($bid_amt > $current_price){
                         echo "\nCongratulations you are the highest bidder";
                     }
