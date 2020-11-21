@@ -35,16 +35,6 @@ if (isset($_SESSION['user_id'])) {
         die();
 }
 
-//    getting a visual of the retrieve_bids results (not needed for the final query):
-//    $retrieve_table_query = "SELECT *
-//                                FROM #retrievebids";
-//    $getResults= sqlsrv_query($conn, $retrieve_table_query);
-//    echo nl2br("Reading data from table" . PHP_EOL);
-//    if ($getResults == FALSE)
-//        echo ("You need to make a bid to get recommendations");
-//    while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
-//        echo nl2br($row['buyerId'] . " " . $row['nr_bids_on_category'] . " " . $row['categoryId']. PHP_EOL);
-//        }
 
     //selecting the top 3 buyers that have bid on the top 3 categories of the user:
     $retrieve_similar_buyers ="select top 3 Bids.buyerId, count(Bids.itemId) as nr_bids_on_category, AI.categoryId

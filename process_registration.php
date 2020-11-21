@@ -33,7 +33,6 @@ if (sqlsrv_has_rows($select)) {
                   <h2>Sorry! Try again</h2>
                   </div>';
     header("refresh:1.5;url=index.php");
-
 }
 
 //checks if the pass and pass confirmation are the same (also done in html in the header)
