@@ -51,6 +51,7 @@ if (sqlsrv_num_rows($select) == 1){
                 $querying_account_type_seller = sqlsrv_query($conn, $query_account_type_seller, $params_account_type, $cursorType);
                 $row_seller = sqlsrv_fetch_array($querying_account_type_seller);
                 $_SESSION['seller_id'] = $row_seller['sellerId'];
+                sqlsrv_free_stmt($querying_account_type_seller);
             }
             // Redirect to index after 1.5 seconds
             header("refresh:1.5;url=index.php");

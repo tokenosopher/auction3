@@ -31,6 +31,7 @@ if (isset($_SESSION['user_id'])) {
     if (!sqlsrv_has_rows( $stmt )) {
         echo "<br>We need to get to know you better in order to make recommendations. <br />";
         echo "<br>We will add some once you bid more.</br>";
+        sqlsrv_free_stmt($stmt);
         die();
 }
 
@@ -57,7 +58,7 @@ if (isset($_SESSION['user_id'])) {
     sqlsrv_query($conn, $retrieve_similar_buyers);
 
     //selecting the top 10 bids (by number of bids) that others have bid on and that the og buyer didn't:
-    $retrieve_top_bids = "select count(Bids.itemId) as num_bids_per_id, Bids.itemId
+    $retrieve_top_bids = "select top 10 count(Bids.itemId) as num_bids_per_id, Bids.itemId
                             into #top_bids
                             from Bids
                                      inner join AuctionItems AI on AI.itemId = Bids.itemId
@@ -103,5 +104,6 @@ if (isset($_SESSION['user_id'])) {
 
             print_listing_li($item_id, $title, $desc, $price, $num_bids, $end_time, $start_price);
         }
+        sqlsrv_free_stmt($getResults4);
 }
 ?>

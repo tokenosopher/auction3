@@ -1,8 +1,5 @@
  <?php include_once("header.php")?>
 
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
- <script src="js/scripts.js"></script>
-
 <div class="container">
 <h2 class="my-3">Register new account</h2>
 
@@ -39,21 +36,21 @@
   <div class="form-group row">
     <label for="email" class="col-sm-2 col-form-label text-right">Email</label>
 	<div class="col-sm-10">
-      <input type="email" name = "email" class="form-control" id="email" placeholder="Email">
+      <input type="email" name = "email" class="form-control" id="email" placeholder="Email" required>
       <small id="emailHelp" class="form-text text-muted"><span class="text-danger">* Required.</span></small>
 	</div>
   </div>
   <div class="form-group row">
     <label for="password" class="col-sm-2  col-form-label text-right">Password</label>
     <div class="col-sm-10">
-      <input type="password" name = "Password" id="Password" pattern=".{6,}" required title="6 characters minimum"    class="form-control" placeholder="Password">
+      <input type="password" name = "Password" id="Password" pattern=".{6,}" required title="6 characters minimum"  class="form-control" placeholder="Password" >
       <small id="passwordHelp" class="form-text text-muted"><span class="text-danger">* Required.</span></small>
     </div>
   </div>
   <div class="form-group row">
     <label for="passwordConfirmation" class="col-sm-2 col-form-label text-right">Repeat password</label>
     <div class="col-sm-10">
-      <input type="password" name ="passwordConfirmation" class="form-control" id="passwordConfirmation" placeholder="Enter password once more" onChange="checkPasswordMatch();">
+      <input type="password" name ="passwordConfirmation" class="form-control" id="passwordConfirmation" placeholder="Enter password once more" onChange="checkPasswordMatch();" required>
       <small id="passwordConfirmationHelp" class="form-text text-muted"><span class="text-danger">* Required.</span></small>
     </div>
       <div class="registrationFormAlert" id="divCheckPasswordMatch">
@@ -67,5 +64,8 @@
 <div class="text-center">Already have an account? <a href="" data-toggle="modal" data-target="#loginModal">Login</a>
 
 </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="js/scripts.js"></script>
 
 <?php include_once("footer.php")?>
