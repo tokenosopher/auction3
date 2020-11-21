@@ -42,6 +42,10 @@ if (isset($_SESSION['logged_in']) and $_SESSION['account_type'] == 'buyer'){
 
     $getResults= sqlsrv_query($conn, $query);
 
+    if(!sqlsrv_fetch_array($getResults)['itemId']){
+        echo "You haven't watched any items! Explore items for sale now!";
+    }
+
     WHILE ($row = sqlsrv_fetch_array($getResults)) {
 
         $item_id = $row['itemID'];

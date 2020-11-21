@@ -1,6 +1,6 @@
 <?php include_once 'db_con/db_li.php'?>
 <?php  require_once('PHPMailer/PHPMailerAutoload.php')?>
-<?php include_once ('auction_functions,php') ?>
+<?php include_once ('auction_functions.php') ?>
 
 <?php
 
