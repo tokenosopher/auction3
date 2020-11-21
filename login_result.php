@@ -10,16 +10,21 @@
 //$_SESSION['logged_in'] = true;
 //$_SESSION['username'] = "test";
 
+//extracting post variables:
 $user["email"] = $_POST["email"];
 $user["password"] = $_POST["password"];
 
+//querying database for the email to see if the username exists and retrieve details:
 $params = array($user["email"]);
 $tsql = "SELECT UserID, EmailAddress, Passwd FROM databaseucl.dbo.Users2
         WHERE EmailAddress = ?";
 $cursorType = array("Scrollable" => SQLSRV_CURSOR_KEYSET);
 $select = sqlsrv_query($conn, $tsql, $params, $cursorType);
+
+//if the user exists, verify the password using the password_verify function:
 if (sqlsrv_num_rows($select) == 1){
         $row = sqlsrv_fetch_array($select);
+        //if the password is correct, display splash screen and add the relevant user info into the session:
         if (password_verify($user["password"], $row['Passwd'])) {
             echo '<div class="header">
                   <h1>You are now logged in!</h1>
@@ -33,6 +38,7 @@ if (sqlsrv_num_rows($select) == 1){
             $query_account_type_buyer = "SELECT userId, buyerId FROM Buyers
                                           WHERE userId = ?";
             $querying_account_type_buyer = sqlsrv_query($conn, $query_account_type_buyer, $params_account_type, $cursorType);
+            //if user is buyer, retrieve the buyer id. Else, retrieve the seller id.
             if (sqlsrv_has_rows($querying_account_type_buyer))
             {
                 $_SESSION['account_type'] = 'buyer';
@@ -49,7 +55,7 @@ if (sqlsrv_num_rows($select) == 1){
             }
             // Redirect to index after 1.5 seconds
             header("refresh:1.5;url=index.php");
-
+        //if username valid but password invalid, display splash screen and redirect to index:
         } else {
             echo '<div class="header">
                   <h1>Invalid password! :( </h1>
@@ -58,7 +64,7 @@ if (sqlsrv_num_rows($select) == 1){
             // Redirect to index after 1.5 seconds
             header("refresh:1.5;url=index.php");
         }
-
+//if username invalid, display splash screen and redirect to index:
 } else {
     echo '<div class="header">
                   <h1>Invalid username and password! :( </h1>
@@ -67,6 +73,7 @@ if (sqlsrv_num_rows($select) == 1){
     // Redirect to index after 1.5 seconds
     header("refresh:1.5;url=index.php");
 }
-
+//freeing the $select resource:
+sqlsrv_free_stmt($select);
 
 ?>

@@ -50,21 +50,11 @@ if (isset($_SESSION['user_id'])) {
                         into #top_buyers
                         from Bids
                                  inner join AuctionItems AI on AI.itemId = Bids.itemId
-                        where categoryId in (select categoryId from #retrievebids)
+                            where categoryId in (select categoryId from #retrievebids)
                           AND buyerId != {$_SESSION['buyer_id']}
                         group by buyerId, categoryId
                         ORDER BY nr_bids_on_category DESC";
     sqlsrv_query($conn, $retrieve_similar_buyers);
-//    getting a visual of the retrieve_buyers results (not needed for the final query):
-//    $retrieve_table_query2 = "SELECT *
-//                                FROM #top_buyers";
-//    $getResults2= sqlsrv_query($conn, $retrieve_table_query2);
-//    echo nl2br("Reading data from table" . PHP_EOL);
-//    if ($getResults2 == FALSE)
-//        print_r(sqlsrv_errors());
-//    while ($row = sqlsrv_fetch_array($getResults2, SQLSRV_FETCH_ASSOC)) {
-//        echo nl2br($row['buyerId'] . " " . $row['nr_bids_on_category'] . " " . $row['categoryId']. PHP_EOL);
-//    }
 
     //selecting the top 10 bids (by number of bids) that others have bid on and that the og buyer didn't:
     $retrieve_top_bids = "select count(Bids.itemId) as num_bids_per_id, Bids.itemId
@@ -77,16 +67,6 @@ if (isset($_SESSION['user_id'])) {
                             group by Bids.itemId
                             ORDER BY num_bids_per_id DESC";
     sqlsrv_query($conn, $retrieve_top_bids);
-//    getting a visual of the top_bids results (not needed for the final query):
-//    $retrieve_table_query3 = "SELECT *
-//                                FROM #top_bids";
-//    $getResults3= sqlsrv_query($conn, $retrieve_table_query3);
-//    echo nl2br("Reading data from table" . PHP_EOL);
-//    if ($getResults3 == FALSE)
-//        print_r(sqlsrv_errors());
-//    while ($row = sqlsrv_fetch_array($getResults3   , SQLSRV_FETCH_ASSOC)) {
-//        echo nl2br($row['num_bids_per_id'] . " " . $row['itemId'] . PHP_EOL);
-//    }
 
     //printing the results on the page based on the retrieve top bids
     $print_bids = "SELECT 
@@ -109,13 +89,7 @@ if (isset($_SESSION['user_id'])) {
                 CAST(AI.ItemDescription AS VARCHAR(1000)),
                 AI.ItemEndDate";
     $getResults4 = sqlsrv_query($conn, $print_bids);
-//    //getting a visual of the result:
-//    echo nl2br("Reading data from table" . PHP_EOL);
-//    if ($getResults4 == FALSE)
-//        print_r(sqlsrv_errors());
-//    while ($row = sqlsrv_fetch_array($getResults4   , SQLSRV_FETCH_ASSOC)) {
-//        echo nl2br($row['Description'] . " " . $row['itemID'] . PHP_EOL);
-//    }
+
     // TODO: Loop through results and print them out as list items.
         WHILE ($row = sqlsrv_fetch_array($getResults4)) {
 
@@ -130,13 +104,4 @@ if (isset($_SESSION['user_id'])) {
             print_listing_li($item_id, $title, $desc, $price, $num_bids, $end_time, $start_price);
         }
 }
-
-
-
-
-
-
-
-
-
 ?>
