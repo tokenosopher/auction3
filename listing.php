@@ -19,6 +19,7 @@
       $end_time = $auctiondetails['end_time'];
       $starting_price = $auctiondetails['starting_price'];
       $seller = $auctiondetails['seller_id'];
+      $reserve_price = $auctiondetails["reserve_price"];
       $selleremail = getselleremail($seller);
 
       // Calculate time to auction end:
@@ -52,7 +53,7 @@
 
 
 <div class="container">
-    <?php if ($isvalidauction):?>
+<?php if ($isvalidauction):?>
 <div class="row"> <!-- Row #1 with auction title + watch button -->
   <div class="col-sm-8"> <!-- Left col -->
     <h2 class="my-3"><?php echo($title); ?></h2>
@@ -111,7 +112,10 @@
     <?php if(isset($usermaxbid) and $usermaxbid > 0):?>
         <p class="lead">Your highest bid: £<?php echo(number_format($usermaxbid, 2)) ?></p>
     <?php endif ?>
-      <p class="lead">Current highest bid: £<?php echo(number_format($current_price, 2)) ?></p>
+    <?php if(isset($_SESSION['seller_id']) and ($_SESSION['seller_id'] == $seller) and ($reserve_price != $starting_price)):?>
+        <p class="lead">Reserve Price: £<?php echo(number_format($reserve_price, 2)) ?></p>
+    <?php endif ?>
+    <p class="lead">Current highest bid: £<?php echo(number_format($current_price, 2)) ?></p>
     <p class="lead">Starting Price: £<?php echo(number_format($starting_price, 2)) ?></p>
 
     <!-- Bidding form -->
