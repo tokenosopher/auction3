@@ -21,7 +21,7 @@
               <i class="fa fa-search"></i>
             </span>
           </div>
-          <input type="text" class="form-control border-left-0" id="keyword" name="keyword" placeholder="Search for anything" <?php if(isset($_GET['keyword'])) {echo "value= '{$_GET['keyword']}'";}?>>
+          <input type="text" class="form-control border-left-0" id="keyword" name="keyword" <?php if(isset($_GET['keyword'])) {echo 'value = "'.$_GET['keyword'].'"';}else{echo 'placeholder = "Search for anything"';}?>>
             <!--We additionally want to add for the search result to stay in the search bar and save latest searches-->
         </div>
       </div>
@@ -31,7 +31,7 @@
         <label for="cat" class="sr-only">Search within:</label>
           <?php
           $category_search_query = "SELECT * FROM Category";
-          $getResultsCategories = sqlsrv_query($conn, $category_search_query);
+          $getResultsCategories = sqlsrv_query($conn,$category_search_query);
           ?>
             <select class="form-control" id="cat" name = "cat">
               <option value="all">All categories</option>
@@ -79,7 +79,6 @@
 </div>
 
 <?php
-
   // Retrieve these from the URL
 
 //TODO: I still need to work out how perform a query search for the key word
@@ -89,15 +88,26 @@
   }
   else {
     $keyword = $_GET['keyword'];
+
 //    Now I have to clean both sides of the search from blank spaces and break down
 //    the search into an array that will allow me to search for every word in the search
     $keyword = ltrim($keyword);
     $keyword = rtrim($keyword);
-    $keywords_item_description = "AI.itemDescription like '%".implode("%' OR AI.itemDescription like '%",explode(" ",$keyword))."%'";
-    $test = implode("%' OR AI.itemDescription like '%",explode(" ",$keyword));
-    $keywords_item_title = "AI.itemTitle like '%".implode("%' OR AI.itemTitle like '%",explode(" ",$keyword))."%'";
 
-    $search_keyword = "AND ({$keywords_item_description} OR {$keywords_item_title})";
+//  This part of the code avoids SQL injection through single apostrophe sign
+    $keyword = str_replace("'","''",$keyword);
+
+//  We use two ways of searching for key work, first we look for exact match and if no results were found then
+//  we break up the sting into individual words and search for them to match
+
+//  This part of the code look for exact match of the word
+    $exact_match = "AND AI.itemDescription like '%".$keyword."%' or AI.itemTitle like '%".$keyword."%'";
+
+//  This part of the code looks for separate words, we have to perform some sting manipulation to get it the right format
+//  to be put into SQL query
+    $keywords_item_description = "AI.itemDescription like '%".implode("%' OR AI.itemDescription like '%",explode(" ",$keyword))."%'";
+    $keywords_item_title = "AI.itemTitle like '%".implode("%' OR AI.itemTitle like '%",explode(" ",$keyword))."%'";
+    $search_keywords = "AND ({$keywords_item_description} OR {$keywords_item_title})";
   }
 
   if (!isset($_GET['cat']) OR $_GET['cat'] == 'all') {
@@ -109,8 +119,6 @@
     $category = $_GET['cat'];
     $category_search = "AND AI.categoryId = $category";
   }
-
-//  echo htmlspecialchars($_GET['cat']);
 
   if (!isset($_GET['order_by'])) {
     // TODO: Define behavior if an order_by value has not been specified.
@@ -132,52 +140,57 @@
   else {
     $curr_page = $_GET['page'];
   }
+
+
   /* TODO: Use above values to construct a query. Use this query to 
      retrieve data from the database. (If there is no form data entered,
      decide on appropriate default value/default query to make. */
 
-  $active_auctions_query = "SELECT *
+// This function runs a query for retrieving the number of currently active auctions to work out
+// the number of pages for pagination
+function number_of_listings($conn,$search,$category_search)
+    {
+    $active_auctions_query = "SELECT *
     FROM AuctionItems AI
-    WHERE (AI.itemEndDate > GETDATE()) {$search_keyword} {$category_search}";
+    WHERE AI.itemEndDate > GETDATE() {$search} {$category_search}";
 
-  // I broke up the query into two parts since a pretty similar query has to be used twice
-//echo $active_auctions_query;
-  $getResults = sqlsrv_query($conn, $active_auctions_query,array(), array( "Scrollable" => SQLSRV_CURSOR_KEYSET));
+    $getResults = sqlsrv_query($conn, $active_auctions_query,array(), array( "Scrollable" => SQLSRV_CURSOR_KEYSET));
+    /* reference 1:  https://www.php.net/manual/en/function.sqlsrv-query.php
+       reference 2:  https://www.php.net/manual/en/function.sqlsrv-num-rows.php
+     reference 3:  https://docs.microsoft.com/en-us/sql/connect/php/cursor-types-sqlsrv-driver?view=sql-server-ver15*/
 
-// reference 1:  https://www.php.net/manual/en/function.sqlsrv-query.php
-// reference 2:  https://www.php.net/manual/en/function.sqlsrv-num-rows.php
-// reference 3:  https://docs.microsoft.com/en-us/sql/connect/php/cursor-types-sqlsrv-driver?view=sql-server-ver15
+    $temp_num_results = sqlsrv_num_rows($getResults);// TODO: Calculate me for real
+    return $temp_num_results;
+    }
 
-  /* For the purposes of pagination, it would also be helpful to know the
-     total number of results that satisfy the above query */
+//  We use the above function to serach for the exact match first
+$num_results = number_of_listings($conn,$exact_match,$category_search);
 
-  $num_results = sqlsrv_num_rows($getResults); // TODO: Calculate me for real
-//echo $num_results;
-  $results_per_page = 10;
-  $max_page = ceil($num_results / $results_per_page);
-//  echo ",",$num_results;
+    if ($num_results == 0)
+    {$num_results = number_of_listings($conn,$search_keywords,$category_search);
+    $search_keyword = $search_keywords;}
+    else{$search_keyword = $exact_match;}
+
+$results_per_page = 10;
+$max_page = ceil($num_results / $results_per_page);
 ?>
 
 <div class="container mt-5">
 
-    <!-- TODO: If result set is empty, print an informative message. Otherwise... -->
-    <!--Done! Outputs "No auctions were found for your search request, please alter your search!"-->
+<!-- TODO: If result set is empty, print an informative message. Otherwise... -->
+<!--Done! Outputs "No auctions were found for your search request, please alter your search!"-->
 
-<?php
-  if ($num_results == 0) {echo '<h2>No auctions were found for your search request, please alter your search!</h2>';}
-?>
+<?php if ($num_results == 0) {echo '<H5> No results for your search were found.<br> Try checking your spelling or alter your search criteria.</H5>';}?>
 
 <ul class="list-group">
 
-<!-- TODO: Use a while loop to print a list item for each auction listing
-     retrieved from the query -->
+<!-- TODO: Use a while loop to print a list item for each auction listing retrieved from the query -->
 
 <?php
-
+//$results_for_current_page shows the offset for the current page, for the first page it will be 0, second 10, third 20 and so on
   $results_for_current_page = ($curr_page-1)*$results_per_page;
 
-//$results_for_current_page shows the offset for the current page, for the first page it will be 0, second 10, third 20 and so on
-
+//The query below is dynamic. This means that it fetches the page value then adds an offset and lists the next 10 active auctions
   $query = "SELECT AI.itemId, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(100)) Description, AI.itemEndDate, MAX(B.bidValue) MaxBid,
     COUNT(B.bidValue) NoOfBids, AI.categoryId, AI.itemStartingPrice
     FROM AuctionItems AI
@@ -185,8 +198,6 @@
     WHERE (AI.itemEndDate > GETDATE()) {$search_keyword} {$category_search} 
     GROUP BY AI.itemId, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(100)), AI.itemEndDate, AI.categoryId, 
       AI.itemStartingPrice ORDER BY {$ordering} OFFSET {$results_for_current_page} ROWS FETCH NEXT {$results_per_page} ROWS ONLY";
-//echo $query;
-//The query above is dynamic. This means that it fetches the page value then adds an offset and lists the next 10 active auctions
 
 $getResults = sqlsrv_query($conn, $query);
 
@@ -258,7 +269,5 @@ WHILE ($row = sqlsrv_fetch_array($getResults)) {
 
 
 </div>
-
-
 
 <?php include_once("footer.php")?>
