@@ -96,13 +96,13 @@
     $keyword = rtrim($keyword);
 
 //  This part of the code avoids SQL injection through single apostrophe sign
-   $GLOBALS[query_keyword] = str_replace("'","''",$keyword);
+   $query_keyword = str_replace("'","''",$keyword);
 
 //  We use two ways of searching for key work, first we look for exact match and if no results were found then
 //  we break up the sting into individual words and search for them to match
 
 //  This part of the code look for exact match of the word
-    $GLOBALS[exact_match] = "AND AI.itemDescription like '%".$GLOBALS[query_keyword]."%' or AI.itemTitle like '%".$GLOBALS[query_keyword]."%'";
+    $exact_match = "AND AI.itemDescription like '%".$query_keyword."%' or AI.itemTitle like '%".$query_keyword."%'";
   }
 
   if (!isset($_GET['cat']) OR $_GET['cat'] == 'all') {
@@ -159,23 +159,23 @@ function number_of_listings($conn,$search,$category_search)
 
 //  We use the above function to search for the exact match first
 
-    $num_results = number_of_listings($conn,$GLOBALS[exact_match],$category_search);
+    $num_results = number_of_listings($conn,$exact_match,$category_search);
     if ($num_results == 0)
     {
     //  This part of the code looks for separate words, we have to perform some sting manipulation to get it the right format
     //  to be put into SQL query
-    $keywords_item_description_and = "AI.itemDescription like '%".implode("%' AND AI.itemDescription like '%",explode(" ",$GLOBALS[query_keyword]))."%'";
-    $keywords_item_title_and = "AI.itemTitle like '%".implode("%' AND AI.itemTitle like '%",explode(" ",$GLOBALS[query_keyword]))."%'";
+    $keywords_item_description_and = "AI.itemDescription like '%".implode("%' AND AI.itemDescription like '%",explode(" ",$query_keyword))."%'";
+    $keywords_item_title_and = "AI.itemTitle like '%".implode("%' AND AI.itemTitle like '%",explode(" ",$query_keyword))."%'";
     $search_keywords = "AND ({$keywords_item_description_and} OR {$keywords_item_title_and})";
     $num_results = number_of_listings($conn,$search_keywords,$category_search);
 
         if($num_results == 0)
-        {$keywords_item_description_or = "AI.itemDescription like '%".implode("%' OR AI.itemDescription like '%",explode(" ",$GLOBALS[query_keyword]))."%'";
-        $keywords_item_title_or = "AI.itemTitle like '%".implode("%' OR AI.itemTitle like '%",explode(" ",$GLOBALS[query_keyword]))."%'";
+        {$keywords_item_description_or = "AI.itemDescription like '%".implode("%' OR AI.itemDescription like '%",explode(" ",$query_keyword))."%'";
+        $keywords_item_title_or = "AI.itemTitle like '%".implode("%' OR AI.itemTitle like '%",explode(" ",$query_keyword))."%'";
         $search_keywords = "AND ({$keywords_item_description_or} OR {$keywords_item_title_or})";
         $num_results = number_of_listings($conn,$search_keywords,$category_search);}
     }
-    else {$search_keywords = $GLOBALS[exact_match];}
+    else {$search_keywords = $exact_match;}
 
 $results_per_page = 10;
 $max_page = ceil($num_results / $results_per_page);
