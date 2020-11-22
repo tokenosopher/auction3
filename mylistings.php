@@ -1,6 +1,9 @@
 <?php include_once("header.php")?>
 <?php require("utilities.php")?>
 <?php include_once('auction_functions.php')?>
+<?php
+//This part of the code stores the connection to DB and we store in a separate file
+include_once 'db_con/db_li.php'?>
 
 <div class="container">
 <h2 class="my-3">My listings</h2>
@@ -10,8 +13,8 @@
 <ul class="list-group">
 
 <?php
-// TODO: Check user's credentials (cookie/session).
 
+//  This part of the code checks for users credentials and checks which listings they have, if any
     if (isset($_SESSION['logged_in']) and $_SESSION['account_type'] == 'seller') {
         $user_id = $_SESSION['user_id'];
         $seller_id = $_SESSION['seller_id'];
@@ -22,25 +25,25 @@
         // Feel free to extract out useful functions from browse.php and put them in
         // the shared "utilities.php" where they can be shared by multiple files.
 
-// TODO: Pagination part of the query
+// Pagination part of the query
+    if (!isset($GET['page']))
+    {$curr_page = 1;}
+    else
+        {$curr_page = $_GET['page'];}
 
-    if (!isset($_GET['page'])) {
-            $curr_page = 1;
-        } else {
-            $curr_page = $_GET['page'];
-        }
+//    This query fetches all of the listings for a specific user and counts how many listings they have
         $query_no_of_listings = "SELECT * FROM AuctionItems WHERE sellerID = {$seller_id}";
         $getting_array = sqlsrv_query($conn, $query_no_of_listings, array(), array("Scrollable" => SQLSRV_CURSOR_KEYSET));
         $num_results = sqlsrv_num_rows($getting_array);
         $results_per_page = 10;
         $max_page = ceil($num_results / $results_per_page);
+        sqlsrv_free_stmt($getting_array);
 
 
 
-// TODO: Perform a query to pull up their auctions.
+//Perform a query to pull up their auctions.
 
     $results_for_current_page = ($curr_page-1)*$results_per_page;
-    echo $results_for_current_page;
     $query = "SELECT AI.itemId, AI.itemTitle, CAST(AI.itemDescription AS VARCHAR(1000)) Description, AI.itemEndDate,
     AI.itemStartingPrice, AI.itemReservePrice, MAX(B.bidValue) MaxBid, COUNT(B.bidValue) NoOfBids
     FROM AuctionItems AI
@@ -53,7 +56,6 @@
 
     $getResults = sqlsrv_query($conn,$query);
         while ($row = sqlsrv_fetch_array($getResults)) {
-
         $item_id = $row['itemId'];
         $title = $row['itemTitle'];
         $desc = $row['Description'];
@@ -66,7 +68,6 @@
 
         print_my_listings_li($item_id, $title, $desc, $price, $num_bids, $end_time, $starting_price, $reserve_price, $auction_status);
         }}
-    sqlsrv_free_stmt($getResults);
     ?>
 
     </ul>
@@ -80,9 +81,7 @@
             foreach ($_GET as $key => $value) {
                 if ($key != "page") {
                     $querystring .= "$key=$value&amp;";
-                }
-            }
-
+                }}
             $high_page_boost = max(3 - $curr_page, 0);
             $low_page_boost = max(2 - ($max_page - $curr_page), 0);
             $low_page = max(1, $curr_page - 2 - $low_page_boost);
@@ -124,7 +123,7 @@
     </a>
     </li>');}
     }
-    else {echo ('<div class="text-center">You have no listings! <a href="create_auction.php.php">Create one!</a></div>');}
+    else {echo ('<div class="text-center">You have no listings! <a href="create_auction.php">Create one!</a></div>');}
 
 
     sqlsrv_close($conn);

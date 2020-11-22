@@ -1,7 +1,8 @@
 <?php include_once("header.php")?>
 <?php require("utilities.php")?>
-<?php include_once 'db_con/db_li.php'?>
-
+<?php
+//This part of the code stores the connection to DB and we store in a separate file
+include_once 'db_con/db_li.php'?>
 <div class="container">
 
 <h2 class="my-3">Browse listings</h2>
@@ -30,12 +31,15 @@
       <div class="form-group">
         <label for="cat" class="sr-only">Search within:</label>
           <?php
+//          This part of the code retrieves all the categories from DB
           $category_search_query = "SELECT * FROM Category";
           $getResultsCategories = sqlsrv_query($conn,$category_search_query);
           ?>
             <select class="form-control" id="cat" name = "cat">
               <option value="all">All categories</option>
+                <!--This part of the code dynamically pulls Categories from DB into HTML Dropdown Menu-->
                 <?php
+//                This while look prints all the values for category names
                 while ($rows = sqlsrv_fetch_array($getResultsCategories,SQLSRV_FETCH_ASSOC))
                 {
                     $category_id = $rows['categoryId'];
@@ -49,7 +53,6 @@
                 }
           sqlsrv_free_stmt($getResultsCategories);
           ?>
-          <!--This part of the code dynamically pulls Categories from DB into HTML Dropdown Menu-->
         </select>
       </div>
     </div>
@@ -58,7 +61,9 @@
         <label class="mx-2" for="order_by">Sort by:</label>
         <select class="form-control" id="order_by" name = "order_by">
             <?php
-                $assoc_arrays_ordering = array("MaxBid"=>"Price (low to high)", "MaxBid DESC"=>"Price (high to low)", "itemEndDate"=>"Soonest expiry");
+//              Here I created an associated array, also known as dictionary in python, that essentially displays
+            //  the options for sort by and sends the appropriate search variables to GET
+                $assoc_arrays_ordering = array("1"=>"Price (low to high)", "2"=>"Price (high to low)", "3"=>"Soonest expiry");
                     foreach ($assoc_arrays_ordering as $order_by => $text)
                     {
                         if ($_GET['order_by'] == $order_by)
@@ -114,6 +119,9 @@
   }
   else {
     $ordering = $_GET['order_by'];
+//    This step is done to avoid SQL injection, one associative array, finds a key to another associative array
+    $assoc_arrays_ordering_queries = array("1"=>"MaxBid", "2"=>"MaxBid DESC", "3"=>"itemEndDate");
+    $ordering = $assoc_arrays_ordering_queries[$ordering];
 
   /*  This part of drop down menu is also done. I have created an Associative Arrays, in Python they are called
   dictionaries, to match the value of html with query input for SQL.
@@ -144,19 +152,24 @@ function number_of_listings($conn,$keyword,$category_search)
     /* reference 1:  https://www.php.net/manual/en/function.sqlsrv-query.php
        reference 2:  https://www.php.net/manual/en/function.sqlsrv-num-rows.php
      reference 3:  https://docs.microsoft.com/en-us/sql/connect/php/cursor-types-sqlsrv-driver?view=sql-server-ver15*/
-    return sqlsrv_num_rows($getResults);
+        sqlsrv_free_stmt($getResults);
+        return sqlsrv_num_rows($getResults);
+
     }
 
-
-
-    $resulting_keyword = "AND AI.itemDescription like '%" . $keyword . "%' or AI.itemTitle like '%" . $keyword . "%'";
+//    Querying of the the search word happens in 3 stages, we fist find the exact match to user's input
+    $resulting_keyword = "AND (AI.itemDescription like '%" . $keyword . "%' or AI.itemTitle like '%" . $keyword . "%')";
     $num_results = number_of_listings($conn, $resulting_keyword, $category_search);
 
+//  Then we need to check if there were any results displayed, if the results are empty, we break up the sting of words
+// and search whether any of the listings contain both words, but not next to each other
     if($num_results ==0){$keywords_item_description_and = "AI.itemDescription like '%".implode("%' AND AI.itemDescription like '%",explode(" ",$keyword))."%'";
                          $keywords_item_title_and = "AI.itemTitle like '%".implode("%' AND AI.itemTitle like '%",explode(" ",$keyword))."%'";
                          $search_keywords = "AND ({$keywords_item_description_and} OR {$keywords_item_title_and})";
                          $num_results = number_of_listings($conn,$search_keywords,$category_search);
                          $resulting_keyword = $search_keywords;}
+
+//  Then, in the worst case scenario, if AND didn't work, we will display listings that have either of the words either in the description, or the title
     if($num_results ==0){$keywords_item_description_or = "AI.itemDescription like '%".implode("%' OR AI.itemDescription like '%",explode(" ",$keyword))."%'";
                          $keywords_item_title_or = "AI.itemTitle like '%".implode("%' OR AI.itemTitle like '%",explode(" ",$keyword))."%'";
                          $keyword_or = "AND ({$keywords_item_description_or} OR {$keywords_item_title_or})";
@@ -193,8 +206,8 @@ $max_page = ceil($num_results / $results_per_page);
 
 $getResults = sqlsrv_query($conn, $query);
 
-//Tightened this bit up, no need for transitional variables
-WHILE ($row = sqlsrv_fetch_array($getResults)) {
+//This while look outputs the listings in such way that they are formatted as "Boxes" of auctions that contain all the relevant info
+while ($row = sqlsrv_fetch_array($getResults)) {
     print_listing_li($row['itemId'], $row['itemTitle'], $row['Description'], $row['MaxBid'], $row['NoOfBids'], $row['itemEndDate'],$row['itemStartingPrice']);}
     sqlsrv_free_stmt($getResults);
     sqlsrv_close($conn);
