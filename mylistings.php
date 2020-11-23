@@ -17,7 +17,7 @@ include_once 'db_con/db_li.php'?>
 //  This part of the code checks for users credentials and checks which listings they have, if any
     if (isset($_SESSION['logged_in']) and $_SESSION['account_type'] == 'seller') {
         $user_id = $_SESSION['user_id'];
-        $seller_id = $_SESSION['seller_id'];
+        $seller_id = $_SESSION['seller_id'];}
 
         // This page is for showing a user the auction listings they've made.
         // It will be pretty similar to browse.php, except there is no search bar.
@@ -26,7 +26,9 @@ include_once 'db_con/db_li.php'?>
         // the shared "utilities.php" where they can be shared by multiple files.
 
 // Pagination part of the query
-    if (!isset($GET['page'])){$curr_page = 1;}else
+    if (!isset($GET['page']))
+    {$curr_page = 1;}
+    else
         {$curr_page = $_GET['page'];}
 
 //    This query fetches all of the listings for a specific user and counts how many listings they have
@@ -71,7 +73,7 @@ include_once 'db_con/db_li.php'?>
     <!-- Pagination for results listings -->
     <nav aria-label="Search results pages" class="mt-5">
         <ul class="pagination justify-content-center">
-    <?php
+<?php
     // Copy any currently-set GET variables to the URL.
 
     // Copy any currently-set GET variables to the URL.
@@ -94,10 +96,9 @@ include_once 'db_con/db_li.php'?>
         <span aria-hidden="true"><i class="fa fa-arrow-left"></i></span>
         <span class="sr-only">Previous</span>
       </a>
-    </li>');
-    }
+    </li>');}
 
-    for ($i = $low_page; $i <= $high_page; $i++) {
+    for ($i = $low_page; $i <= $high_page; $i++){
         if ($i == $curr_page) {
         // Highlight the link
         echo('
@@ -116,12 +117,11 @@ include_once 'db_con/db_li.php'?>
     <span aria-hidden="true"><i class="fa fa-arrow-right"></i></span>
     <span class="sr-only">Next</span>
     </a>
-    </li>');}
-    }}
-    else {echo ('<div class="text-center">You have no listings! <a href="create_auction.php">Create one!</a></div>');}
+    </li>');}}
+    else {echo '<div class="text-center">You have no listings! <a href="create_auction.php">Create one!</a></div>';}
 
 
-    sqlsrv_close($conn);
+    sqlsrv_close($conn);}
     ?>
 
         </ul>
