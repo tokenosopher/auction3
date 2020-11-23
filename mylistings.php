@@ -26,9 +26,7 @@ include_once 'db_con/db_li.php'?>
         // the shared "utilities.php" where they can be shared by multiple files.
 
 // Pagination part of the query
-    if (!isset($GET['page']))
-    {$curr_page = 1;}
-    else
+    if (!isset($GET['page'])){$curr_page = 1;}else
         {$curr_page = $_GET['page'];}
 
 //    This query fetches all of the listings for a specific user and counts how many listings they have
@@ -55,7 +53,7 @@ include_once 'db_con/db_li.php'?>
 // TODO: Loop through results and print them out as list items.
 
     $getResults = sqlsrv_query($conn,$query);
-        while ($row = sqlsrv_fetch_array($getResults)) {
+        while ($row = sqlsrv_fetch_array($getResults)){
         $item_id = $row['itemId'];
         $title = $row['itemTitle'];
         $desc = $row['Description'];
@@ -66,54 +64,51 @@ include_once 'db_con/db_li.php'?>
         $reserve_price = $row['itemReservePrice'];
         $auction_status = getauctionstatus($item_id);
 
-        print_my_listings_li($item_id, $title, $desc, $price, $num_bids, $end_time, $starting_price, $reserve_price, $auction_status);
-        }}
+        print_my_listings_li($item_id, $title, $desc, $price, $num_bids, $end_time, $starting_price, $reserve_price, $auction_status);}
     ?>
 
     </ul>
     <!-- Pagination for results listings -->
     <nav aria-label="Search results pages" class="mt-5">
         <ul class="pagination justify-content-center">
+    <?php
+    // Copy any currently-set GET variables to the URL.
 
-            <?php
-            // Copy any currently-set GET variables to the URL.
-            $querystring = "";
-            foreach ($_GET as $key => $value) {
-                if ($key != "page") {
-                    $querystring .= "$key=$value&amp;";
-                }}
-            $high_page_boost = max(3 - $curr_page, 0);
-            $low_page_boost = max(2 - ($max_page - $curr_page), 0);
-            $low_page = max(1, $curr_page - 2 - $low_page_boost);
-            $high_page = min($max_page, $curr_page + 2 + $high_page_boost);
+    // Copy any currently-set GET variables to the URL.
+    $querystring = "";
+    foreach ($_GET as $key => $value) {
+        if ($key != "page") {
+            $querystring .= "$key=$value&amp;";
+        }
+    }
 
-            if ($curr_page != 1) {
-                echo('
+    $high_page_boost = max(3 - $curr_page, 0);
+    $low_page_boost = max(2 - ($max_page - $curr_page), 0);
+    $low_page = max(1, $curr_page - 2 - $low_page_boost);
+    $high_page = min($max_page, $curr_page + 2 + $high_page_boost);
+
+    if ($curr_page != 1) {
+        echo('
     <li class="page-item">
-      <a class="page-link" href="mylistings.php?' . $querystring . 'page=' . ($curr_page - 1) . '" aria-label="Previous">
+      <a class="page-link" href="browse.php?' . $querystring . 'page=' . ($curr_page - 1) . '" aria-label="Previous">
         <span aria-hidden="true"><i class="fa fa-arrow-left"></i></span>
         <span class="sr-only">Previous</span>
       </a>
     </li>');
-            }
+    }
 
-            for ($i = $low_page; $i <= $high_page; $i++) {
-                if ($i == $curr_page) {
-                    // Highlight the link
-                    echo('
-                    <li class="page-item active">');
-                }
-                else {
-                    // Non-highlighted link
-                    echo('
-                    <li class="page-item">');
-                }
+    for ($i = $low_page; $i <= $high_page; $i++) {
+        if ($i == $curr_page) {
+        // Highlight the link
+        echo('
+        <li class="page-item active">');}
+        else {// Non-highlighted link
+        echo('
+        <li class="page-item">');}
 
-                // Do this in any case
-                echo('
-      <a class="page-link" href="mylistings.php?' . $querystring . 'page=' . $i . '">' . $i . '</a>
-    </li>');
-            }
+        // Do this in any case
+        echo('<a class="page-link" href="mylistings.php?' . $querystring . 'page=' . $i . '">' . $i . '</a></li>');}
+
     if ($num_results != 0) {
         if ($curr_page != $max_page) {
             echo('<li class="page-item">
@@ -122,7 +117,7 @@ include_once 'db_con/db_li.php'?>
     <span class="sr-only">Next</span>
     </a>
     </li>');}
-    }
+    }}
     else {echo ('<div class="text-center">You have no listings! <a href="create_auction.php">Create one!</a></div>');}
 
 
