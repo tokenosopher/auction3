@@ -152,8 +152,9 @@ function number_of_listings($conn,$keyword,$category_search)
     /* reference 1:  https://www.php.net/manual/en/function.sqlsrv-query.php
        reference 2:  https://www.php.net/manual/en/function.sqlsrv-num-rows.php
      reference 3:  https://docs.microsoft.com/en-us/sql/connect/php/cursor-types-sqlsrv-driver?view=sql-server-ver15*/
+        $numb_of_rows = sqlsrv_num_rows($getResults);
         sqlsrv_free_stmt($getResults);
-        return sqlsrv_num_rows($getResults);
+        return $numb_of_rows;
 
     }
 
