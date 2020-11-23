@@ -58,6 +58,7 @@
     }
 
     sqlsrv_free_stmt($getResults);
+    sqlsrv_close($conn);
 }
 //    At this stage the session is closed and bellow are messages that the buyer will see if they try to access this page
 
@@ -67,5 +68,6 @@ elseif(isset($_SESSION['logged_in']) and $_SESSION['account_type'] == 'buyer'){
 else{
     echo "You must login to your seller account in order to see your listings!";
 }
+
 ?>
 <?php include_once("footer.php")?>
