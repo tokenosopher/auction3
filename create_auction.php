@@ -59,7 +59,7 @@
                     <!--This part of the code dynamically pulls Categories from DB into HTML Dropdown Menu-->
                 </select>
 
-            <small id="categoryHelp" class="form-text text-muted"><span class="text-danger">* Required.</span> Select a category for this item.</small>
+            <small id="categoryHelp" class="form-text text-muted"> Select a category for this item. If not set, item will be placed in "No category. </small>
           </div>
         </div>
         <div class="form-group row">
@@ -71,7 +71,7 @@
               </div>
               <input type="number" step="0.01" min = "0" name="auctionStartPrice" class="form-control" id="auctionStartPrice" >
             </div>
-            <small id="startBidHelp" class="form-text text-muted"><span class="text-danger">* Required.</span> Initial bid amount.</small>
+            <small id="startBidHelp" class="form-text text-muted"> Initial bid amount. If not set, starting price will be £0. </small>
           </div>
         </div>
         <div class="form-group row">

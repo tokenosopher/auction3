@@ -17,6 +17,8 @@ function outbidMail($item_id){
                         WHERE Bids.itemId =%s and B.buyerId != %s 
                         ORDER BY bidValue DESC 
                         ", $item_id, $_SESSION['buyer_id']);
+    // When an user bids on an item, this query finds the former highest bidder, this allows us to notify
+    // them that they have been outbid
 
     global $conn;
     $emailBids = sqlsrv_query($conn, $querystring);
@@ -48,6 +50,8 @@ function watchlistMail($item_id){
                         LEFT JOIN Users2 U on B.userId = U.UserID
                         WHERE W.itemId=%s and B.buyerId != %s 
                         ", $item_id, $_SESSION['buyer_id']);
+    // this query selects the email addresses of all the users that have the item that has been
+    //bid on, on their watchlist
     global $conn;
     $emailBids = sqlsrv_query($conn, $querystring);
     $current_price = getauctiondetails($item_id)['current_price'];
