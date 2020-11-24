@@ -19,10 +19,7 @@ if (isset($_SESSION['logged_in']) and $_SESSION['account_type'] == 'buyer') {
 
     // Performs a query to pull up the auctions user has bidded on.
     $getResults = getmybids();
-    // Default message if user hasn't bidded on anything
-    if(!sqlsrv_fetch_array($getResults)['itemId']){
-        echo "You haven't made any bids! Start bidding now!";
-    }
+    $empty = true;
 
     // Loops through results and prints them out as list items.
     WHILE ($row = sqlsrv_fetch_array($getResults)) {
@@ -36,11 +33,17 @@ if (isset($_SESSION['logged_in']) and $_SESSION['account_type'] == 'buyer') {
         $usermaxbid = $row['UserMaxBid'];
 
         $auction_status = getauctionstatus($item_id);
+        $empty = false;
 
         print_bids_li($item_id, $title, $desc, $price, $num_bids, $end_time,$usermaxbid,$auction_status);
     }
     sqlsrv_free_stmt($getResults);
     sqlsrv_close($conn);
+
+    // Default message if user hasn't bidded on anything
+    if($empty){
+        echo "You haven't made any bids! Start bidding now!";
+    }
 }
 ?>
 

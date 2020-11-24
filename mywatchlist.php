@@ -42,15 +42,10 @@ if (isset($_SESSION['logged_in']) and $_SESSION['account_type'] == 'buyer'){
                     AI.ItemEndDate;", $buyer_id);
 
     $getResults= sqlsrv_query($conn, $query);
-
-    //default message if no items are watched
-    if(!sqlsrv_fetch_array($getResults)['itemId']){
-        echo "You haven't watched any items! Explore items for sale now!";
-    }
+    $empty = true;
 
     //loops through results and prints them out
     WHILE ($row = sqlsrv_fetch_array($getResults)) {
-
         $item_id = $row['itemID'];
         $title = $row['ItemTitle'];
         $desc = $row['Description'];
@@ -58,11 +53,16 @@ if (isset($_SESSION['logged_in']) and $_SESSION['account_type'] == 'buyer'){
         $price = $row['MaxBid'];
         $num_bids = $row['NoOfBids'];
         $start_price = $row['itemStartingPrice'];
+        $empty = false;
 
         print_listing_li($item_id, $title, $desc, $price, $num_bids, $end_time, $start_price);
     }
 
     sqlsrv_free_stmt($getResults);
+    //default message if no items are watched
+    if($empty){
+        echo "You haven't watched any items! Explore items for sale now!";
+    }
 }
 elseif(isset($_SESSION['logged_in']) and $_SESSION['account_type'] == 'seller'){
     echo "Only buyer accounts will have watchlists, you are a seller account.";
