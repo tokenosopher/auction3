@@ -26,10 +26,10 @@ WHILE ($row = sqlsrv_fetch_array($results)) {
         if($winning_bid >= $reserve_price){
             $seller_body = sprintf(
                 'Your auction for %s has ended, and the winner is %s . 
-                            Your item sold for %s ',$item_title,$winner_email , $winning_bid
+                            Your item sold for £ %s ',$item_title,$winner_email , $winning_bid
             );
             $buyer_subject = sprintf(" Congratulations, you have won your auction for %s",$item_title);
-            $buyer_body = sprintf(" Your bid of %s has won this auction! 
+            $buyer_body = sprintf(" Your bid of £ %s has won this auction! 
                             Expect the seller %s to contact you soon. ",$winning_bid,$seller_email);
             sendEmail($seller_email,$seller_subject,$seller_body);
             sendEmail($winner_email,$buyer_subject,$buyer_body);
@@ -37,7 +37,7 @@ WHILE ($row = sqlsrv_fetch_array($results)) {
         else{
             $seller_body = sprintf(
                 'Your auction for %s has ended, there were bids, 
-                however none met your reserve price of £%s.',$item_title, $reserve_price);
+                however none met your reserve price of £ %s.',$item_title, $reserve_price);
             sendEmail($seller_email,$seller_subject,$seller_body);
         }
     }
