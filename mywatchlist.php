@@ -42,8 +42,6 @@ if (isset($_SESSION['logged_in']) and $_SESSION['account_type'] == 'buyer'){
                     AI.ItemEndDate;", $buyer_id);
 
     $getResults= sqlsrv_query($conn, $query);
-
-    //default message if no items are watched
     $empty = true;
 
     //loops through results and prints them out
@@ -61,6 +59,7 @@ if (isset($_SESSION['logged_in']) and $_SESSION['account_type'] == 'buyer'){
     }
 
     sqlsrv_free_stmt($getResults);
+    //default message if no items are watched
     if($empty){
         echo "You haven't watched any items! Explore items for sale now!";
     }
