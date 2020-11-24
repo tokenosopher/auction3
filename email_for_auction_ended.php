@@ -6,6 +6,9 @@
 
 $query = " SELECT itemTitle , itemId,  U.EmailAddress, itemReservePrice FROM AuctionItems left join Sellers S on AuctionItems.sellerId = S.sellerId left join Users2 U on S.userId = U.UserID where itemEndDate <= GETDATE() and itemEndDate > DATEADD( MINUTE, -1, GETDATE())  ";
 
+// Getting information for all the items that have ended within the last minute
+
+
 global $conn;
 $results = sqlsrv_query($conn, $query);
 
@@ -18,7 +21,7 @@ WHILE ($row = sqlsrv_fetch_array($results)) {
     $winner_email= $current_winner['EmailAddress'];
     $winning_bid=$current_winner['WinningBidAmt'];
     $seller_subject= sprintf(' Your Auction for %s has ended ',$item_title);
-
+    // Retrieving all information from the sql query
     if(isset($winner_email)){
         if($winning_bid >= $reserve_price){
             $seller_body = sprintf(
