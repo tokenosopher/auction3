@@ -111,7 +111,10 @@ if ($result==true) {
     else {
         $_SESSION['seller_id'] = $user['seller_id'];
     }
-    echo("You have successfully registered");
+    echo'<div class="header">
+                  <h1>You have successfuly registered! </h1>
+                  <h2>You will be redirected in a second.</h2>
+                  </div>';
     header("refresh:2;url=index.php");
 }
 

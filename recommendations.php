@@ -26,14 +26,6 @@ if (isset($_SESSION['user_id'])) {
                         group by AI.categoryId, Bids.buyerId
                         ORDER BY nr_bids_on_category DESC";
     sqlsrv_query($conn, $retrieve_buyer_cat);
-    $query_for_empty_rows = "Select * from #retrievebids";
-    $stmt = sqlsrv_query($conn, $query_for_empty_rows);
-    if (!sqlsrv_has_rows( $stmt )) {
-        echo "<br>We need to get to know you better in order to make recommendations. <br />";
-        echo "<br>We will add some once you bid more.</br>";
-        sqlsrv_free_stmt($stmt);
-        die();
-}
 
 
     //selecting the top 3 buyers that have bid on the top 3 categories of the user:
@@ -46,6 +38,14 @@ if (isset($_SESSION['user_id'])) {
                         group by buyerId, categoryId
                         ORDER BY nr_bids_on_category DESC";
     sqlsrv_query($conn, $retrieve_similar_buyers);
+    $query_for_empty_rows = "Select * from #top_buyers";
+    $stmt = sqlsrv_query($conn, $query_for_empty_rows);
+    if (!sqlsrv_has_rows( $stmt )) {
+        echo "<br>We need to get to know you better in order to make recommendations. <br />";
+        echo "<br>We will add some once you bid more.</br>";
+        sqlsrv_free_stmt($stmt);
+        die();
+    }
 
     //selecting the top 10 bids (by number of bids) that others have bid on and that the og buyer didn't:
     $retrieve_top_bids = "select top 10 count(Bids.itemId) as num_bids_per_id, Bids.itemId
@@ -59,7 +59,7 @@ if (isset($_SESSION['user_id'])) {
                             ORDER BY num_bids_per_id DESC";
     sqlsrv_query($conn, $retrieve_top_bids);
 
-    //printing the results on the page based on the retrieve top bids
+    //printing the results on the page based on the retrieve_top_bids temporary table
     $print_bids = "SELECT 
                    AI.itemID, 
                    AI.ItemTitle, 
